@@ -1,9 +1,10 @@
 package controller
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/tzcap/prescription/entity"
-	"net/http"
 )
 
 // GET /Medicinereceive/:id
@@ -33,59 +34,48 @@ func CreateMedicinereceive(c *gin.Context) {
 
 	var medicinereceive entity.Medicinereceive
 	var packing entity.Packing
-	// var receive entity.Receive
+	var receive entity.ReceiveType
 	var medicinestorage entity.MedicineStorage
 	var authority entity.Authorities
 
-	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 11 จะถูก bind เข้าตัวแปร tenant
+	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 9 จะถูก bind เข้าตัวแปร tenant
 	if err := c.ShouldBindJSON(&medicinereceive); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	// 12: ค้นหา packing ด้วย id
-	if tx := entity.DB().Where("id = ?", medicinereceive.PackingID).First(&packing); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "prefix not found"})
-		return
-	}
-
+	// 10: ค้นหา authority ด้วย id
 	if tx := entity.DB().Where("id = ?", medicinereceive.AuthoritiesID).First(&authority); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "prefix not found"})
 		return
 	}
 
-	// 13: ค้นหา receive ด้วย id
-	// if tx := entity.DB().Where("id = ?", medicinereceive.ReceiveID).First(&receive); tx.RowsAffected == 0 {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "career not found"})
-	// 	return
-	// }
+	// 11: ค้นหา packing ด้วย id
+	if tx := entity.DB().Where("id = ?", medicinereceive.PackingID).First(&packing); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "prefix not found"})
+		return
+	}
 
-	// 14: ค้นหา gender ด้วย id
+	// 12: ค้นหา receive ด้วย id
+	if tx := entity.DB().Where("id = ?", medicinereceive.ReceiveTypeID).First(&receive); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "career not found"})
+		return
+	}
+
+	// 13: ค้นหา medicinestorage ด้วย id
 	if tx := entity.DB().Where("id = ?", medicinereceive.MedicineStorageID).First(&medicinestorage); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "gender not found"})
 		return
 	}
-
+	// 14: อัพเดทค่า count
 	if tx := entity.DB().Model(&medicinestorage).Where("id = ?", medicinereceive.MedicineStorageID).Update("Count", medicinestorage.Count+medicinereceive.Count); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "gender not found"})
 		return
 	}
 
-	//เซ็ด บัตรประชาชนเป็นรหัสผ่าน
-	// password, err := bcrypt.GenerateFromPassword([]byte(tenant.Idcard), 14)
-	// if err != nil {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "error hashing password"})
-	// 	return
-	// }
-	// if tenant.Idcard == "" {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "idcard is not null"})
-	// 	return
-	// }
-
-	// 17: สร้าง tenant
+	// 15: สร้าง tenant
 	tn := entity.Medicinereceive{
-		Packing: packing,
-		// Receive:         receive,
+		Packing:         packing,
+		ReceiveType:     receive,
 		MedicineStorage: medicinestorage,
 		Authorities:     authority,
 		Company:         medicinereceive.Company,
@@ -95,7 +85,7 @@ func CreateMedicinereceive(c *gin.Context) {
 		Receiveddate:    medicinereceive.Receiveddate,
 	}
 
-	// 18: บันทึก
+	// 16: บันทึก
 	if err := entity.DB().Create(&tn).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
