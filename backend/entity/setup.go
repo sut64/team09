@@ -62,9 +62,21 @@ func SetupDatabase() {
 		TelNo:       "0828753990",
 	})
 
+	password3, err := bcrypt.GenerateFromPassword([]byte("123456"), 14)
+	db.Model(&Authorities{}).Create(&Authorities{
+		AuthorityID: "A0004",
+		FirstName:   "Chanon",
+		LastName:    "Kongsanthia",
+		Email:       "b6226770@gmail.com",
+		Password:    string(password3),
+		TelNo:       "0966655555",
+	})
+
 	var bee Authorities
+	var chanon Authorities
 
 	db.Raw("SELECT * FROM authorities WHERE email = ?", "b6218294@gmail.com").Scan(&bee)
+	db.Raw("SELECT * FROM authorities WHERE email = ?", "b6226770@gmail.com").Scan(&chanon)
 
 	//MedicineRoom
 	// medicine1 := MedicineRoom{
@@ -237,27 +249,6 @@ func SetupDatabase() {
 	}
 	db.Model(&Price{}).Create(&price129)
 
-	dispenseMedicine1 := DispenseMedicine{
-		DispensemedicineNo: "H002",
-		DispenseTime:       time.Now(),
-		Amount:             3,
-	}
-	db.Model(&DispenseMedicine{}).Create(&dispenseMedicine1)
-
-	// Bill ใบชำระเงินค่ายา
-	bill1 := Bill{
-		BillNo:   "A0001",
-		BillTime: time.Now(),
-		Payer:    "AWESOME08",
-		Total:    150,
-
-		Authorities:      bee,
-		DispenseMedicine: dispenseMedicine1,
-		Price:            price50,
-		Paymentmethod:    cash,
-	}
-	db.Model(&Bill{}).Create(&bill1)
-
 	// Dispense_status Data
 	dispense_status01 := DispenseStatus{
 		Status: "จ่ายแล้ว",
@@ -286,12 +277,29 @@ func SetupDatabase() {
 	}
 	db.Model(&MedicineLabel{}).Create(&medicinelabel01)
 
-	db.Model(&DispenseMedicine{}).Create(&DispenseMedicine{
+	dispense_medicine01 := DispenseMedicine{
 		Prescription:       Prescription01,
 		MedicineLabel:      medicinelabel01,
 		DispensemedicineNo: "H001",
 		Amount:             20,
 		DispenseTime:       time.Now(),
 		DispenseStatus:     dispense_status01,
-	})
+		Authorities:        chanon,
+	}
+	db.Model(&DispenseMedicine{}).Create(&dispense_medicine01)
+
+	// Bill ใบชำระเงินค่ายา
+	bill1 := Bill{
+		BillNo:   "A0001",
+		BillTime: time.Now(),
+		Payer:    "AWESOME08",
+		Total:    150,
+
+		Authorities:      bee,
+		DispenseMedicine: dispense_medicine01,
+		Price:            price50,
+		Paymentmethod:    cash,
+	}
+	db.Model(&Bill{}).Create(&bill1)
+
 }
