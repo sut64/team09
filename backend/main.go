@@ -91,9 +91,10 @@ func main() {
 			protected.GET("/packing/:id", controller.GetPacking)
 
 			//Medicinereceive
+			protected.GET("/medicinereceives", controller.ListMedicinereceive)
 			protected.POST("/medicinereceive", controller.CreateMedicinereceive)
 
-			// receive
+			// receivetype
 			protected.GET("/receives", controller.ListReceive)
 			protected.GET("/receive/:id", controller.GetReceive)
 
@@ -125,7 +126,7 @@ func main() {
 			protected.PATCH("/bills", controller.UpdateBill)
 			protected.DELETE("/bills/:id", controller.DeleteBill)
 
-      // Dispense_status Routes
+			// Dispense_status Routes
 			protected.GET("/dispense_statuses", controller.ListDispense_status)
 			protected.GET("/dispense_status/:id", controller.GetDispense_status)
 			protected.POST("/dispense_statuses", controller.CreateDispense_status)
