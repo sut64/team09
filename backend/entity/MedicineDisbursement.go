@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/asaskevich/govalidator"
+	//"github.com/asaskevich/govalidator"
 	"gorm.io/gorm"
 	"time"
 )
@@ -28,9 +28,4 @@ type MedicineDisbursement struct {
 	MedicineRoom      MedicineRoom `gorm:"references:id"`
 }
 
-func init() {
-	govalidator.CustomTypeTagMap.Set("past", func(i interface{}, context interface{}) bool {
-		t := i.(time.Time)
-		return t.Before(time.Now())
-	})
-}
+
