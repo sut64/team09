@@ -45,8 +45,8 @@ import MedicineLabel from "./components/MedicineLabel";
 import MedicineLabelCreate from "./components/MedicineLabelCreate";
 import Medicine_disbursement from "./components/Medicine_disbursement";
 import Medicine_disbursementCreate from "./components/Medicine_disbursementCreate";
-import Medicine_receive from "./components/Medicine_receive";
-import Receive from "./components/Receive";
+import Medicine_receive from "./components/receive";
+import Receive from "./components/receiveCreate";
 import BillCreate from "./components/BillCreate";
 import Bills from "./components/Bills";
 import Dispense_MedicineCreate from "./components/Dispense_MedicineCreate";
@@ -147,6 +147,7 @@ export default function MiniDrawer() {
     { name: "บันทึกข้อมูลฉลากยา", icon: <LabelIcon />, path: "/medicineLabels" },
     { name: "เบิกยา", icon: <AssignmentIndIcon />, path: "/disbursementCreate" },
     { name: "ใบเบิกยา", icon: <ViewListIcon />, path: "/disbursements" },
+    { name: "ใบรับยา", icon: <WarehouseIcon />, path: "/listreceived" },
     { name: "รับยาเข้าคลัง", icon: <WarehouseIcon />, path: "/receive" },
     { name: "ใบชำระเงินค่ายา", icon: <AddAlertTwoToneIcon />, path: "/bills" },
     { name: "การจ่ายยา", icon: <AirportShuttleIcon />, path: "/dispense_medicines" },
@@ -250,7 +251,7 @@ export default function MiniDrawer() {
               <Route exact path="/disbursements" component={Medicine_disbursement} />
               <Route exact path="/disbursementCreate" component={Medicine_disbursementCreate} />
 
-              {/* <Route path="/r" component={Medicine_receive} /> */}
+              <Route exact path="/listreceived" component={Medicine_receive} />
               <Route exact path="/receive" component={Receive} />
               <Route exact path="/bills" component={Bills} />
               <Route exact path="/bill/create" component={BillCreate}/>

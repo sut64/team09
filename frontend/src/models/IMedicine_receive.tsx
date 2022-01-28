@@ -8,8 +8,8 @@ export interface Medicine_receiveInterface {
   PackingID: number;
   Packing: PackingInterface;
 
-  ReceiveID: number;
-  Receive: ReceiveInterface;
+  ReceiveTypeID: number;
+  ReceiveType: ReceiveInterface;
 
   MedicineStorageID: number;
   MedicineStorage: MedicinestorageInterface;
@@ -17,7 +17,7 @@ export interface Medicine_receiveInterface {
   AuthoritiesID: number,
 	Authorities: AuthoritiesInterface,
   
-  Received_date: Date;
+  Receiveddate: Date;
   Expire: Date;
   Company: string;
   Count: number;
