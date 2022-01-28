@@ -1,10 +1,11 @@
 package entity
 
 import (
+	"time"
+
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
-	  "time"
-	"golang.org/x/crypto/bcrypt"
 )
 
 var db *gorm.DB
@@ -23,7 +24,7 @@ func SetupDatabase() {
 	database.AutoMigrate(&Authorities{}, &PaymentStatus{}, &Prescription{},
 		&MedicineLabel{}, &Suggestion{}, &Effect{},
 		&MedicineRoom{}, &MedicineStorage{}, &MedicineType{}, &MedicineDisbursement{},
-		&Packing{}, &ReceiveType{}, & Medicinereceive{},
+		&Packing{}, &ReceiveType{}, &Medicinereceive{},
 		&DispenseMedicine{}, &Paymentmethod{}, &Price{}, &Bill{},
 		&DispenseStatus{}, &DispenseMedicine{},
 	)
@@ -53,12 +54,12 @@ func SetupDatabase() {
 
 	password, err := bcrypt.GenerateFromPassword([]byte("123456"), 14)
 	db.Model(&Authorities{}).Create(&Authorities{
-		AuthorityID: "B6218294",
-		FirstName:   "ยศพล",
-		LastName:    "จันทะนาม",
+		AuthorityID: "A0003",
+		FirstName:   "Yotsaphon",
+		LastName:    "Jantanam",
 		Email:       "b6218294@gmail.com",
 		Password:    string(password),
-		TelNo:         "0828753990",
+		TelNo:       "0828753990",
 	})
 
 	var bee Authorities
@@ -150,31 +151,31 @@ func SetupDatabase() {
 
 	//Medicinestorage data
 	Medicinestorage1 := MedicineStorage{
-		Name: "ASPIRIN",
-		Count: 2000,
+		Name:         "ASPIRIN",
+		Count:        2000,
 		MedicineType: Medicinetype2,
 	}
 	db.Model(&MedicineStorage{}).Create(&Medicinestorage1)
 
 	Medicinestorage2 := MedicineStorage{
-		Name: "GEMFIBROZIL",
-		Count: 2800,
+		Name:         "GEMFIBROZIL",
+		Count:        2800,
 		MedicineType: Medicinetype1,
 	}
 	db.Model(&MedicineStorage{}).Create(&Medicinestorage2)
 
 	//Medicineroom data
 	Medicineroom1 := MedicineRoom{
-		Name: "ASPIRIN",
+		Name:   "ASPIRIN",
 		Amount: 100,
-		Price: 35.00,
+		Price:  35.00,
 	}
 	db.Model(&MedicineRoom{}).Create(&Medicineroom1)
 
 	Medicineroom2 := MedicineRoom{
-		Name: "GEMFIBROZIL",
+		Name:   "GEMFIBROZIL",
 		Amount: 100,
-		Price: 54.20,
+		Price:  54.20,
 	}
 	db.Model(&MedicineRoom{}).Create(&Medicineroom2)
 
@@ -216,30 +217,30 @@ func SetupDatabase() {
 	db.Model(&Paymentmethod{}).Create(&payment)
 
 	//Price ราคายา
-	price100 := Price{
-		Value: 100,
-	}
-	db.Model(&Price{}).Create(&price100)
-
 	price50 := Price{
 		Value: 50,
 	}
 	db.Model(&Price{}).Create(&price50)
-
-	price129 := Price{
-		Value: 129,
-	}
-	db.Model(&Price{}).Create(&price129)
 
 	price69 := Price{
 		Value: 69,
 	}
 	db.Model(&Price{}).Create(&price69)
 
+	price100 := Price{
+		Value: 100,
+	}
+	db.Model(&Price{}).Create(&price100)
+
+	price129 := Price{
+		Value: 129,
+	}
+	db.Model(&Price{}).Create(&price129)
+
 	dispenseMedicine1 := DispenseMedicine{
-		DispensemedicineNo: "1",
+		DispensemedicineNo: "H002",
 		DispenseTime:       time.Now(),
-		Amount:             2,
+		Amount:             3,
 	}
 	db.Model(&DispenseMedicine{}).Create(&dispenseMedicine1)
 
@@ -247,12 +248,12 @@ func SetupDatabase() {
 	bill1 := Bill{
 		BillNo:   "A0001",
 		BillTime: time.Now(),
-		Payer:    "อำนาจ ไม่มี",
-		Total:    200,
+		Payer:    "AWESOME08",
+		Total:    150,
 
-		Authorities:        bee,
+		Authorities:      bee,
 		DispenseMedicine: dispenseMedicine1,
-		Price:            price100,
+		Price:            price50,
 		Paymentmethod:    cash,
 	}
 	db.Model(&Bill{}).Create(&bill1)
@@ -287,10 +288,10 @@ func SetupDatabase() {
 
 	db.Model(&DispenseMedicine{}).Create(&DispenseMedicine{
 		Prescription:       Prescription01,
-		MedicineLabel:     medicinelabel01,
+		MedicineLabel:      medicinelabel01,
 		DispensemedicineNo: "H001",
 		Amount:             20,
 		DispenseTime:       time.Now(),
-		DispenseStatus:    dispense_status01,
+		DispenseStatus:     dispense_status01,
 	})
 }
