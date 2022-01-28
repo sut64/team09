@@ -22,7 +22,7 @@ func GetMedicinereceive(c *gin.Context) {
 // GET /Medicinereceive
 func ListMedicinereceive(c *gin.Context) {
 	var medicinereceive []entity.Medicinereceive
-	if err := entity.DB().Raw("SELECT * FROM medicinereceives").Scan(&medicinereceive).Error; err != nil {
+	if err := entity.DB().Preload("Packing").Preload("Authorities").Preload("ReceiveType").Preload("MedicineStorage").Preload("MedicineStorage.MedicineType").Raw("SELECT * FROM medicinereceives").Find(&medicinereceive).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
