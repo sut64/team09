@@ -48,6 +48,7 @@ function Medicine() {
   const [prescription, setPrescription] = useState<Partial<PrescriptionInterface>>({});
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [cartItem, setCartItem] = useState<Partial<CartItemType>>({});
 
@@ -127,7 +128,7 @@ function Medicine() {
     fetch(`${apiUrl}/paymentStatus/1`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
-        prescription.Payment_statusID = res.data.ID;
+        prescription.PaymentStatusID = res.data.ID;
         if (res.data) {
           setPaymentStatuses(res.data);
           // console.log(res.data);
@@ -156,10 +157,10 @@ function Medicine() {
     getAuthority();
     getMedicineRooms();
     getPaymentStatuses();
-    setInterval(() => {
-      const date = new Date();
-      setSelectedDate(date);
-    }, 1000);
+    // setInterval(() => {
+    //   const date = new Date();
+    //   setSelectedDate(date);
+    // }, 1000);
   }, []);
 
   const convertType = (data: string | number | undefined) => {
@@ -174,7 +175,7 @@ function Medicine() {
       AuthoritiesID: authorities?.ID,
       MedicineRoomID: convertType(prescription.MedicineRoomID),
       Amount: convertType(prescription.Amount),
-      Payment_statusID: prescription.Payment_statusID,
+      PaymentStatusID: prescription.PaymentStatusID,
       RecordingTime: selectedDate,
     };
     // console.log(data)
@@ -193,9 +194,11 @@ function Medicine() {
       .then((res) => {
         if (res.data) {
           setSuccess(true);
-          window.location.href = "/prescription";
+          setErrorMessage("");
+          // window.location.href = "/prescription";
         } else {
           setError(true);
+          setErrorMessage(res.error);
         }
       });
   }
@@ -209,7 +212,7 @@ function Medicine() {
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกข้อมูลไม่สำเร็จ
+          บันทึกข้อมูลไม่สำเร็จ: {errorMessage}
         </Alert>
       </Snackbar>
       <Paper className={classes.paper}>
@@ -221,8 +224,18 @@ function Medicine() {
               color="primary"
               gutterBottom
             >
-              ระบบสั่งยา
+              การสั่งยา
             </Typography>
+          </Box>
+          <Box>
+            <Button
+              component={RouterLink}
+              to="/prescript_history"
+              variant="contained"
+              color="primary"
+            >
+              ประวัติการสั่งยา
+            </Button>
           </Box>
         </Box>
         <Divider />
@@ -333,10 +346,10 @@ function Medicine() {
               <Select
                 native
                 disabled
-                value={prescription.Payment_statusID}
+                value={prescription.PaymentStatusID}
                 onChange={handleChange}
                 inputProps={{
-                  name: "Payment_statusID",
+                  name: "PaymentStatusID",
                 }}
               >
                 <option aria-label="None" value="">
@@ -359,7 +372,7 @@ function Medicine() {
                 onChange={handleDateChange}
                 label="กรุณาเลือกวันที่และเวลา"
                 minDate={new Date("2018-01-01T00:00")}
-                format="dd-MM-yyyy hh:mm:ss a"
+                format="dd-MM-yyyy hh:mm a"
                 />
               </MuiPickersUtilsProvider>
             </FormControl>

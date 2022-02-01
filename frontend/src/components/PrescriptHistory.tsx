@@ -70,16 +70,16 @@ function Prescriptions() {
              ประวัติการสั่งยา
            </Typography>
          </Box>
-         {/* <Box>
-           <Button
-             component={RouterLink}
-             to="/create"
-             variant="contained"
-             color="primary"
-           >
-             Create User
-           </Button>
-         </Box> */}
+         <Box>
+            <Button
+              component={RouterLink}
+              to="/prescription"
+              variant="contained"
+              color="primary"
+            >
+              กลับ
+            </Button>
+          </Box>
        </Box>
        <TableContainer component={Paper} className={classes.tableSpace}>
          <Table className={classes.table} aria-label="simple table">
