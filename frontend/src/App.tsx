@@ -142,7 +142,6 @@ export default function MiniDrawer() {
 
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
-    { name: "ประวัติการสั่งยา", icon: <HistoryIcon />, path: "/prescript_history" },
     { name: "การสั่งยา", icon: <ShoppingBasketIcon />, path: "/prescription" },
     { name: "บันทึกข้อมูลฉลากยา", icon: <LabelIcon />, path: "/medicineLabels" },
     { name: "เบิกยา", icon: <AssignmentIndIcon />, path: "/disbursementCreate" },

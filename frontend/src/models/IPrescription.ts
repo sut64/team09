@@ -12,7 +12,7 @@ export interface PrescriptionInterface {
 	MedicineRoomID: number,
 	MedicineRoom: MedicineRoomInterface,
 	Amount: number,
-	Payment_statusID: number,
-	Payment_status: PaymentStatusInterface,
+	PaymentStatusID: number,
+	PaymentStatus: PaymentStatusInterface,
 	RecordingTime: Date,
 }
