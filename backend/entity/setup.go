@@ -260,9 +260,16 @@ func SetupDatabase() {
 	}
 	db.Model(&DispenseStatus{}).Create(&dispense_status02)
 
+
+	var medicineRoom1 MedicineRoom
+	db.Raw("SELECT * FROM medicine_rooms WHERE name = ?", "ASPIRIN").Scan(&medicineRoom1)
+
+
 	Prescription01 := Prescription{
-		PrescriptionNo: 1,
+		PrescriptionNo: 100000,
 		PatientName:    "nakhon",
+		MedicineRoom: medicineRoom1,
+		Authorities: chanon,
 		Amount:         4,
 		RecordingTime:  time.Now(),
 	}
