@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/tzcap/prescription/entity"
 )
@@ -34,24 +35,26 @@ func CreatePrescription(c *gin.Context) {
 	}
 
 	// 12: ค้นหา payment status ด้วย id
-	if tx := entity.DB().Where("id = ?", prescription.Payment_statusID).First(&paymentStatus); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", prescription.PaymentStatusID).First(&paymentStatus); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "payment status not found"})
 		return
 	}
 
 	// 13: สร้าง Prescription
 	prescript := entity.Prescription{
-		PatientName:    prescription.PatientName,
-		PrescriptionNo: prescription.PrescriptionNo,
-		Authorities:    authority,
-		MedicineRoom:   medicine,
-		Amount:         prescription.Amount,
-		Payment_status: paymentStatus,
-		RecordingTime:  prescription.RecordingTime, // ตั้งค่าฟิลด์ AddedTime
-		// Note:          repair.Note,      // ตั้งค่าฟิลด์ Note
-		// Tenant:        tenant,           // โยงความสัมพันธ์กับ Entity Tenant
-		// RoomEquipment: room_equipment,   // โยงความสัมพันธ์กับ Entity RoomEquipment
-		// Rental:        rental,           // โยงความสัมพันธ์กับ Entity Rental
+		PatientName:    prescription.PatientName,    // ตั้งค่าฟิลด์ PatientName
+		PrescriptionNo: prescription.PrescriptionNo, // ตั้งค่าฟิลด์ PrescriptionNo
+		Authorities:    authority,                   // โยงความสัมพันธ์กับ Entity Authorities
+		MedicineRoom:   medicine,                    // โยงความสัมพันธ์กับ Entity MedicineRoom
+		Amount:         prescription.Amount,         // ตั้งค่าฟิลด์ Amount
+		PaymentStatus:  paymentStatus,               // โยงความสัมพันธ์กับ Entity PaymentStatus
+		RecordingTime:  prescription.RecordingTime,  // ตั้งค่าฟิลด์ RecordingTime
+	}
+
+	// validate Prescription controller
+	if _, err := govalidator.ValidateStruct(prescript); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
 	// 14: บันทึก
@@ -66,7 +69,7 @@ func CreatePrescription(c *gin.Context) {
 func GetPrescription(c *gin.Context) {
 	var prescription entity.Prescription
 	id := c.Param("id")
-	if err := entity.DB().Preload("Authorities").Preload("MedicineRoom").Preload("Payment_status").Raw("SELECT * FROM prescriptions WHERE prescription_no = ?", id).Find(&prescription).Error; err != nil {
+	if err := entity.DB().Preload("Authorities").Preload("MedicineRoom").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions WHERE prescription_no = ?", id).Find(&prescription).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -76,7 +79,7 @@ func GetPrescription(c *gin.Context) {
 // GET /Prescriptions
 func ListPrescriptions(c *gin.Context) {
 	var prescriptions []entity.Prescription
-	if err := entity.DB().Preload("Authorities").Preload("MedicineRoom").Preload("Payment_status").Raw("SELECT * FROM prescriptions").Find(&prescriptions).Error; err != nil {
+	if err := entity.DB().Preload("Authorities").Preload("MedicineRoom").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions").Find(&prescriptions).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
