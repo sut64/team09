@@ -9,18 +9,17 @@ import (
 
 type Prescription struct {
 	gorm.Model
-	PatientName      string `valid:"required~Name cannot be blank"`
-	PrescriptionNo   uint   `gorm:"uniqueIndex" valid:"range(100000|999999)~PrescriptionNo must be 6 digits"`
-	AuthoritiesID    *uint
-	Authorities      Authorities `gorm:"references:id"`
-	MedicineDisbursementID   *uint
-	MedicineDisbursement     MedicineDisbursement `gorm:"references:id"`
-	Amount           uint
-	Payment_statusID *uint
-	Payment_status   PaymentStatus `gorm:"references:id"`
-	RecordingTime    time.Time      `valid:"notpast~RecordingTime not be past"`
-	Dispense_Medicines []DispenseMedicine `gorm:"foreignKey:PrescriptionID"`
-
+	PatientName            string `valid:"required~Name cannot be blank"`
+	PrescriptionNo         uint   `gorm:"uniqueIndex" valid:"range(100000|999999)~PrescriptionNo must be 6 digits"`
+	AuthoritiesID          *uint
+	Authorities            Authorities `gorm:"references:id" valid:"-"`
+	MedicineDisbursementID *uint
+	MedicineDisbursement   MedicineDisbursement `gorm:"references:id" valid:"-"`
+	Amount                 uint
+	PaymentStatusID       *uint
+	PaymentStatus         PaymentStatus      `gorm:"references:id" valid:"-"`
+	RecordingTime          time.Time          `valid:"notpast~RecordingTime not be past"`
+	Dispense_Medicines     []DispenseMedicine `gorm:"foreignKey:PrescriptionID"`
 }
 
 type PaymentStatus struct {

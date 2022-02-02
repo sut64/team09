@@ -13,7 +13,7 @@ func CreatePrescription(c *gin.Context) {
 
 	var prescription entity.Prescription
 	var authority entity.Authorities
-	var medicine entity.MedicineRoom
+	var disbursement entity.MedicineDisbursement
 	var paymentStatus entity.PaymentStatus
 
 	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 9 จะถูก bind เข้าตัวแปร prescription
@@ -22,8 +22,8 @@ func CreatePrescription(c *gin.Context) {
 		return
 	}
 
-	// 10: ค้นหา medicine ด้วย id ยา
-	if tx := entity.DB().Where("id = ?", prescription.MedicineRoomID).First(&medicine); tx.RowsAffected == 0 {
+	// 10: ค้นหา medicine disbursement ด้วย id ใบเบิกยา
+	if tx := entity.DB().Where("id = ?", prescription.MedicineDisbursementID).First(&disbursement); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "medicine not found"})
 		return
 	}
@@ -42,13 +42,13 @@ func CreatePrescription(c *gin.Context) {
 
 	// 13: สร้าง Prescription
 	prescript := entity.Prescription{
-		PatientName:    prescription.PatientName,    // ตั้งค่าฟิลด์ PatientName
-		PrescriptionNo: prescription.PrescriptionNo, // ตั้งค่าฟิลด์ PrescriptionNo
-		Authorities:    authority,                   // โยงความสัมพันธ์กับ Entity Authorities
-		MedicineRoom:   medicine,                    // โยงความสัมพันธ์กับ Entity MedicineRoom
-		Amount:         prescription.Amount,         // ตั้งค่าฟิลด์ Amount
-		PaymentStatus:  paymentStatus,               // โยงความสัมพันธ์กับ Entity PaymentStatus
-		RecordingTime:  prescription.RecordingTime,  // ตั้งค่าฟิลด์ RecordingTime
+		PatientName:          prescription.PatientName,    // ตั้งค่าฟิลด์ PatientName
+		PrescriptionNo:       prescription.PrescriptionNo, // ตั้งค่าฟิลด์ PrescriptionNo
+		Authorities:          authority,                   // โยงความสัมพันธ์กับ Entity Authorities
+		MedicineDisbursement: disbursement,                // โยงความสัมพันธ์กับ Entity MedicineDisbursement
+		Amount:               prescription.Amount,         // ตั้งค่าฟิลด์ Amount
+		PaymentStatus:        paymentStatus,               // โยงความสัมพันธ์กับ Entity PaymentStatus
+		RecordingTime:        prescription.RecordingTime,  // ตั้งค่าฟิลด์ RecordingTime
 	}
 
 	// validate Prescription controller
@@ -69,7 +69,7 @@ func CreatePrescription(c *gin.Context) {
 func GetPrescription(c *gin.Context) {
 	var prescription entity.Prescription
 	id := c.Param("id")
-	if err := entity.DB().Preload("Authorities").Preload("MedicineRoom").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions WHERE prescription_no = ?", id).Find(&prescription).Error; err != nil {
+	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").Preload("MedicineDisbursement.MedicineStorage").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions WHERE prescription_no = ?", id).Find(&prescription).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -79,7 +79,7 @@ func GetPrescription(c *gin.Context) {
 // GET /Prescriptions
 func ListPrescriptions(c *gin.Context) {
 	var prescriptions []entity.Prescription
-	if err := entity.DB().Preload("Authorities").Preload("MedicineRoom").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions").Find(&prescriptions).Error; err != nil {
+	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").Preload("MedicineDisbursement.MedicineStorage").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions").Find(&prescriptions).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

@@ -4,11 +4,10 @@ import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { KeyboardDateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { MedicineRoomInterface } from "../models/IMedicineRoom";
 import { AuthoritiesInterface } from "../models/IAuthority";
 import { PrescriptionInterface } from "../models/IPrescription";
 import { PaymentStatusInterface } from "../models/IPaymentStatus";
-import { CartItemType } from "../models/IItem";
+import { Medicine_disbursementInterface } from "../models/IMedicine_disbursement";
 
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -39,8 +38,8 @@ const useStyles = makeStyles((theme: Theme) =>
 function Medicine() {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [medicineRooms, setMedicineRooms] = useState<MedicineRoomInterface[]>([]);
-  const [medicineRoom, setMedicineRoom] = useState<Partial<MedicineRoomInterface>>({});
+  const [medicineDisbursements, setMedicineDisbursements] = useState<Medicine_disbursementInterface[]>([]);
+  const [medicineDisbursement, setMedicineDisbursement] = useState<Partial<Medicine_disbursementInterface>>({});
   const [paymentStatuses, setPaymentStatuses] = useState<PaymentStatusInterface>();
   const [paymentStatus, setPaymentStatus] = useState<Partial<PaymentStatusInterface>>({});
   const [authorities, setAuthorities] = useState<AuthoritiesInterface>();
@@ -49,8 +48,7 @@ function Medicine() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
-  const [cartItem, setCartItem] = useState<Partial<CartItemType>>({});
+
 
 
   const handleChange = (
@@ -63,26 +61,10 @@ function Medicine() {
     });
   };
 
-  const handleItemName = (
-    event: React.ChangeEvent<{ name?: string; value: any }>
-  ) => {
-    const name = event.target.name as keyof typeof cartItem;
-    localStorage.setItem("medicineID", event.target.value);
-    setCartItem({
-      ...cartItem,
-      [name]: event.target.value,
-    });
-  };
-
   const handleDateChange = (date: Date | null) => {
     // console.log(date);
     setSelectedDate(date);
   };
-
-  // const handleDateChange = (date: Date | null) => {
-  //   console.log(date);
-  //   setSelectedDate(date);
-  // };
 
   const handleInputChange = (
     event: React.ChangeEvent<{ id?: string; value: any }>
@@ -111,12 +93,12 @@ function Medicine() {
 
 
 
-  const getMedicineRooms = async () => {
-    fetch(`${apiUrl}/medicineRooms`, requestOptions)
+  const getMedicineDisbursements = async () => {
+    fetch(`${apiUrl}/disbursements`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
-          setMedicineRooms(res.data);
+          setMedicineDisbursements(res.data);
           // console.log(res.data);
         } else {
           console.log("else");
@@ -155,7 +137,7 @@ function Medicine() {
 
   useEffect(() => {
     getAuthority();
-    getMedicineRooms();
+    getMedicineDisbursements();
     getPaymentStatuses();
     // setInterval(() => {
     //   const date = new Date();
@@ -173,12 +155,12 @@ function Medicine() {
       PatientName: prescription.PatientName,
       PrescriptionNo: convertType(prescription.PrescriptionNo),
       AuthoritiesID: authorities?.ID,
-      MedicineRoomID: convertType(prescription.MedicineRoomID),
+      MedicineDisbursementID: convertType(prescription.MedicineDisbursementID),
       Amount: convertType(prescription.Amount),
       PaymentStatusID: prescription.PaymentStatusID,
       RecordingTime: selectedDate,
     };
-    // console.log(data)
+    console.log(data)
 
     const requestOptionsPost = {
       method: "POST",
@@ -245,18 +227,18 @@ function Medicine() {
               <p>ชื่อยา</p>
               <Select
                 native
-                value={medicineRoom.ID}
+                value={medicineDisbursement.ID}
                 onChange={handleChange}
                 inputProps={{
-                  name: "MedicineRoomID",
+                  name: "MedicineDisbursementID",
                 }}
               >
                 <option aria-label="None" value="">
                   กรุณาเลือกยา
                 </option>
-                {medicineRooms.map((item: MedicineRoomInterface) => (
+                {medicineDisbursements.map((item: Medicine_disbursementInterface) => (
                   <option value={item.ID} key={item.ID}>
-                    {item.Name}
+                    {item.MedicineStorage.Name}
                   </option>
                 ))}
               </Select>

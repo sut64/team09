@@ -78,42 +78,6 @@ func SetupDatabase() {
 	db.Raw("SELECT * FROM authorities WHERE email = ?", "b6218294@gmail.com").Scan(&bee)
 	db.Raw("SELECT * FROM authorities WHERE email = ?", "b6226770@gmail.com").Scan(&chanon)
 
-	//MedicineRoom
-	// medicine1 := MedicineRoom{
-	// 	Name:   "Paracetamol",
-	// 	Amount: 1000,
-	// 	Price: 2.0,
-	// }
-	// db.Model(&MedicineRoom{}).Create(&medicine1)
-
-	// medicine2 := MedicineRoom{
-	// 	Name:   "Chlorpheniramine",
-	// 	Amount: 1000,
-	// 	Price: 10.0,
-	// }
-	// db.Model(&MedicineRoom{}).Create(&medicine2)
-
-	// medicine3 := MedicineRoom{
-	// 	Name:   "Vitamin C",
-	// 	Amount: 1000,
-	// 	Price: 1.0,
-	// }
-	// db.Model(&MedicineRoom{}).Create(&medicine3)
-
-	// medicine4 := MedicineRoom{
-	// 	Name:   "Hydroxyzine",
-	// 	Amount: 1000,
-	// 	Price: 5.0,
-	// }
-	// db.Model(&MedicineRoom{}).Create(&medicine4)
-
-	// medicine5 := MedicineRoom{
-	// 	Name:   "Cetirizine",
-	// 	Amount: 1000,
-	// 	Price: 4.0,
-	// }
-	// db.Model(&MedicineRoom{}).Create(&medicine5)
-
 	//Payment Status
 	status1 := PaymentStatus{
 		Status: "Not Paid",
@@ -178,12 +142,12 @@ func SetupDatabase() {
 
 	//Medicineroom data
 	Medicineroom1 := MedicineRoom{
-		Name:   "ห้องยาผู้ป่วยใน(IPD)",
+		Name: "ห้องยาผู้ป่วยใน(IPD)",
 	}
 	db.Model(&MedicineRoom{}).Create(&Medicineroom1)
 
 	Medicineroom2 := MedicineRoom{
-		Name:   "ห้องยาผู้ป่วยนอก(OPD)",
+		Name: "ห้องยาผู้ป่วยนอก(OPD)",
 	}
 	db.Model(&MedicineRoom{}).Create(&Medicineroom2)
 
@@ -256,18 +220,45 @@ func SetupDatabase() {
 	}
 	db.Model(&DispenseStatus{}).Create(&dispense_status02)
 
+	var medicineroom MedicineRoom
+	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "ห้องยาผู้ป่วยใน(IPD)").Scan(&medicineroom)
 
-	var medicineRoom1 MedicineRoom
-	db.Raw("SELECT * FROM medicine_rooms WHERE name = ?", "ASPIRIN").Scan(&medicineRoom1)
+	var medicine MedicineStorage
+	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "ASPIRIN").Scan(&medicine)
+	
+	var medicine1 MedicineStorage
+	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "GEMFIBROZIL").Scan(&medicine1)
+	
+	disbursement1 := MedicineDisbursement{
+		DisbursementID:  "1000",
+		DisbursementDAY: time.Now(),
+		AmountMedicine:  50,
+		Authorities:     chanon,
+		MedicineStorage: medicine,
+		MedicineRoom:    medicineroom,
+	}
+	db.Model(&MedicineDisbursement{}).Create(&disbursement1)
 
+	disbursement2 := MedicineDisbursement{
+		DisbursementID:  "1001",
+		DisbursementDAY: time.Now(),
+		AmountMedicine:  50,
+		Authorities:     chanon,
+		MedicineStorage: medicine1,
+		MedicineRoom:    medicineroom,
+	}
+	db.Model(&MedicineDisbursement{}).Create(&disbursement2)
+
+	var disbursement MedicineDisbursement
+	db.Raw("SELECT * FROM medicine_disbursements WHERE id = 1").Scan(&disbursement)
 
 	Prescription01 := Prescription{
-		PrescriptionNo: 100000,
-		PatientName:    "nakhon",
-		MedicineRoom: medicineRoom1,
-		Authorities: chanon,
-		Amount:         4,
-		RecordingTime:  time.Now(),
+		PrescriptionNo:       100000,
+		PatientName:          "nakhon",
+		MedicineDisbursement: disbursement,
+		Authorities:          chanon,
+		Amount:               4,
+		RecordingTime:        time.Now(),
 	}
 	db.Model(&Prescription{}).Create(&Prescription01)
 
