@@ -9,11 +9,8 @@ import (
 type MedicineRoom struct {
 	gorm.Model
 	Name                  string `gorm:"uniqueIndex"`
-	Amount                uint
-	Price                 float32
 	MedicineDisbursements []MedicineDisbursement `gorm:"foreignKey:MedicineRoomID"`
-	Prescriptions         []Prescription         `gorm:"foreignKey:MedicineRoomID"`
-	MedicineLabels        []MedicineLabel        `gorm:"foreignKey:MedicineRoomID"`
+
 }
 type MedicineDisbursement struct {
 	gorm.Model
@@ -24,8 +21,10 @@ type MedicineDisbursement struct {
 	Authorities       Authorities `gorm:"references:id"`
 	MedicineStorageID *uint
 	MedicineStorage   MedicineStorage `gorm:"references:id"`
-	MedicineRoomID    *uint
-	MedicineRoom      MedicineRoom `gorm:"references:id"`
+	MedicineRoomID *uint
+	MedicineRoom   MedicineRoom `gorm:"references:id"`
+	Prescriptions     []Prescription  `gorm:"foreignKey:MedicineDisbursementID"`
+	MedicineLabels    []MedicineLabel `gorm:"foreignKey:MedicineDisbursementID"`
 }
 
 
