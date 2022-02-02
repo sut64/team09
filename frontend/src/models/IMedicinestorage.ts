@@ -3,6 +3,7 @@ export interface MedicinestorageInterface{
     ID:     number,
 	Name:   string,
 	Count:  number,
+	Sell: number,
 	MedicineTypeID:	number,
 	MedicineType:	MedicinetypeInterface
 }
