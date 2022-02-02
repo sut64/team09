@@ -10,29 +10,21 @@ import (
 type Bill struct {
 	gorm.Model
 
-	BillNo   string    `valid:"matches(^[A]\\{4}$)"`
+	BillNo   uint      `gorm:"uniqueIndex" valid:"range(1000|9999)~BillNo must be 4 digits"`
 	BillTime time.Time `valid:"future~BillTime must be in the future"`
-	Payer    string
-	Total    uint
+	Payer    string    `valid:"required~Payer cannot be blank"`
+	Total    uint      `valid:"required~Total must be Positive"`
 
 	PaymentmethodID *uint
-	Paymentmethod   Paymentmethod
-
-	PriceID *uint
-	Price   Price
+	Paymentmethod   Paymentmethod `gorm:"references:id" valid:"-"`
 
 	AuthoritiesID *uint
-	Authorities   Authorities
+	Authorities   Authorities `gorm:"references:id" valid:"-"`
 
-	DispenseMedicineID *uint
-	DispenseMedicine   DispenseMedicine
+	PrescriptionID *uint
+	Prescription   Prescription `gorm:"references:id" valid:"-"`
 }
-type Price struct {
-	gorm.Model
-	Value uint
 
-	Bills []Bill `gorm:"foreignKey:PriceID"`
-}
 type Paymentmethod struct {
 	gorm.Model
 	ConditionsOfPayments string
@@ -40,13 +32,8 @@ type Paymentmethod struct {
 	Bills []Bill `gorm:"foreignKey:PaymentmethodID"`
 }
 
-
+// ตรวจสอบเวลาไม่เป็นอดีต
 func init() {
-	govalidator.CustomTypeTagMap.Set("past", func(i interface{}, context interface{}) bool {
-		t := i.(time.Time)
-		return t.Before(time.Now())
-	})
-
 	govalidator.CustomTypeTagMap.Set("future", func(i interface{}, context interface{}) bool {
 		t := i.(time.Time)
 		return t.After(time.Now())
