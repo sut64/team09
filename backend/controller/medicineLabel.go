@@ -9,7 +9,7 @@ import (
 // POST /ambulances
 func CreateMedicineLabel(c *gin.Context) {
 	var medicineLabel entity.MedicineLabel
-	var medicineRoom entity.MedicineRoom
+	var medicine entity.MedicineDisbursement
 	var effect entity.Effect
 	var suggestion entity.Suggestion
 	var authority entity.Authorities
@@ -24,7 +24,7 @@ func CreateMedicineLabel(c *gin.Context) {
 		return
 	}
 	// 8: ค้นหา ambulancetype ด้วย id
-	if tx := entity.DB().Where("id = ?", medicineLabel.MedicineRoomID).First(&medicineRoom); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", medicineLabel.MedicineDisbursementID).First(&medicine); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "type not found"})
 		return
 	}
@@ -45,7 +45,7 @@ func CreateMedicineLabel(c *gin.Context) {
 		Consumption:  medicineLabel.Consumption,
 		Date:         medicineLabel.Date,
 		Authorities:  authority,
-		MedicineRoom: medicineRoom,
+		MedicineDisbursement: medicine,
 		Suggestion:   suggestion,
 		Effect:       effect,
 	}
