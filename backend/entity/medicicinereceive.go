@@ -3,7 +3,6 @@ package entity
 import (
 	"time"
 
-	// "github.com/asaskevich/govalidator"
 	"gorm.io/gorm"
 )
 
@@ -11,6 +10,7 @@ type MedicineStorage struct {
 	gorm.Model
 	Name                  string
 	Count                 uint
+	sell                  float64
 	MedicineTypeID        *uint
 	MedicineType          MedicineType           `gorm:"references:id"`
 	MedicineDisbursements []MedicineDisbursement `gorm:"foreignKey:MedicineStorageID"`
@@ -37,10 +37,9 @@ type Medicinereceive struct {
 	gorm.Model
 	Receiveddate  time.Time
 	Expire        time.Time
-	Company       string
-	Count         uint `valid:"IsNonNegative~Count must be Positive"`
-	Price_of_unit float64
-	sell          float64
+	Company       string  `valid:"required~fill not null"`
+	Count         uint    `valid:"required~Count must be Positive"`
+	Price_of_unit float64 `valid:"PriceBepositive~Price must be Positive"`
 
 	AuthoritiesID *uint
 	Authorities   Authorities `gorm:"references:id"`
@@ -54,3 +53,21 @@ type Medicinereceive struct {
 	MedicineStorageID *uint
 	MedicineStorage   MedicineStorage `gorm:"references:id"`
 }
+
+// func init() {
+// 	govalidator.CustomTypeTagMap.Set("PriceBepositive", func(i interface{}, context interface{}) bool {
+// 		t := i.(float64)
+// 		var y = math.Mod(t, 1)
+// 		y = y * 100
+// 		y = math.Mod(y, 1)
+// 		if y > 0 {
+// 			return false
+// 		} else if t > 0 {
+// 			return true
+// 		} else {
+// 			return false
+// 		}
+
+// 	})
+
+// }
