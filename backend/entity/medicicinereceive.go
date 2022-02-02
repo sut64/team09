@@ -10,7 +10,7 @@ import (
 type MedicineStorage struct {
 	gorm.Model
 	Name                  string
-	Count                 int
+	Count                 uint
 	MedicineTypeID        *uint
 	MedicineType          MedicineType           `gorm:"references:id"`
 	MedicineDisbursements []MedicineDisbursement `gorm:"foreignKey:MedicineStorageID"`
@@ -38,8 +38,9 @@ type Medicinereceive struct {
 	Receiveddate  time.Time
 	Expire        time.Time
 	Company       string
-	Count         int `valid:"IsNonNegative~Count must be Positive"`
+	Count         uint `valid:"IsNonNegative~Count must be Positive"`
 	Price_of_unit float64
+	sell          float64
 
 	AuthoritiesID *uint
 	Authorities   Authorities `gorm:"references:id"`
