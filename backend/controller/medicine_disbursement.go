@@ -33,19 +33,12 @@ func CreateMedicine_disbursement(c *gin.Context) {
 		return
 	}
 
-	//12: ค้นหา medicineroom ด้วย name
-	if tx := entity.DB().Model(&medicineroom).Where("name = ?", medicinestorage.Name).First(&medicineroom); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "room not found"})
+	//12: ค้นหา medicineroom ด้วย id
+	if tx := entity.DB().Where("id = ?", med.MedicineRoomID).First(&medicineroom); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "medicineroom not found"})
 		return
 	}
-	if tx := entity.DB().Model(&medicineroom).Where("name = ?", medicinestorage.Name).Update("amount", (med.AmountMedicine + medicineroom.Amount)); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "room not found"})
-		return
-	}
-	if tx := entity.DB().Model(&medicinestorage).Where("id = ?", med.MedicineStorageID).Update("count", (uint(medicinestorage.Count) - med.AmountMedicine)); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "room not found"})
-		return
-	}
+	
 
 	//13: สร้าง Medicine_disbursement
 	MD := entity.MedicineDisbursement{
@@ -55,8 +48,7 @@ func CreateMedicine_disbursement(c *gin.Context) {
 		Authorities:     authoritiy,          // โยงความสัมพันธ์กับ Entity authoritiy
 		MedicineStorage: medicinestorage,     // โยงความสัมพันธ์กับ Entity medicinestorage
 		MedicineRoom:    medicineroom,        // โยงความสัมพันธ์กับ Entity medicineroom
-		// Room:       	room,
-		// Rentalstate:    rentalstate,               // โยงความสัมพันธ์กับ Entity rentalstate
+		
 	}
 
 	//14: บันทึก
