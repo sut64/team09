@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { Link as RouterLink } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -60,7 +61,7 @@ function Users() {
   }, []);
  return (
    <div>
-     <Container className={classes.container} maxWidth="md">
+     <Container className={classes.container} maxWidth="xl">
        <Box display="flex">
          <Box flexGrow={1}>
            <Typography
@@ -96,25 +97,25 @@ function Users() {
                <TableCell align="center" width="5%">
                  ประเภทยา
                </TableCell>
-               <TableCell align="center" width="20%">
+               <TableCell align="center" width="5%">
                  จำนวนรับยา
                </TableCell>
-               <TableCell align="center" width="10%">
+               <TableCell align="center" width="5%">
                  หน่วยที่รับมา
                </TableCell>
-               <TableCell align="center" width="15%">
+               <TableCell align="center" width="5%">
                  ราคาต่อหน่วย
                </TableCell>
-               <TableCell align="center" width="15%">
+               <TableCell align="center" width="5%">
                  วันที่รับ
                </TableCell>
-               <TableCell align="center" width="20%">
+               <TableCell align="center" width="5%">
                  วันหมดอายุ
                </TableCell>
-               <TableCell align="center" width="20%">
+               <TableCell align="center" width="5%">
                  หน่วยงาน
                </TableCell>
-               <TableCell align="center" width="20%">
+               <TableCell align="center" width="5%">
                  องกรค์
                </TableCell>
              </TableRow>
@@ -122,22 +123,16 @@ function Users() {
            <TableBody>
               {mreceive.map((user: Medicine_receiveInterface) => (
                 <TableRow key={user.ID}>
-                  <TableCell align="right">{user.Authorities.Email}</TableCell>
-                  <TableCell align="right">{user.MedicineStorage.Name}</TableCell>
-                  <TableCell align="right">{user.MedicineStorage.MedicineType.Name}</TableCell>
-                  <TableCell align="right">{user.Count}</TableCell>
-                  <TableCell align="right">{user.Packing.Name}</TableCell>
-                  <TableCell align="right">{user.Price_of_unit}</TableCell>
-                  <TableCell align="right">{user.Receiveddate}</TableCell>
-                  <TableCell align="right">{user.Expire}</TableCell>
-                  <TableCell align="right">{user.Company}</TableCell>
-                  <TableCell align="right">{user.ReceiveType.Name}</TableCell>
-
-
-                  
-
-                 
-                  
+                  <TableCell align="center">{user.Authorities.Email}</TableCell>
+                  <TableCell align="center">{user.MedicineStorage.Name}</TableCell>
+                  <TableCell align="center">{user.MedicineStorage.MedicineType.Name}</TableCell>
+                  <TableCell align="center">{user.Count}</TableCell>
+                  <TableCell align="center">{user.Packing.Name}</TableCell>
+                  <TableCell align="center">{user.Price_of_unit}</TableCell>
+                  <TableCell align="center" >{moment(user.Receiveddate).format('MMMM Do YYYY [time] h:mm:ss a')}</TableCell>
+                  <TableCell align="center">{moment(user.Receiveddate).format('MMMM Do YYYY')}</TableCell>
+                  <TableCell align="center">{user.Company}</TableCell>
+                  <TableCell align="center">{user.ReceiveType.Name}</TableCell>               
                 </TableRow>
               ))}
             </TableBody>
