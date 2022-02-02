@@ -21,8 +21,8 @@ type MedicineLabel struct {
 	Consumption string
 	Date        time.Time
 
-	MedicineRoomID *uint
-	MedicineRoom   MedicineRoom `gorm:"references:id"`
+	MedicineDisbursementID *uint
+	MedicineDisbursement   MedicineDisbursement `gorm:"references:id"`
 
 	SuggestionID *uint
 	Suggestion   Suggestion `gorm:"references:id"`
