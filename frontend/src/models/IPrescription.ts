@@ -1,5 +1,5 @@
 import { AuthoritiesInterface } from "./IAuthority"
-import { MedicineRoomInterface } from "./IMedicineRoom";
+import { Medicine_disbursementInterface } from "./IMedicine_disbursement";
 import { PaymentStatusInterface } from "./IPaymentStatus";
 
 export interface PrescriptionInterface {
@@ -9,8 +9,8 @@ export interface PrescriptionInterface {
 	AuthorityID: number,
 	AuthoritiesID: number,
 	Authorities: AuthoritiesInterface,
-	MedicineRoomID: number,
-	MedicineRoom: MedicineRoomInterface,
+	MedicineDisbursementID: number,
+	MedicineDisbursement: Medicine_disbursementInterface,
 	Amount: number,
 	PaymentStatusID: number,
 	PaymentStatus: PaymentStatusInterface,
