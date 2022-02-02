@@ -147,7 +147,6 @@ export default function MiniDrawer() {
     { name: "เบิกยา", icon: <AssignmentIndIcon />, path: "/disbursementCreate" },
     { name: "ใบเบิกยา", icon: <ViewListIcon />, path: "/disbursements" },
     { name: "ใบรับยา", icon: <WarehouseIcon />, path: "/listreceived" },
-    { name: "รับยาเข้าคลัง", icon: <WarehouseIcon />, path: "/receive" },
     { name: "ใบชำระเงินค่ายา", icon: <AddAlertTwoToneIcon />, path: "/bills" },
     { name: "การจ่ายยา", icon: <AirportShuttleIcon />, path: "/dispense_medicines" },
   
@@ -249,7 +248,6 @@ export default function MiniDrawer() {
               <Route exact path="/medicineLabels/create" component={MedicineLabelCreate} />
               <Route exact path="/disbursements" component={Medicine_disbursement} />
               <Route exact path="/disbursementCreate" component={Medicine_disbursementCreate} />
-
               <Route exact path="/listreceived" component={Medicine_receive} />
               <Route exact path="/receive" component={Receive} />
               <Route exact path="/bills" component={Bills} />

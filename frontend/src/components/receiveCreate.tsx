@@ -13,16 +13,17 @@ import Divider from "@material-ui/core/Divider";
 import Snackbar from "@material-ui/core/Snackbar";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import InputLabel from "@material-ui/core/InputLabel";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { PackingInterface } from "../models/IPacking";
 import { Medicine_receiveInterface } from "../models/IMedicine_receive";
 import { ReceiveInterface } from "../models/IReceive";
 import { MedicinestorageInterface } from "../models/IMedicinestorage"
 import {MedicinetypeInterface} from "../models/IMedicinetype" 
+import moment from "moment";
 
 import {
   MuiPickersUtilsProvider,
+  KeyboardDateTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -46,6 +47,7 @@ function UserCreate() {
   const [selectedDateR, setSelectedDateR] = React.useState<Date | null>(new Date() );
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
+  const [errmessage, SetErrMessage] = useState("");
   //Models
   const [authorities, setAuthorities] = useState<AuthoritiesInterface>();
   const [packings, setPackings] = useState<PackingInterface[]>([]);
@@ -54,6 +56,7 @@ function UserCreate() {
   const [medicinetype, setMedicinetype] = useState<MedicinetypeInterface[]>([]);
   const [medicinetypeID, setMedicinetypeID] = useState<Number | null>(null);
   const [mreceive, setMreceive] = useState<Partial<Medicine_receiveInterface>>({});
+
 
   //handle
 
@@ -108,8 +111,6 @@ function UserCreate() {
     } 
   }
   };
-
- 
 
   //GET
   const apiUrl = "http://localhost:8080";
@@ -193,7 +194,7 @@ function UserCreate() {
     getMedicinestorage();
     getType();
     getAuthority();
-
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -207,12 +208,12 @@ function UserCreate() {
       PackingID: convertType(mreceive.PackingID),
       ReceiveTypeID: convertType(mreceive.ReceiveTypeID),
       MedicineStorageID: convertType(mreceive.MedicineStorageID),
-      AuthoritiesID: 1,
+      AuthoritiesID: authorities?.ID,
       Company: mreceive.Company,
       Count: convertType(mreceive.Count),
       Price_of_unit: Number(mreceive.Price_of_unit),
       Expire: selectedDate,
-      Received_date: selectedDateR
+      Receiveddate: new Date()
     }
     console.log(data);
     const apiUrl = "http://localhost:8080/medicinereceive";
@@ -230,8 +231,10 @@ function UserCreate() {
       .then((res) => {
         if (res.data) {
           setSuccess(true);
+          SetErrMessage("")
         } else {
           setError(true);
+          SetErrMessage(res.error)
         }
       });
 
@@ -246,7 +249,7 @@ function UserCreate() {
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกข้อมูลไม่สำเร็จ
+        บันทึกข้อมูลไม่สำเร็จ: {errmessage}
         </Alert>
       </Snackbar>
       <Paper className={classes.paper}>
@@ -258,7 +261,7 @@ function UserCreate() {
               color="primary"
               gutterBottom
             >
-              Receive
+              ใบรับยาเข้าคลัง
             </Typography>
           </Box>
         </Box>
@@ -326,13 +329,14 @@ function UserCreate() {
           </Grid>
           <Grid item xs={4}>
             <FormControl fullWidth variant="outlined">
-              <p>วันที่รับ</p>
+              <p>วันและเวลาที่รับ</p>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
+                <KeyboardDateTimePicker
                   margin="normal"
                   id="BirthDay"
-                  format="yyyy-MM-dd"
-                  value={selectedDateR}
+                  disabled = {true}
+                  format="yyyy/MM/dd HH:mm a"
+                  value={moment()}
                   onChange={handleDateChangeR}
                   KeyboardButtonProps={{
                     "aria-label": "change date",
@@ -349,7 +353,7 @@ function UserCreate() {
                 variant="outlined"
                 type="number"
                 size="medium"
-                placeholder="ราคาต่อหน่วย"
+                placeholder="0"
                 value={mreceive.Price_of_unit || ""}
                 onChange={handleInputChange}
               />
@@ -385,7 +389,7 @@ function UserCreate() {
                 variant="outlined"
                 type="number"
                 size="medium"
-                placeholder="จำนวน"
+                placeholder="0"
                 value={mreceive.Count || ""}
                 onChange={handleInputChange}
               />
@@ -421,7 +425,7 @@ function UserCreate() {
                 <KeyboardDatePicker
                   margin="normal"
                   id="BirthDay"
-                  format="yyyy-MM-dd"
+                  format="yyyy/MM/dd "
                   value={selectedDate}
                   onChange={handleDateChange}
                   KeyboardButtonProps={{
@@ -432,7 +436,7 @@ function UserCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <Button component={RouterLink} to="/" variant="contained">
+            <Button component={RouterLink} to="/listreceived" variant="contained">
               Back
             </Button>
             <Button
