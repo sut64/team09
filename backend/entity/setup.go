@@ -178,16 +178,12 @@ func SetupDatabase() {
 
 	//Medicineroom data
 	Medicineroom1 := MedicineRoom{
-		Name:   "ASPIRIN",
-		Amount: 100,
-		Price:  35.00,
+		Name:   "ห้องยาผู้ป่วยใน(IPD)",
 	}
 	db.Model(&MedicineRoom{}).Create(&Medicineroom1)
 
 	Medicineroom2 := MedicineRoom{
-		Name:   "GEMFIBROZIL",
-		Amount: 100,
-		Price:  54.20,
+		Name:   "ห้องยาผู้ป่วยนอก(OPD)",
 	}
 	db.Model(&MedicineRoom{}).Create(&Medicineroom2)
 
