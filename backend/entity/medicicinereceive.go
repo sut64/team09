@@ -11,7 +11,7 @@ type MedicineStorage struct {
 	gorm.Model
 	Name                  string
 	Count                 uint
-	sell                  float64
+	Sell                  float64
 	MedicineTypeID        *uint
 	MedicineType          MedicineType           `gorm:"references:id"`
 	MedicineDisbursements []MedicineDisbursement `gorm:"foreignKey:MedicineStorageID"`
