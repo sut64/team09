@@ -1,24 +1,19 @@
-import { Dispense_MedicineInterface } from "./IDispenseMedicine";
-import { PricesInterface } from "./IPrice";
+import { PrescriptionInterface } from "./IPrescription";
 import { PaymentmethodsInterface } from "./IPaymentmethod";
 import { AuthoritiesInterface } from "./IAuthority";
 
 export interface BillsInterface {
   ID: string,
-  BillNo:string,
+  BillNo:number,
   BillTime: Date,
   Payer:string,
   Total:number,
   
-
-  DispenseMedicineID: number,
-  DispenseMedicine: Dispense_MedicineInterface,
+  PrescriptionID: number,
+  Prescription: PrescriptionInterface,
 
   PaymentmethodID: number,
   Paymentmethod: PaymentmethodsInterface,
-
-  PriceID: number,
-  Price: PricesInterface,
 
   AuthoritiesID : number ,
   Authorities: AuthoritiesInterface,
