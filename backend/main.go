@@ -112,13 +112,6 @@ func main() {
 			protected.PATCH("/paymentmethods", controller.UpdatePaymentmethod)
 			protected.DELETE("/paymentmethods/:id", controller.DeletePaymentmethod)
 
-			//Price Routes
-			protected.GET("/prices", controller.ListPrice)
-			protected.GET("/price/:id", controller.GetPrice)
-			protected.POST("/prices", controller.CreatePrice)
-			protected.PATCH("/prices", controller.UpdatePrice)
-			protected.DELETE("/prices/:id", controller.DeletePrice)
-
 			//Bill Routes
 			protected.GET("/bills", controller.ListBill)
 			protected.GET("/bill/:id", controller.GetBill)
