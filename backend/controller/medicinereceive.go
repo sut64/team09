@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/tzcap/prescription/entity"
 )
@@ -73,7 +74,7 @@ func CreateMedicinereceive(c *gin.Context) {
 	}
 
 	// 15: สร้าง tenant
-	tn := entity.Medicinereceive{
+	medr := entity.Medicinereceive{
 		Packing:         packing,
 		ReceiveType:     receive,
 		MedicineStorage: medicinestorage,
@@ -84,12 +85,16 @@ func CreateMedicinereceive(c *gin.Context) {
 		Expire:          medicinereceive.Expire,
 		Receiveddate:    medicinereceive.Receiveddate,
 	}
-
-	// 16: บันทึก
-	if err := entity.DB().Create(&tn).Error; err != nil {
+	//ขี้นตอนการ validation ที่นำมาจาก unit test
+	if _, err := govalidator.ValidateStruct(medr); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": tn})
+	// 16: บันทึก
+	if err := entity.DB().Create(&medr).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": medr})
 
 }
