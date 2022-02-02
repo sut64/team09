@@ -19,10 +19,11 @@ import Snackbar from "@material-ui/core/Snackbar";
 import Select from "@material-ui/core/Select";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 
+import { DateTimePicker } from "@material-ui/pickers";
+
 import { AuthoritiesInterface } from "../models/IAuthority";
 import { PaymentmethodsInterface } from "../models/IPaymentmethod";
-import { PricesInterface } from "../models/IPrice";
-import { Dispense_MedicineInterface } from "../models/IDispenseMedicine";
+import { PrescriptionInterface } from "../models/IPrescription";
 import { BillsInterface } from "../models/IBill";
 
 import {
@@ -57,14 +58,14 @@ function BillCreate() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [authoritys, setAuthority] = useState<AuthoritiesInterface>();
   const [paymentmethods, setPaymentmethods] = useState<PaymentmethodsInterface[]>([]);
-  const [prices, setPrices] = useState<PricesInterface[]>([]);
-  const [dispenseMedicines, setDispenseMedicines] = useState<Dispense_MedicineInterface[]>([]);
+  const [prescriptions, setPrescriptions] = useState<PrescriptionInterface[]>([]);
   const [bills, setBills] = useState<Partial<BillsInterface>>(
     {}
   );
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errmessage, SetErrMessage] = useState("");
 
   const apiUrl = "http://localhost:8080";
   const requestOptions = {
@@ -134,25 +135,12 @@ function BillCreate() {
       });
   };
 
-  const getDispenseMedicines = async () => {
-    fetch(`${apiUrl}/dispenseMedicines`, requestOptions)
+  const getPrescriptions = async () => {
+    fetch(`${apiUrl}/Prescriptions`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
-          setDispenseMedicines(res.data);
-        } else {
-          console.log("else");
-        }
-      });
-  };
-
-  const getPrices = async () => {
-
-    fetch(`${apiUrl}/prices`, requestOptions)
-      .then((response) => response.json())
-      .then((res) => {
-        if (res.data) {
-          setPrices(res.data);
+          setPrescriptions(res.data);
         } else {
           console.log("else");
         }
@@ -162,8 +150,7 @@ function BillCreate() {
   useEffect(() => {
     getAuthority();
     getPaymentmethods();
-    getDispenseMedicines();
-    getPrices();
+    getPrescriptions();
   }, []);
 
   const convertType = (data: string | number | undefined) => {
@@ -175,11 +162,10 @@ function BillCreate() {
     let data = {
         AuthoritiesID: convertType(authoritys?.ID),
         PaymentmethodID: convertType(bills.PaymentmethodID),
-        PriceID: convertType(bills.PriceID),
-        DispenseMedicineID: convertType(bills.DispenseMedicineID),
+        PrescriptionID: convertType(bills.PrescriptionID),
 
         BillTime: selectedDate,
-        BillNo: bills.BillNo ?? "",
+        BillNo: convertType(bills.BillNo ?? ""),
         Payer: bills.Payer ?? "",
         Total: convertType(bills.Total ?? ""),
     };
@@ -201,9 +187,11 @@ function BillCreate() {
         if (res.data) {
           console.log("บันทึกได้")
           setSuccess(true);
+          SetErrMessage("")
         } else {
           console.log("บันทึกไม่ได้")
           setError(true);
+          SetErrMessage(res.error);
         }
       });
   }
@@ -217,7 +205,7 @@ function BillCreate() {
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกข้อมูลไม่สำเร็จ
+          บันทึกข้อมูลไม่สำเร็จ {errmessage}
         </Alert>
       </Snackbar>
       <Paper className={classes.paper}>
@@ -236,13 +224,13 @@ function BillCreate() {
         <Divider />
         <Grid container spacing={3} className={classes.root}>
 
-        <Grid item xs={6}>
+        <Grid item xs={4}>
             <p>ใบชำระเงิน</p>
             <FormControl fullWidth variant="outlined">
               <TextField
                 id="BillNo"
                 variant="outlined"
-                type="string"
+                type="number"
                 size="medium"
                 placeholder="เลขใบชำระเงิน"
                 value={bills.BillNo || ""}
@@ -251,23 +239,23 @@ function BillCreate() {
             </FormControl>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <FormControl fullWidth variant="outlined">
-              <p>ใบจ่ายยา</p>
+              <p>ใบสั่งยา</p>
               <Select
                 native
-                value={bills.DispenseMedicineID}
+                value={bills.PrescriptionID}
                 onChange={handleChange}
                 inputProps={{
-                  name: "DispenseMedicineID",
+                  name: "PrescriptionID",
                 }}
               >
                 <option aria-label="None" value="">
                 
                 </option>
-                {dispenseMedicines.map((item: Dispense_MedicineInterface) => (
+                {prescriptions.map((item: PrescriptionInterface) => (
                   <option value={item.ID} key={item.ID}>
-                    {item.DispensemedicineNo}
+                    {item.PrescriptionNo}
                   </option>
                 ))}
               </Select>
@@ -275,7 +263,7 @@ function BillCreate() {
           </Grid>
 
 
-        <Grid item xs={6}>
+        <Grid item xs={4}>
             <FormControl fullWidth variant="outlined">
               <p>รูปแบบการชำระเงิน</p>
             <Select
@@ -295,29 +283,6 @@ function BillCreate() {
                     {item.ConditionsOfPayments}
                   </option>
                 ))}  
-              </Select>
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={6}>
-            <FormControl fullWidth variant="outlined">
-              <p>ราคายา</p>
-              <Select
-                native
-                value={bills.PriceID}
-                onChange={handleChange}
-                inputProps={{
-                  name: "PriceID",
-                }}
-              >
-                <option aria-label="None" value="">
-                
-                </option>
-                {prices.map((item: PricesInterface) => (
-                  <option value={item.ID} key={item.ID}>
-                    {item.Value}
-                  </option>
-                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -357,6 +322,7 @@ function BillCreate() {
               <p>วันที่และเวลา</p>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDateTimePicker
+                  
                   name="BillTime"
                   value={selectedDate}
                   onChange={handleDateChange}
@@ -367,6 +333,7 @@ function BillCreate() {
               </MuiPickersUtilsProvider>
             </FormControl>
           </Grid>
+
 
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">

@@ -92,7 +92,7 @@ function Bills() {
                   ลำดับ
                 </TableCell>
                 <TableCell align="center" width="2%">
-                  ใบจ่ายยา
+                  เลขใบสั่งยา
                 </TableCell>
                 <TableCell align="center" width="5%">
                 ราคายา
@@ -113,7 +113,7 @@ function Bills() {
                   วันที่และเวลา
                 </TableCell>
                 <TableCell align="center" width="4%">
-                  ใบชำระเงิน
+                  เลขใบชำระเงิน
                 </TableCell>
                 <TableCell align="center" width="6%">
                   ผู้ให้ชำระเงิน
@@ -124,9 +124,9 @@ function Bills() {
               {bills.map((item: BillsInterface) => (
                 <TableRow key={item.ID}>
                   <TableCell align="center">{item.ID}</TableCell>
-                  <TableCell align="center">{item.DispenseMedicine.DispensemedicineNo}</TableCell>
-                  <TableCell align="center">{item.Price.Value}</TableCell>
-                  <TableCell align="center">{item.DispenseMedicine.Amount}</TableCell>
+                  <TableCell align="center">{item.Prescription.PrescriptionNo}</TableCell>
+                  <TableCell align="center">{item.Prescription.MedicineDisbursement.MedicineStorage.Sell}</TableCell>
+                  <TableCell align="center">{item.Prescription.Amount}</TableCell>
                   <TableCell align="center">{item.Total}</TableCell>
                   <TableCell align="center">{item.Payer}</TableCell>
                   <TableCell align="center">{item.Paymentmethod.ConditionsOfPayments}</TableCell>
