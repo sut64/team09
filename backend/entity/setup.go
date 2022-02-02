@@ -25,7 +25,7 @@ func SetupDatabase() {
 		&MedicineLabel{}, &Suggestion{}, &Effect{},
 		&MedicineRoom{}, &MedicineStorage{}, &MedicineType{}, &MedicineDisbursement{},
 		&Packing{}, &ReceiveType{}, &Medicinereceive{},
-		&DispenseMedicine{}, &Paymentmethod{}, &Price{}, &Bill{},
+		&DispenseMedicine{}, &Paymentmethod{}, &Bill{},
 		&DispenseStatus{}, &DispenseMedicine{},
 	)
 
@@ -129,6 +129,7 @@ func SetupDatabase() {
 	Medicinestorage1 := MedicineStorage{
 		Name:         "ASPIRIN",
 		Count:        2000,
+		Sell:         400,
 		MedicineType: Medicinetype2,
 	}
 	db.Model(&MedicineStorage{}).Create(&Medicinestorage1)
@@ -136,6 +137,7 @@ func SetupDatabase() {
 	Medicinestorage2 := MedicineStorage{
 		Name:         "GEMFIBROZIL",
 		Count:        2800,
+		Sell:         980,
 		MedicineType: Medicinetype1,
 	}
 	db.Model(&MedicineStorage{}).Create(&Medicinestorage2)
@@ -188,27 +190,6 @@ func SetupDatabase() {
 	}
 	db.Model(&Paymentmethod{}).Create(&payment)
 
-	//Price ราคายา
-	price50 := Price{
-		Value: 50,
-	}
-	db.Model(&Price{}).Create(&price50)
-
-	price69 := Price{
-		Value: 69,
-	}
-	db.Model(&Price{}).Create(&price69)
-
-	price100 := Price{
-		Value: 100,
-	}
-	db.Model(&Price{}).Create(&price100)
-
-	price129 := Price{
-		Value: 129,
-	}
-	db.Model(&Price{}).Create(&price129)
-
 	// Dispense_status Data
 	dispense_status01 := DispenseStatus{
 		Status: "จ่ายแล้ว",
@@ -225,10 +206,10 @@ func SetupDatabase() {
 
 	var medicine MedicineStorage
 	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "ASPIRIN").Scan(&medicine)
-	
+
 	var medicine1 MedicineStorage
 	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "GEMFIBROZIL").Scan(&medicine1)
-	
+
 	disbursement1 := MedicineDisbursement{
 		DisbursementID:  "1000",
 		DisbursementDAY: time.Now(),
@@ -282,17 +263,19 @@ func SetupDatabase() {
 	}
 	db.Model(&DispenseMedicine{}).Create(&dispense_medicine01)
 
+	var s MedicineStorage
+	db.Raw("SELECT * FROM medicine_storages WHERE id = 1").Scan(&s)
+
 	// Bill ใบชำระเงินค่ายา
 	bill1 := Bill{
-		BillNo:   "A0001",
+		BillNo:   1000,
 		BillTime: time.Now(),
 		Payer:    "AWESOME08",
-		Total:    150,
+		Total:    Prescription01.Amount * uint(s.Sell),
 
-		Authorities:      bee,
-		DispenseMedicine: dispense_medicine01,
-		Price:            price50,
-		Paymentmethod:    cash,
+		Authorities:   bee,
+		Prescription:  Prescription01,
+		Paymentmethod: cash,
 	}
 	db.Model(&Bill{}).Create(&bill1)
 
