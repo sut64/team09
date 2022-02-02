@@ -45,7 +45,7 @@ function Medicine_disbursementCreate() {
   const [selectedDate1, setSelectedDate1] = useState<Date | null>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [medicinestorage, setMedicinestorage] = useState<MedicinestorageInterface[]>([]);
-  const [medicinerooms, setMedicinerooms] = useState<MedicineRoomInterface>();
+  const [medicinerooms, setMedicinerooms] = useState<MedicineRoomInterface[]>([]);
   const [medicinetypeID, setMedicinetypeID] = useState<Number | null>(null);
   const [medicinestorages, setMedicinestorages] = useState<Partial<MedicinestorageInterface>>({});
 //   const [room, setRoom] = useState<Partial<MedicineroomInterface>>({});
@@ -227,6 +227,7 @@ function Medicine_disbursementCreate() {
       AmountMedicine: convertType(disbursements.AmountMedicine) ,
       AuthoritiesID: convertType(authoritiys?.ID),
       MedicineStorageID: convertType(disbursements.MedicineStorageID),  
+      MedicineRoomID:convertType(disbursements.MedicineRoomID), 
     };
 
     console.log(data)
@@ -365,7 +366,28 @@ return (
         </FormControl>
     </Grid> 
     <Grid item xs={4}>
-        <FormControl fullWidth variant="outlined">
+    <FormControl fullWidth variant="outlined">
+        <p>ห้องยา</p>
+        <Select
+          native
+          value={disbursements.MedicineRoomID}
+          onChange={handleChange}
+          inputProps={{
+            name: "MedicineRoomID",
+          }}
+        >
+          <option aria-label="None" value="">
+          </option>
+          {medicinerooms.map((item: MedicineRoomInterface) => (
+            <option value={item.ID} key={item.ID}>
+              {item.Name}
+            </option>
+          ))}
+        </Select>
+        </FormControl>
+        </Grid>
+    <Grid item xs={4}>
+    <FormControl fullWidth variant="outlined">
         <p>วันที่เบิกยา</p>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDateTimePicker
@@ -377,9 +399,6 @@ return (
                 />
               </MuiPickersUtilsProvider>
         </FormControl>
-        </Grid>
-    <Grid item xs={4}>
-    
         </Grid>
         <Grid item xs={4}>
         
