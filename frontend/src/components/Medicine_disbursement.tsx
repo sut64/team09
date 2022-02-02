@@ -76,7 +76,7 @@ function Medicine_disbursement() {
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" width="15%">
+                  <TableCell align="center" width="10%">
                     ID
                   </TableCell>
                   <TableCell align="center" width="20%">
@@ -91,7 +91,10 @@ function Medicine_disbursement() {
                   <TableCell align="center" width="15%">
                     ประเภทยา
                   </TableCell>
-                  <TableCell align="center" width="20%">
+                  <TableCell align="center" width="15%">
+                    ห้องยา
+                  </TableCell>
+                  <TableCell align="center" width="15%">
                     วันที่เบิกยา
                   </TableCell>
                 </TableRow>
@@ -104,6 +107,7 @@ function Medicine_disbursement() {
                     <TableCell align="center">{temp.MedicineStorage.Name}</TableCell>
                     <TableCell align="center">{temp.AmountMedicine}</TableCell>
                     <TableCell align="center">{temp.MedicineStorage.MedicineType.Name}</TableCell>
+                    <TableCell align="center">{temp.MedicineRoom.Name}</TableCell>
                     <TableCell align="center">{moment(temp.DisbursementDAY).format("DD/MM/YYYY")}</TableCell>
                   </TableRow>
                 ))}
