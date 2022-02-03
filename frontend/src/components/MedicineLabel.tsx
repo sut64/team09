@@ -116,7 +116,7 @@ function MedicineLabels() {
             <TableBody>
               {medicineLabels.map((medicineLabel: MedicineLabelsInterface) => (
                 <TableRow key={medicineLabel.ID}>
-                  <TableCell align="center">{medicineLabel.MedicineRoom.Name}</TableCell>
+                  <TableCell align="center">{medicineLabel.MedicineDisbursement.MedicineStorage.Name}</TableCell>
                   <TableCell align="center">{medicineLabel.Property}</TableCell>
                   <TableCell align="center">{medicineLabel.Instruction}</TableCell>
                   <TableCell align="center">{medicineLabel.Consumption}</TableCell>
