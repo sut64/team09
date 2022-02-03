@@ -83,7 +83,7 @@ func ListMedicineLabel(c *gin.Context) {
 func DeleteMedicineLabel(c *gin.Context) {
 	id := c.Param("id")
 	if tx := entity.DB().Exec("DELETE FROM medicine_labels WHERE id = ?", id); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "ambulance not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "medicine label not found"})
 		return
 	}
 
@@ -98,7 +98,7 @@ func UpdateMedicineLabel(c *gin.Context) {
 		return
 	}
 	if tx := entity.DB().Where("id = ?", medicineLabel.ID).First(&medicineLabel); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "ambulance not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "medicine label not found"})
 		return
 	}
 	if err := entity.DB().Save(&medicineLabel).Error; err != nil {
