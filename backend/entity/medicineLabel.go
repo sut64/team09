@@ -32,7 +32,6 @@ type MedicineLabel struct {
 
 	AuthoritiesID *uint
 	Authorities   Authorities `gorm:"references:id"`
-	Dispense_Medicines []DispenseMedicine `gorm:"foreignKey:MedicineLabelID"`
 
 }
 
