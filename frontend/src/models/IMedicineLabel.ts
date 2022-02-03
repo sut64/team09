@@ -1,4 +1,4 @@
-import { MedicineRoomInterface } from "./IMedicineRoom";
+import { Medicine_disbursementInterface } from "./IMedicine_disbursement";
 import { SuggestionsInterface } from "./ISuggestion";
 import { EffectsInterface } from "./IEffect";
 import { AuthoritiesInterface } from "./IAuthority"
@@ -10,8 +10,8 @@ export interface MedicineLabelsInterface {
   Date: Date,
   AuthoritiesID: number,
   Authorities: AuthoritiesInterface,
-  MedicineRoomID: number,
-  MedicineRoom: MedicineRoomInterface,
+  MedicineDisbursementID: number,
+	MedicineDisbursement: Medicine_disbursementInterface,
   SuggestionID: number,
   Suggestion: SuggestionsInterface,
   EffectID: number,
