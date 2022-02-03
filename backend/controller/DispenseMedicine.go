@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/tzcap/prescription/entity"
 )
@@ -33,20 +34,20 @@ func CreateDispense_Medicine(c *gin.Context) {
 		return
 	}
 
-	// 11: ค้นหา prescription ด้วย id
+	// 11: ค้นหา bill ด้วย id
 	if tx := entity.DB().Where("id = ?", dispense_medicine.BillID).First(&bill); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "bills not found"})
 		return
 	}
 
-	// 13: ค้นหา informer ด้วย id
+	// 13: ค้นหา authorities ด้วย id
 	if tx := entity.DB().Where("id = ?", dispense_medicine.AuthoritiesID).First(&authority); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "authorities not found"})
 		return
 	}
 
 	// 12: สร้าง DispenseMedicine
-	dm := entity.DispenseMedicine{
+	dispense := entity.DispenseMedicine{
 		DispenseStatus:     dispense_status, // โยงความสัมพันธ์กับ Entity Dispense_status
 		Bill:               bill,            // โยงความสัมพันธ์กับ Entity Bill
 		Authorities:        authority,       // โยงความสัมพันธ์กับ Entity Authority
@@ -55,12 +56,18 @@ func CreateDispense_Medicine(c *gin.Context) {
 		DispenseTime:       dispense_medicine.DispenseTime, // ตั้งค่าฟิลด์ watchedTime
 	}
 
-	// 13: บันทึก
-	if err := entity.DB().Create(&dm).Error; err != nil {
+	// validate Prescription controller
+	if _, err := govalidator.ValidateStruct(dispense); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": dm})
+
+	// 13: บันทึก
+	if err := entity.DB().Create(&dispense).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": dispense})
 }
 
 // GET /dispense_medicines/:id
