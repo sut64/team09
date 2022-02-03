@@ -55,12 +55,12 @@ function Dispense_MedicineCreate() {
   const [authorities, setAuthorities] = useState<AuthoritiesInterface>();
   const [bills, setBills] = useState<BillsInterface[]>([]);
   const [dispense_statuses, setDispense_Statuses] = useState<Dispense_statusInterface[]>([]);
-  const [dispense_medicines, setDispense_Medicines] = useState<Partial<Dispense_MedicineInterface>>(
-    {}
-  );
+  const [dispense_medicines, setDispense_Medicines] = useState<Partial<Dispense_MedicineInterface>>({});
+  
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const apiUrl = "http://localhost:8080";
   const requestOptions = {
@@ -177,11 +177,13 @@ function Dispense_MedicineCreate() {
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
-          console.log("บันทึกได้")
+          /* console.log("บันทึกได้") */
           setSuccess(true);
+          setErrorMessage("");
         } else {
-          console.log("บันทึกไม่ได้")
+          /* console.log("บันทึกไม่ได้") */
           setError(true);
+          setErrorMessage(res.error);
         }
       });
   }
@@ -195,7 +197,7 @@ function Dispense_MedicineCreate() {
       </Snackbar>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกข้อมูลไม่สำเร็จ
+          บันทึกข้อมูลไม่สำเร็จ: {errorMessage}
         </Alert>
       </Snackbar>
       <Paper className={classes.paper}>
