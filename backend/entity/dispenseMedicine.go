@@ -6,7 +6,6 @@ import (
 	"gorm.io/gorm"
 )
 
-
 type DispenseStatus struct {
 	gorm.Model
 	Status string
@@ -16,17 +15,13 @@ type DispenseStatus struct {
 
 type DispenseMedicine struct {
 	gorm.Model
-	DispensemedicineNo string `valid:"required~DispensemedicineNo cannot be blank, matches(^[H]\\d{4}$)"`
-	Amount             uint
+	DispensemedicineNo uint
+	ReceiveName        string
 	DispenseTime       time.Time //`valid:"present~DispenseTime must be in the present"`
 
-	// MedicineLabelID ทำหน้าที่เป็น FK
-	MedicineLabelID *uint
-	MedicineLabel   MedicineLabel `gorm:"references:id"`
-
-	// PrescriptionID ทำหน้าที่เป็น FK
-	PrescriptionID *uint
-	Prescription   Prescription `gorm:"references:id"`
+	// Bill ทำหน้าที่เป็น FK
+	BillID *uint
+	Bill   Bill `gorm:"references:id"`
 
 	// Dispense_statusID ทำหน้าที่เป็น FK
 	DispenseStatusID *uint
@@ -34,7 +29,4 @@ type DispenseMedicine struct {
 
 	AuthoritiesID *uint
 	Authorities   Authorities `gorm:"references:id"`
-
-	Bills []Bill `gorm:"foreignKey:DispenseMedicineID"`
-
 }

@@ -18,10 +18,9 @@ type Prescription struct {
 	MedicineDisbursement   MedicineDisbursement `gorm:"references:id" valid:"-"`
 	Amount                 uint
 	PaymentStatusID        *uint
-	PaymentStatus          PaymentStatus      `gorm:"references:id" valid:"-"`
-	RecordingTime          time.Time          `valid:"notpast~RecordingTime not be past"`
-	Dispense_Medicines     []DispenseMedicine `gorm:"foreignKey:PrescriptionID"`
-	Bills                  []Bill             `gorm:"foreignKey:PrescriptionID"`
+	PaymentStatus          PaymentStatus `gorm:"references:id" valid:"-"`
+	RecordingTime          time.Time     `valid:"notpast~RecordingTime not be past"`
+	Bills                  []Bill        `gorm:"foreignKey:PrescriptionID"`
 }
 
 type PaymentStatus struct {

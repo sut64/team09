@@ -15,6 +15,8 @@ type Bill struct {
 	Payer    string    `valid:"required~Payer cannot be blank"`
 	Total    uint      `valid:"required~Total must be Positive"`
 
+	DispenseMedicines []DispenseMedicine `gorm:"foreignKey:BillID"`
+
 	PaymentmethodID *uint
 	Paymentmethod   Paymentmethod `gorm:"references:id" valid:"-"`
 
