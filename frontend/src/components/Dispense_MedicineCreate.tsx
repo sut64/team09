@@ -6,6 +6,7 @@ import {
   createStyles,
   alpha,
 } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import Container from "@material-ui/core/Container";
@@ -19,8 +20,7 @@ import Select from "@material-ui/core/Select";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 
 import { AuthoritiesInterface } from "../models/IAuthority";
-import { MedicineLabelsInterface } from "../models/IMedicineLabel";
-import { PrescriptionInterface } from "../models/IPrescription";
+import { BillsInterface } from "../models/IBill";
 import { Dispense_statusInterface } from "../models/IDispense_status";
 import { Dispense_MedicineInterface } from "../models/IDispenseMedicine";
 
@@ -53,10 +53,9 @@ function Dispense_MedicineCreate() {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [authorities, setAuthorities] = useState<AuthoritiesInterface>();
-  const [medicine_labels, setMedicine_Labels] = useState<MedicineLabelsInterface[]>([]);
-  const [prescriptions, setPrescriptions] = useState<PrescriptionInterface[]>([]);
-  const [dispense_statuses, setDispense_statuses] = useState<Dispense_statusInterface[]>([]);
-  const [dispense_medicine, setDispense_Medicine] = useState<Partial<Dispense_MedicineInterface>>(
+  const [bills, setBills] = useState<BillsInterface[]>([]);
+  const [dispense_statuses, setDispense_Statuses] = useState<Dispense_statusInterface[]>([]);
+  const [dispense_medicines, setDispense_Medicines] = useState<Partial<Dispense_MedicineInterface>>(
     {}
   );
 
@@ -83,11 +82,19 @@ function Dispense_MedicineCreate() {
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: unknown }>
   ) => {
-    const name = event.target.name as keyof typeof dispense_medicine;
-    setDispense_Medicine({
-      ...dispense_medicine,
+    const name = event.target.name as keyof typeof dispense_medicines;
+    setDispense_Medicines({
+      ...dispense_medicines,
       [name]: event.target.value,
     });
+  };
+
+  const handleInputChange = (
+    event: React.ChangeEvent<{ id?: string; value: any }>
+  ) => {
+    const id = event.target.id as keyof typeof Dispense_MedicineCreate;
+    const { value } = event.target;
+    setDispense_Medicines({ ...dispense_medicines, [id]: value });
   };
 
   const handleDateChange = (date: Date | null) => {
@@ -100,7 +107,7 @@ function Dispense_MedicineCreate() {
     fetch(`${apiUrl}/authority/${uid}`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
-        dispense_medicine.AuthoritiesID = res.data.ID
+        dispense_medicines.AuthoritiesID = res.data.ID
         if (res.data) {
           setAuthorities(res.data);
         } else {
@@ -109,36 +116,24 @@ function Dispense_MedicineCreate() {
       });
   };
 
-  const getMedicine_Labels = async () => {
-    fetch(`${apiUrl}/medicineLabels`, requestOptions)
+  const getBills = async () => {
+    fetch(`${apiUrl}/bills`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
-          setMedicine_Labels(res.data);
+          setBills(res.data);
         } else {
           console.log("else");
         }
       });
   };
 
-  const getPrescriptions = async () => {
-    fetch(`${apiUrl}/Prescriptions`, requestOptions)
-      .then((response) => response.json())
-      .then((res) => {
-        if (res.data) {
-          setPrescriptions(res.data);
-        } else {
-          console.log("else");
-        }
-      });
-  };
-
-  const getDispense_statuses = async () => {
+  const getDispense_Statuses = async () => {
     fetch(`${apiUrl}/dispense_statuses`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
-          setDispense_statuses(res.data);
+          setDispense_Statuses(res.data);
         } else {
           console.log("else");
         }
@@ -147,9 +142,8 @@ function Dispense_MedicineCreate() {
 
   useEffect(() => {  // ทำงานทุกครั้งที่เรา รีหน้าเว็บ
     getAuthorities();
-    getMedicine_Labels();
-    getPrescriptions();
-    getDispense_statuses();
+    getBills();
+    getDispense_Statuses();
   }, []);
 
   const convertType = (data: string | number | undefined) => {
@@ -159,11 +153,13 @@ function Dispense_MedicineCreate() {
 
   function submit() {
     let data = {
-      MedicineLabelID: convertType(dispense_medicine.MedicineLabelID),
-      PrescriptionID: convertType(dispense_medicine.PrescriptionID),
-      DispenseStatusID: convertType(dispense_medicine.DispenseStatusID),
+      BillID: convertType(dispense_medicines.BillID),
+      DispenseStatusID: convertType(dispense_medicines.DispenseStatusID),
       AuthoritiesID: convertType(authorities?.ID),
+
       DispenseTime: selectedDate,
+      ReceiveName: dispense_medicines.ReceiveName ?? "",
+      DispensemedicineNo: convertType(dispense_medicines.DispensemedicineNo ?? ""),
     };
 
     console.log(data)
@@ -217,57 +213,96 @@ function Dispense_MedicineCreate() {
         </Box>
         <Divider />
         <Grid container spacing={3} className={classes.root}>
+
+          <Grid item xs={6}>
+            <p>เลขใบจ่ายยา</p>
+            <FormControl fullWidth variant="outlined">
+              <TextField
+                id="DispensemedicineNo"
+                variant="outlined"
+                type="number"
+                size="medium"
+                placeholder="เลขใบจ่ายยา"
+                value={dispense_medicines.DispensemedicineNo || ""}
+                onChange={handleInputChange}
+              />
+            </FormControl>
+          </Grid>
+
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
-              <p>ฉลากยา</p>
+              <p>ใบชำระเงิน</p>
               <Select
                 native
-                value={dispense_medicine.MedicineLabelID}
+                value={dispense_medicines.BillID}
                 onChange={handleChange}
                 inputProps={{
-                  name: "MedicineLabelID",
+                  name: "BillID",
                 }}
               >
                 <option aria-label="None" value="">
-                  กรุณาเลือกฉลากยา
+                  กรุณาเลือกใบชำระเงิน
                 </option>
-                {medicine_labels.map((item: MedicineLabelsInterface) => (
+                {bills.map((item: BillsInterface) => (
                   <option value={item.ID} key={item.ID}>
-                    ฉลากยา {item.ID}
+                    {item.BillNo}
                   </option>
                 ))}
               </Select>
             </FormControl>
           </Grid>
+
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
-              <p>ใบสั่งยา</p>
+              <p>ผู้ชำระเงิน</p>
               <Select
                 native
-                //disabled
-                value={dispense_medicine.PrescriptionID}
+                disabled
+                value={dispense_medicines.BillID}
                 onChange={handleChange}
                 inputProps={{
-                  name: "PrescriptionID",
+                  name: "BillID",
                 }}
               >
                 <option aria-label="None" value="">
-                  กรุณาเลือกใบสั่งยา
+                  กรุณาเลือกใบชำระเงิน
                 </option>
-                {prescriptions.map((item: PrescriptionInterface) => (
+                {bills.map((item: BillsInterface) => (
                   <option value={item.ID} key={item.ID}>
-                    ใบสั่งยา {item.ID}
+                    {item.Payer}
                   </option>
                 ))}
               </Select>
             </FormControl>
           </Grid>
+
+          {/* <Grid item xs={6}>
+            <FormControl fullWidth variant="outlined">
+              <p>ชื่อยา</p>
+              <Select
+                native
+                disabled
+                value={dispense_medicines.BillID}
+                onChange={handleChange}
+                inputProps={{
+                  name: "BillID",
+                }}
+              >
+                {bills.map((item: BillsInterface) => (
+                  <option value={item.ID} key={item.ID}>
+                    {item.Prescription.MedicineDisbursement.MedicineRoom}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid> */}
+
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
               <p>สถานะจ่ายยา</p>
               <Select
                 native
-                value={dispense_medicine.DispenseStatusID}
+                value={dispense_medicines.DispenseStatusID}
                 onChange={handleChange}
                 inputProps={{
                   name: "DispenseStatusID",
@@ -284,6 +319,22 @@ function Dispense_MedicineCreate() {
               </Select>
             </FormControl>
           </Grid>
+          
+          <Grid item xs={6}>
+            <p>ผู้รับยา</p>
+            <FormControl fullWidth variant="outlined">
+              <TextField
+                id="ReceiveName"
+                variant="outlined"
+                type="string"
+                size="medium"
+                placeholder="ผู้รับยา"
+                value={dispense_medicines.ReceiveName || ""}
+                onChange={handleInputChange}
+              />
+            </FormControl>
+          </Grid>
+
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
               <p>ผู้ใช้</p>
@@ -296,7 +347,10 @@ function Dispense_MedicineCreate() {
                 //   name: "OwnerID",
                 // }}
               >
-                <option value={0}>
+                {/* <option value={0}>
+                  {authorities?.FirstName}
+                </option> */}
+                <option value={authorities?.ID} key={authorities?.ID}>
                   {authorities?.FirstName}
                 </option>
                 {/* <option value={users?.ID} key={users?.ID}>
@@ -305,6 +359,7 @@ function Dispense_MedicineCreate() {
               </Select>
             </FormControl>
           </Grid>
+
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
               <p>วันที่และเวลา</p>
@@ -320,6 +375,7 @@ function Dispense_MedicineCreate() {
               </MuiPickersUtilsProvider>
             </FormControl>
           </Grid>
+
           <Grid item xs={12}>
             <Button
               component={RouterLink}

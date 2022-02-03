@@ -90,20 +90,26 @@ function Dispense_Medicines() {
                 <TableCell align="center" width="5%">
                   ลำดับ
                 </TableCell>
-                <TableCell align="center" width="17.5%">
-                  ฉลากยา
+                <TableCell align="center" width="15%">
+                  เลขจ่ายยา
                 </TableCell>
-                <TableCell align="center" width="17.5%">
-                  ใบสั่งยา
+                <TableCell align="center" width="15%">
+                  ผู้รับยา
+                </TableCell>
+                <TableCell align="center" width="5%">
+                  เลขชำระเงิน
+                </TableCell>
+                <TableCell align="center" width="15%">
+                  ผู้ชำระเงิน
                 </TableCell>
                 <TableCell align="center" width="15%">
                   สถานะจ่ายยา
                 </TableCell>
-                <TableCell align="center" width="30%">
+                <TableCell align="center" width="20%">
                   วันที่และเวลา
                 </TableCell>
-                <TableCell align="center" width="15%">
-                  ผู้ใช้
+                <TableCell align="center" width="10%">
+                  ผู้ให้จ่ายยา
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -111,8 +117,10 @@ function Dispense_Medicines() {
               {dispense_medicines.map((item: Dispense_MedicineInterface) => (
                 <TableRow key={item.ID}>
                   <TableCell align="center">{item.ID}</TableCell>
-                  <TableCell align="center">ฉลากยา {item.MedicineLabel.ID}</TableCell>
-                  <TableCell align="center">ใบสั่งยา {item.Prescription.ID}</TableCell>
+                  <TableCell align="center">{item.DispensemedicineNo}</TableCell>
+                  <TableCell align="center">{item.ReceiveName}</TableCell>
+                  <TableCell align="center">{item.Bill.BillNo}</TableCell>
+                  <TableCell align="center">{item.Bill.Payer}</TableCell>
                   <TableCell align="center">{item.DispenseStatus.Status}</TableCell>
                   <TableCell align="center">{format((new Date(item.DispenseTime)), 'dd MMMM yyyy hh:mm a')}</TableCell>
                   <TableCell align="center">{item.Authorities.FirstName}</TableCell>
