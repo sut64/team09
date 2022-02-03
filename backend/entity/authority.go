@@ -18,5 +18,5 @@ type Authorities struct {
 	Medicine_disbursements []MedicineDisbursement `gorm:"foreignKey:AuthoritiesID"`
 	Medicinereceives       []Medicinereceive      `gorm:"foreignKey:AuthoritiesID"`
 	Bills                  []Bill                 `gorm:"foreignKey:AuthoritiesID"`
-	Dispense_Medicines     []DispenseMedicine    `gorm:"foreignKey:AuthoritiesID"`
+	DispenseMedicines     []DispenseMedicine    `gorm:"foreignKey:AuthoritiesID"`
 }

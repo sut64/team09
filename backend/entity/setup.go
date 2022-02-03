@@ -252,17 +252,6 @@ func SetupDatabase() {
 	}
 	db.Model(&MedicineLabel{}).Create(&medicinelabel01)
 
-	dispense_medicine01 := DispenseMedicine{
-		Prescription:       Prescription01,
-		MedicineLabel:      medicinelabel01,
-		DispensemedicineNo: "H001",
-		Amount:             20,
-		DispenseTime:       time.Now(),
-		DispenseStatus:     dispense_status01,
-		Authorities:        chanon,
-	}
-	db.Model(&DispenseMedicine{}).Create(&dispense_medicine01)
-
 	var s MedicineStorage
 	db.Raw("SELECT * FROM medicine_storages WHERE id = 1").Scan(&s)
 
@@ -278,5 +267,15 @@ func SetupDatabase() {
 		Paymentmethod: cash,
 	}
 	db.Model(&Bill{}).Create(&bill1)
+
+	dispense_medicine01 := DispenseMedicine{
+		Bill:               bill1,
+		DispensemedicineNo: 123456,
+		ReceiveName:        "Somchai",
+		DispenseTime:       time.Now(),
+		DispenseStatus:     dispense_status01,
+		Authorities:        chanon,
+	}
+	db.Model(&DispenseMedicine{}).Create(&dispense_medicine01)
 
 }
