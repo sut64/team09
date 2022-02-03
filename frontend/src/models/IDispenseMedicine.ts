@@ -1,17 +1,14 @@
-import { MedicineLabelsInterface } from "./IMedicineLabel";
-import { PrescriptionInterface } from "./IPrescription";
+import { BillsInterface } from "./IBill";
 import { Dispense_statusInterface } from "./IDispense_status";
 import { AuthoritiesInterface } from "./IAuthority";
 
 export interface Dispense_MedicineInterface {
   ID: number,
-  DispensemedicineNo: string,
-  Amount:   number,
+  DispensemedicineNo: number,
+  ReceiveName:   string,
   DispenseTime: Date,
-  MedicineLabelID: number,
-  MedicineLabel: MedicineLabelsInterface,
-  PrescriptionID: number,
-  Prescription: PrescriptionInterface,
+  BillID: number,
+  Bill: BillsInterface,
   DispenseStatusID: number,
   DispenseStatus: Dispense_statusInterface,
   AuthoritiesID: number,
