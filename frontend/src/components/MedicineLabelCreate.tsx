@@ -19,7 +19,7 @@ import Select from "@material-ui/core/Select";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 
 import { AuthoritiesInterface } from "../models/IAuthority"
-import { MedicineRoomInterface } from "../models/IMedicineRoom";
+import { Medicine_disbursementInterface } from "../models/IMedicine_disbursement";
 import { SuggestionsInterface } from "../models/ISuggestion";
 import { EffectsInterface } from "../models/IEffect";
 import { MedicineLabelsInterface } from "../models/IMedicineLabel";
@@ -55,7 +55,7 @@ function AmbulanceCreate() {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [users, setUsers] = useState<AuthoritiesInterface>();
-  const [medicineRooms, setMedicineRooms] = useState<MedicineRoomInterface[]>([]);
+  const [medicine_disbursements, setMedicineRooms] = useState<Medicine_disbursementInterface[]>([]);
   const [suggestions, setSuggestions] = useState<SuggestionsInterface[]>([]);
   const [effects, setEffects] = useState<EffectsInterface[]>([]);
   const [medicineLabel, setMedicineLabel] = useState<Partial<MedicineLabelsInterface>>(
@@ -118,8 +118,8 @@ function AmbulanceCreate() {
         }
       });
   };
-  const getMedicineRoom = async () => {
-    fetch(`${apiUrl}/medicineRooms`, requestOptions)
+  const getMedicineDisbursements = async () => {
+    fetch(`${apiUrl}/disbursements`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
@@ -153,7 +153,7 @@ function AmbulanceCreate() {
   };
   useEffect(() => { //สั่งให้ react ดึงข้อมูลจาก API ที่เราสร้างขึ้นมา
     getUsers();
-    getMedicineRoom();
+    getMedicineDisbursements();
     getSuggestion();
     getEffect();
   }, []);
@@ -163,7 +163,7 @@ function AmbulanceCreate() {
   };
   function submit() {
     let data = {
-      MedicineRoomID: convertType(medicineLabel.MedicineRoomID),
+      MedicineDisbursementID: convertType(medicineLabel.MedicineDisbursementID),
       Instruction: medicineLabel.Instruction ?? "",
       Property: medicineLabel.Property ?? "",
       Consumption: medicineLabel.Consumption ?? "",
@@ -226,18 +226,18 @@ function AmbulanceCreate() {
               <p>ชื่อยา</p>
               <Select
                 native
-                value={medicineLabel.MedicineRoomID}
+                value={medicineLabel.MedicineDisbursementID}
                 onChange={handleChange}
                 inputProps={{
-                  name: "MedicineRoomID",
+                  name: "MedicineDisbursementID",
                 }}
               >
                 <option aria-label="None" value="">
                   กรุณาเลือกชื่อยา
                 </option>
-                {medicineRooms.map((item: MedicineRoomInterface) => (
+                {medicine_disbursements.map((item: Medicine_disbursementInterface) => (
                   <option value={item.ID} key={item.ID}>
-                    {item.Name}
+                    {item.MedicineStorage.Name}
                   </option>
                 ))}
               </Select>
