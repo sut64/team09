@@ -46,30 +46,30 @@ func CreateMedicinereceive(c *gin.Context) {
 	}
 	// 10: ค้นหา authority ด้วย id
 	if tx := entity.DB().Where("id = ?", medicinereceive.AuthoritiesID).First(&authority); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "prefix not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "authority not found"})
 		return
 	}
 
 	// 11: ค้นหา packing ด้วย id
 	if tx := entity.DB().Where("id = ?", medicinereceive.PackingID).First(&packing); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "prefix not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "packing not found"})
 		return
 	}
 
 	// 12: ค้นหา receive ด้วย id
 	if tx := entity.DB().Where("id = ?", medicinereceive.ReceiveTypeID).First(&receive); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "career not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "receive not found"})
 		return
 	}
 
 	// 13: ค้นหา medicinestorage ด้วย id
 	if tx := entity.DB().Where("id = ?", medicinereceive.MedicineStorageID).First(&medicinestorage); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "gender not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "medicinestorage not found"})
 		return
 	}
 	// 14: อัพเดทค่า count
 	if tx := entity.DB().Model(&medicinestorage).Where("id = ?", medicinereceive.MedicineStorageID).Update("Count", medicinestorage.Count+medicinereceive.Count); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "gender not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "count not update"})
 		return
 	}
 

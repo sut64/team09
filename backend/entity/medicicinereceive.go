@@ -36,8 +36,8 @@ type MedicineType struct {
 }
 type Medicinereceive struct {
 	gorm.Model
-	Receiveddate  time.Time `valid:"notpast~Receiveddate must be not null"`
-	Expire        time.Time `valid:"notpast~Expire must be not null"`
+	Receiveddate  time.Time `valid:"notpast~Receiveddate must be not past"`
+	Expire        time.Time `valid:"notpast~Expire must be not past"`
 	Company       string    `valid:"required~Company fill not null"`
 	Count         uint      `valid:"required~Count must be Positive"`
 	Price_of_unit float64   `valid:"required~Price must be Positive,PriceBepositive~Price must be Positive"`
