@@ -15,6 +15,7 @@ import Divider from "@material-ui/core/Divider";
 import {MuiPickersUtilsProvider,KeyboardDatePicker,KeyboardDateTimePicker} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { TextField } from '@material-ui/core';
+import { Link as RouterLink } from "react-router-dom";
 
 import { MedicinestorageInterface } from "../models/IMedicinestorage";
 import { MedicinetypeInterface } from "../models/IMedicinetype";
@@ -52,8 +53,10 @@ function Medicine_disbursementCreate() {
   const [authoritiys, setAuthoritiys] = useState<AuthoritiesInterface>();
   const [medicinetype, setMedicinetypes] = useState<MedicinetypeInterface[]>([]);
   const [disbursements, setDisbursements] = useState<Partial<Medicine_disbursementInterface>>({});
+
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const apiUrl = "http://localhost:8080";
   const requestOptions = {
@@ -246,8 +249,10 @@ function Medicine_disbursementCreate() {
       .then((res) => {
         if (res.data) {
           setSuccess(true);
+          setErrorMessage("")
         } else {
           setError(true);
+          setErrorMessage(res.error)
         }
       });
       
@@ -262,7 +267,7 @@ return (
   </Snackbar>
   <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
     <Alert onClose={handleClose} severity="error">
-      บันทึกข้อมูลไม่สำเร็จ
+      บันทึกข้อมูลไม่สำเร็จ: {errorMessage}
     </Alert>
   </Snackbar>
     <Paper className={classes.paper}>
@@ -332,7 +337,7 @@ return (
         </FormControl>
     </Grid>
     <Grid item xs={4}>
-    <FormControl fullWidth variant="outlined">
+    <FormControl fullWidth variant="outlined" disabled>
         <p>ประเภทยา</p>
         <Select
           native
@@ -409,7 +414,15 @@ return (
       </FormControl>
          </Grid>
         <Grid item xs={7}>
-        
+        <Button
+              component={RouterLink}
+              to="/disbursements"
+              style={{ float: "left" }}
+              variant="contained"
+              color="primary"
+            >
+              ใบเบิกยา
+            </Button>
         </Grid>
         <Grid item xs={5}>
         <Button

@@ -145,7 +145,6 @@ export default function MiniDrawer() {
     { name: "การสั่งยา", icon: <ShoppingBasketIcon />, path: "/prescription" },
     { name: "บันทึกข้อมูลฉลากยา", icon: <LabelIcon />, path: "/medicineLabels" },
     { name: "เบิกยา", icon: <AssignmentIndIcon />, path: "/disbursementCreate" },
-    { name: "ใบเบิกยา", icon: <ViewListIcon />, path: "/disbursements" },
     { name: "ใบรับยา", icon: <WarehouseIcon />, path: "/listreceived" },
     { name: "ใบชำระเงินค่ายา", icon: <AddAlertTwoToneIcon />, path: "/bills" },
     { name: "การจ่ายยา", icon: <AirportShuttleIcon />, path: "/dispense_medicines" },

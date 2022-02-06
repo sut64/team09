@@ -13,6 +13,8 @@ import TableRow from "@material-ui/core/TableRow";
 import { Medicine_disbursementInterface } from "../models/IMedicine_disbursement";
 import moment from 'moment';
 import { format } from "date-fns";
+import { Link as RouterLink } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
  createStyles({
@@ -70,6 +72,14 @@ function Medicine_disbursement() {
               </Typography>
             </Box>
             <Box>
+            <Button
+              component={RouterLink}
+              to="/disbursementCreate"
+              variant="contained"
+              color="primary"
+            >
+              กลับ
+            </Button>
             </Box>
           </Box>
           <TableContainer component={Paper} className={classes.tableSpace}>
