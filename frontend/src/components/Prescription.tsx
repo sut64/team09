@@ -177,7 +177,7 @@ function Medicine() {
         if (res.data) {
           setSuccess(true);
           setErrorMessage("");
-          // window.location.href = "/prescription";
+          window.location.href = "/prescription";
         } else {
           setError(true);
           setErrorMessage(res.error);
