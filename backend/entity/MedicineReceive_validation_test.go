@@ -30,7 +30,7 @@ func TestMedicinereceiveReceiveddateNotPast(t *testing.T) {
 	g.Expect(err).ToNot(BeNil())
 
 	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("Receiveddate must be not null"))
+	g.Expect(err.Error()).To(Equal("Receiveddate must be not past"))
 
 }
 func TestMedicinereceiveExpriceNotPast(t *testing.T) {
@@ -55,7 +55,7 @@ func TestMedicinereceiveExpriceNotPast(t *testing.T) {
 	g.Expect(err).ToNot(BeNil())
 
 	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("Expire must be not null"))
+	g.Expect(err.Error()).To(Equal("Expire must be not past"))
 
 }
 func TestMedicinereceivePriceBePositive(t *testing.T) {
@@ -129,7 +129,7 @@ func TestMedicinereceiveCompanyNotNull(t *testing.T) {
 	g.Expect(err).ToNot(BeNil())
 
 	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("fill not null"))
+	g.Expect(err.Error()).To(Equal("Company fill not null"))
 }
 
 func TestMedicinereceivePass(t *testing.T) {
