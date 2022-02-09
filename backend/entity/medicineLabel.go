@@ -6,33 +6,25 @@ import (
 	"gorm.io/gorm"
 )
 
-// type User struct {
-// 	gorm.Model
-// 	Name           string `valid:"required~Name cannot be blank"`
-// 	Email          string `gorm:"uniqueIndex" valid:"email"`
-// 	Password       string
-// 	MedicineLabels []MedicineLabel `gorm:"foreignKey:RecorderID"`
-// }
-
 type MedicineLabel struct {
 	gorm.Model
-	Instruction string
-	Property    string
-	Consumption string
-	Date        time.Time
+	Instruction string    `valid:"required~Instruction cannot be blank"`
+	Property    string    `valid:"required~Property cannot be blank"`
+	Consumption string    `valid:"range(0|100)~Consumption must be Positive"`
+	Date        time.Time `valid:"notpast~Date not be past"`
 
 	MedicineDisbursementID *uint
-	MedicineDisbursement   MedicineDisbursement `gorm:"references:id"`
+	MedicineDisbursement   MedicineDisbursement `gorm:"references:id" valid:"-"`
 
 	SuggestionID *uint
-	Suggestion   Suggestion `gorm:"references:id"`
+	Suggestion   Suggestion `gorm:"references:id" valid:"-"`
 
 	EffectID *uint
-	Effect   Effect `gorm:"references:id"`
+	Effect   Effect `gorm:"references:id" valid:"-"`
 
-	AuthoritiesID *uint
-	Authorities   Authorities `gorm:"references:id"`
-
+	AuthoritiesID      *uint
+	Authorities        Authorities        `gorm:"references:id" valid:"-"`
+	Dispense_Medicines []DispenseMedicine `gorm:"foreignKey:MedicineLabelID"`
 }
 
 type Suggestion struct {
