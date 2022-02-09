@@ -123,14 +123,14 @@ function Users() {
            <TableBody>
               {mreceive.map((user: Medicine_receiveInterface) => (
                 <TableRow key={user.ID}>
-                  <TableCell align="center">{user.Authorities.Email}</TableCell>
+                  <TableCell align="center">{user.Authorities.FirstName} {user.Authorities.LastName}</TableCell>
                   <TableCell align="center">{user.MedicineStorage.Name}</TableCell>
                   <TableCell align="center">{user.MedicineStorage.MedicineType.Name}</TableCell>
                   <TableCell align="center">{user.Count}</TableCell>
                   <TableCell align="center">{user.Packing.Name}</TableCell>
                   <TableCell align="center">{user.Price_of_unit}</TableCell>
-                  <TableCell align="center" >{moment(user.Receiveddate).format('MMMM Do YYYY [time] h:mm:ss a')}</TableCell>
-                  <TableCell align="center">{moment(user.Receiveddate).format('MMMM Do YYYY')}</TableCell>
+                  <TableCell align="center" >{moment(user.Receiveddate).format('D/M/YYYY [เวลา] h:mm:ss a')}</TableCell>
+                  <TableCell align="center">{moment(user.Receiveddate).format('D/M/YYYY')}</TableCell>
                   <TableCell align="center">{user.Company}</TableCell>
                   <TableCell align="center">{user.ReceiveType.Name}</TableCell>               
                 </TableRow>
