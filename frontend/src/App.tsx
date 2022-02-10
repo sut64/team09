@@ -170,7 +170,7 @@ export default function MiniDrawer() {
     { name: "เบิกยา", icon: <AssignmentIndIcon />, path: "/disbursementCreate" },
     { name: "ใบรับยา", icon: <WarehouseIcon />, path: "/listreceived" },
     { name: "ใบชำระเงินค่ายา", icon: <AddAlertTwoToneIcon />, path: "/bill/create" },
-    { name: "การจ่ายยา", icon: <AirportShuttleIcon />, path: "/dispense_medicines" },
+    { name: "การจ่ายยา", icon: <AirportShuttleIcon />, path: "/dispense_medicine/create" },
   
   ];
 
