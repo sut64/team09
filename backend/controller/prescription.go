@@ -69,7 +69,7 @@ func CreatePrescription(c *gin.Context) {
 func GetPrescription(c *gin.Context) {
 	var prescription entity.Prescription
 	id := c.Param("id")
-	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").Preload("MedicineDisbursement.MedicineStorage").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions WHERE prescription_no = ?", id).Find(&prescription).Error; err != nil {
+	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").Preload("MedicineDisbursement.MedicineStorage").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions WHERE id = ?", id).Find(&prescription).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
