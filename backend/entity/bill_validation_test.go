@@ -76,7 +76,7 @@ func TestBillTimeMustBeFuture(t *testing.T) {
 	g.Expect(err).ToNot(BeNil())
 
 	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("BillTime must be in the future"))
+	g.Expect(err.Error()).To(Equal("BillTime must be in the not past"))
 }
 
 // ตรวจสอบค่าว่างของผู้ชำระเงินแล้วต้องเจอ Error
