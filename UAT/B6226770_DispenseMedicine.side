@@ -1,0 +1,604 @@
+{
+  "id": "0ce5a0c6-13cc-4ea1-80da-06eb7e71138c",
+  "version": "2.0",
+  "name": "DispenseMedicine",
+  "url": "http://localhost:3000/",
+  "tests": [{
+    "id": "681007a3-ae2d-4cba-8222-7d1c1e0f4986",
+    "name": "B6226770 - บันทึกข้อมูล DispenseMedicine สำเร็จ",
+    "commands": [{
+      "id": "6d6d2581-70e0-4a17-8679-7ba3a4097b9b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7ee557a2-d4be-4aa6-aa5f-42a0692f1ae2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-12:nth-child(7) .MuiListItemIcon-root",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(7) .MuiListItemIcon-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/ul/a[7]/div/div", "xpath:idRelative"],
+        ["xpath=//a[7]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b71fed7-02b1-4204-938d-8df77ed4a1f2",
+      "comment": "",
+      "command": "click",
+      "target": "id=DispensemedicineNo",
+      "targets": [
+        ["id=DispensemedicineNo", "id"],
+        ["css=#DispensemedicineNo", "css:finder"],
+        ["xpath=//input[@id='DispensemedicineNo']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "22964cbc-930d-4f3c-932c-aad5ab13fd1c",
+      "comment": "",
+      "command": "type",
+      "target": "id=DispensemedicineNo",
+      "targets": [
+        ["id=DispensemedicineNo", "id"],
+        ["css=#DispensemedicineNo", "css:finder"],
+        ["xpath=//input[@id='DispensemedicineNo']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "100005"
+    }, {
+      "id": "165d7d77-9d64-4223-9777-75161505d4a6",
+      "comment": "",
+      "command": "click",
+      "target": "name=BillID",
+      "targets": [
+        ["name=BillID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='BillID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6f0c05bf-d5d3-4cc8-ae23-76b2294b2c0c",
+      "comment": "",
+      "command": "select",
+      "target": "name=BillID",
+      "targets": [],
+      "value": "label=1000"
+    }, {
+      "id": "42180b99-860c-4be4-b1d8-af90b7ce3f29",
+      "comment": "",
+      "command": "click",
+      "target": "name=DispenseStatusID",
+      "targets": [
+        ["name=DispenseStatusID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='DispenseStatusID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "78ddc78c-95af-47a6-9dfe-35a335601ac6",
+      "comment": "",
+      "command": "select",
+      "target": "name=DispenseStatusID",
+      "targets": [],
+      "value": "label=จ่ายแล้ว"
+    }, {
+      "id": "c3db638e-320c-418b-a0da-06f3342b148f",
+      "comment": "",
+      "command": "click",
+      "target": "id=ReceiveName",
+      "targets": [
+        ["id=ReceiveName", "id"],
+        ["css=#ReceiveName", "css:finder"],
+        ["xpath=//input[@id='ReceiveName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f5ae7b4b-d95d-4f75-8421-61d7c7c4eb27",
+      "comment": "",
+      "command": "type",
+      "target": "id=ReceiveName",
+      "targets": [
+        ["id=ReceiveName", "id"],
+        ["css=#ReceiveName", "css:finder"],
+        ["xpath=//input[@id='ReceiveName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "Max"
+    }, {
+      "id": "0ee8e603-973e-49ba-8950-9c8ac9add301",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f7b177b-2b6c-429a-966b-2fc01e1c479d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4806f8dc-85d6-4e96-90b2-56accb4fb128",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลสำเร็จ"
+    }]
+  }, {
+    "id": "aad8774b-028e-4bc6-8f1b-5bc99981ba8a",
+    "name": "B6226770 - ตรวจสอบเวลา DispenseTime ต้องไม่เป็นเวลาในอดีตเกิน 1 นาที",
+    "commands": [{
+      "id": "6aa27ef2-067b-43b7-b944-94d02fa1071e",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "03b48a7f-e451-4a82-9c2d-bc4b1d800d40",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-12:nth-child(7) .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(7) .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2f27272-24a6-4bbd-9a5e-4345990bdea4",
+      "comment": "",
+      "command": "click",
+      "target": "id=DispensemedicineNo",
+      "targets": [
+        ["id=DispensemedicineNo", "id"],
+        ["css=#DispensemedicineNo", "css:finder"],
+        ["xpath=//input[@id='DispensemedicineNo']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e6dc744-aa05-4d14-af30-556eb1d3b8c9",
+      "comment": "",
+      "command": "type",
+      "target": "id=DispensemedicineNo",
+      "targets": [
+        ["id=DispensemedicineNo", "id"],
+        ["css=#DispensemedicineNo", "css:finder"],
+        ["xpath=//input[@id='DispensemedicineNo']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "100001"
+    }, {
+      "id": "c429190d-bae5-4d7c-80bd-3b8b1045f827",
+      "comment": "",
+      "command": "click",
+      "target": "name=BillID",
+      "targets": [
+        ["name=BillID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='BillID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "714aaaf2-3621-4b03-ac4c-c501931dc01a",
+      "comment": "",
+      "command": "select",
+      "target": "name=BillID",
+      "targets": [],
+      "value": "label=1000"
+    }, {
+      "id": "e0bf23e7-939f-4396-ae56-205949892219",
+      "comment": "",
+      "command": "click",
+      "target": "name=DispenseStatusID",
+      "targets": [
+        ["name=DispenseStatusID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='DispenseStatusID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "897f6201-9d2d-41cf-ae55-f030008bc5b1",
+      "comment": "",
+      "command": "select",
+      "target": "name=DispenseStatusID",
+      "targets": [],
+      "value": "label=จ่ายแล้ว"
+    }, {
+      "id": "49cbcca7-7ace-4037-8a43-485a60b2a497",
+      "comment": "",
+      "command": "click",
+      "target": "id=ReceiveName",
+      "targets": [
+        ["id=ReceiveName", "id"],
+        ["css=#ReceiveName", "css:finder"],
+        ["xpath=//input[@id='ReceiveName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1ccb0a0a-0db4-4e9d-9e93-9f786e2e0846",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "aa7e4135-87ad-4fdf-8c4f-017dc331a3db",
+      "comment": "",
+      "command": "type",
+      "target": "id=ReceiveName",
+      "targets": [
+        ["id=ReceiveName", "id"],
+        ["css=#ReceiveName", "css:finder"],
+        ["xpath=//input[@id='ReceiveName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "Max"
+    }, {
+      "id": "af202987-a834-4159-8f8a-c39ade2c0457",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
+      "targets": [
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "b199b20e-732a-4613-8035-332324abbe1b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiPickersCalendar-week:nth-child(2) > div:nth-child(5) .MuiTypography-root",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(2) > div:nth-child(5) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[2]/div[5]/button/span/p", "xpath:position"],
+        ["xpath=//p[contains(.,'10')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc0732d3-092d-4a26-a2e5-c13e378ac37d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e43d8d4-de75-497d-b929-73cf441c855c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eaac084d-b2a4-4933-a8cb-f589631b1cb4",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ: DispenseTime not be past"
+    }]
+  }, {
+    "id": "45157412-7d6a-46f1-a1c5-784281715cd2",
+    "name": "B6226770 - ตรวจสอบเลขจ่ายยา DispensemedicineNo ต้องเป็นเลข 6 หลักเท่านั้น",
+    "commands": [{
+      "id": "e7a412fe-8734-4baf-9463-758791e7a3f4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f6e70c62-7ba5-41e0-937d-8012cf292841",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-12:nth-child(7) .MuiListItemIcon-root",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(7) .MuiListItemIcon-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/ul/a[7]/div/div", "xpath:idRelative"],
+        ["xpath=//a[7]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e7f80e1-0e73-4442-bc0f-37ef0f4b8623",
+      "comment": "",
+      "command": "click",
+      "target": "id=DispensemedicineNo",
+      "targets": [
+        ["id=DispensemedicineNo", "id"],
+        ["css=#DispensemedicineNo", "css:finder"],
+        ["xpath=//input[@id='DispensemedicineNo']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "45c1b29e-8cd8-4fb4-9e35-4374513a3b8f",
+      "comment": "",
+      "command": "type",
+      "target": "id=DispensemedicineNo",
+      "targets": [
+        ["id=DispensemedicineNo", "id"],
+        ["css=#DispensemedicineNo", "css:finder"],
+        ["xpath=//input[@id='DispensemedicineNo']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "12345"
+    }, {
+      "id": "0d9c6271-5af3-48f1-96ba-8137327f1013",
+      "comment": "",
+      "command": "click",
+      "target": "name=BillID",
+      "targets": [
+        ["name=BillID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='BillID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8736ea23-fc5d-40a0-b841-43ee265efecc",
+      "comment": "",
+      "command": "select",
+      "target": "name=BillID",
+      "targets": [],
+      "value": "label=1000"
+    }, {
+      "id": "d871d9d2-5973-4d96-828f-1f07c487780b",
+      "comment": "",
+      "command": "click",
+      "target": "name=DispenseStatusID",
+      "targets": [
+        ["name=DispenseStatusID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='DispenseStatusID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5135cd7-c1b8-4c90-a634-a5933bd821bc",
+      "comment": "",
+      "command": "select",
+      "target": "name=DispenseStatusID",
+      "targets": [],
+      "value": "label=จ่ายแล้ว"
+    }, {
+      "id": "a1022233-cc19-43cd-8a4e-df2c59e995e9",
+      "comment": "",
+      "command": "click",
+      "target": "id=ReceiveName",
+      "targets": [
+        ["id=ReceiveName", "id"],
+        ["css=#ReceiveName", "css:finder"],
+        ["xpath=//input[@id='ReceiveName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c53cffe7-5378-482c-9aaa-b694e5c7528b",
+      "comment": "",
+      "command": "type",
+      "target": "id=ReceiveName",
+      "targets": [
+        ["id=ReceiveName", "id"],
+        ["css=#ReceiveName", "css:finder"],
+        ["xpath=//input[@id='ReceiveName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "Ben"
+    }, {
+      "id": "74b248b8-cd53-41da-905b-fb2c9e0301fd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7be5dccb-6811-4555-9f37-e541744fd6fe",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a81b45d-5f95-4676-91f9-13a71be5da80",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ: DispensemedicineNo must be 6 digits"
+    }]
+  }, {
+    "id": "3dce82ea-3809-4066-8e6c-3745b4b50a2b",
+    "name": "B6226770 - ตรวจสอบชื่อผู้รับยา ReceiveName ต้องไม่เป็นค่าว่าง",
+    "commands": [{
+      "id": "228776d7-7e04-4d4a-af5c-2ce3b6ac80ba",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "87884df7-0c89-4af8-bcee-bd9d065ea027",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-12:nth-child(7) .MuiSvgIcon-root",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(7) .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea65d735-4fed-4674-855e-cd8eeae57644",
+      "comment": "",
+      "command": "click",
+      "target": "id=DispensemedicineNo",
+      "targets": [
+        ["id=DispensemedicineNo", "id"],
+        ["css=#DispensemedicineNo", "css:finder"],
+        ["xpath=//input[@id='DispensemedicineNo']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cd024b11-5cce-4fe8-9b85-8f3d1bf0125b",
+      "comment": "",
+      "command": "type",
+      "target": "id=DispensemedicineNo",
+      "targets": [
+        ["id=DispensemedicineNo", "id"],
+        ["css=#DispensemedicineNo", "css:finder"],
+        ["xpath=//input[@id='DispensemedicineNo']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "100000"
+    }, {
+      "id": "4d1d43eb-db80-4364-90cc-c02e5b18300b",
+      "comment": "",
+      "command": "click",
+      "target": "name=BillID",
+      "targets": [
+        ["name=BillID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='BillID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6ff84a94-8e45-4042-8798-3286c64f6440",
+      "comment": "",
+      "command": "select",
+      "target": "name=BillID",
+      "targets": [],
+      "value": "label=1000"
+    }, {
+      "id": "5d18ac2c-cbf4-4d46-8ad8-9148b62c1cdc",
+      "comment": "",
+      "command": "click",
+      "target": "name=DispenseStatusID",
+      "targets": [
+        ["name=DispenseStatusID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='DispenseStatusID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b9ae5407-dcde-4ebe-b2ad-0419681d69b6",
+      "comment": "",
+      "command": "select",
+      "target": "name=DispenseStatusID",
+      "targets": [],
+      "value": "label=จ่ายแล้ว"
+    }, {
+      "id": "72649a72-2447-46b9-a85a-a63940c87661",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e991c98-8543-4c8e-9cfe-06d3790ac676",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2eee7fc8-3875-406c-8115-b4c8dcfe0f27",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ: ReceiveName cannot be blank"
+    }]
+  }],
+  "suites": [{
+    "id": "1d63c351-2122-4143-95e9-5503dedffce9",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["681007a3-ae2d-4cba-8222-7d1c1e0f4986"]
+  }],
+  "urls": ["http://localhost:3000/"],
+  "plugins": []
+}
