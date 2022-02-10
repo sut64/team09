@@ -79,7 +79,7 @@ function Dispense_Medicines() {
               variant="contained"
               color="primary"
             >
-              สร้างข้อมูล
+              กลับ
             </Button>
           </Box>
         </Box>
