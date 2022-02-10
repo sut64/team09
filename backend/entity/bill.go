@@ -38,6 +38,6 @@ type Paymentmethod struct {
 func init() {
 	govalidator.CustomTypeTagMap.Set("notpast", func(i interface{}, context interface{}) bool {
 		t := i.(time.Time)
-		return t.After(time.Now().Add(time.Minute))
+		return t.After(time.Now().Add(time.Minute * -1))
 	})
 }
