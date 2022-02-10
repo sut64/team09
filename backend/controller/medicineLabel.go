@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/tzcap/prescription/entity"
 )
@@ -49,6 +50,10 @@ func CreateMedicineLabel(c *gin.Context) {
 		MedicineDisbursement: medicine,
 		Suggestion:           suggestion,
 		Effect:               effect,
+	}
+	if _, err := govalidator.ValidateStruct(wv); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 	// 12: บันทึก
 	if err := entity.DB().Create(&wv).Error; err != nil {
