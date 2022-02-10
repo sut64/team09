@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -60,15 +61,14 @@ function Bills() {
 
   return (
     <div>
-      <Container className={classes.container} maxWidth="md">
+      <Container className={classes.container} maxWidth="xl">
         <Box display="flex">
           <Box flexGrow={1}>
             <Typography
               component="h2"
               variant="h6"
               color="primary"
-              gutterBottom
-            >
+              gutterBottom>
               ข้อมูลการชำระเงินค่ายา
             </Typography>
           </Box>
@@ -78,8 +78,8 @@ function Bills() {
               to="/bill/create"
               variant="contained"
               color="primary"
-            >
-              ระบบชำระเงินค่ายา
+              style={{ backgroundColor: '#FAFAD2', fontSize: 'verdana', color: '#FFA07A' }}>
+              กลับ
             </Button>
           </Box>
         </Box>
@@ -89,21 +89,21 @@ function Bills() {
             <TableHead>
               <TableRow>
                 <TableCell align="center" width="2%">
-                  ลำดับ
+                รหัสใบสั่งยา
                 </TableCell>
                 <TableCell align="center" width="2%">
-                  เลขใบสั่งยา
+                  ชื่อยา
+                </TableCell>
+                <TableCell align="center" width="6%">
+                ราคายาต่อหน่วย
                 </TableCell>
                 <TableCell align="center" width="5%">
-                ราคายา
-                </TableCell>
-                <TableCell align="center" width="3%">
                 จำนวนยา
                 </TableCell>
-                <TableCell align="center" width="5%">
+                <TableCell align="center" width="7%">
                   ราคารวม
                 </TableCell>
-                <TableCell align="center" width="7%">
+                <TableCell align="center" width="5%">
                   ชื่อผู้ชำระเงิน
                 </TableCell>
                 <TableCell align="center" width="10%">
@@ -112,10 +112,10 @@ function Bills() {
                 <TableCell align="center" width="10%">
                   วันที่และเวลา
                 </TableCell>
-                <TableCell align="center" width="4%">
-                  เลขใบชำระเงิน
+                <TableCell align="center" width="9%">
+                  รหัสใบชำระเงิน
                 </TableCell>
-                <TableCell align="center" width="6%">
+                <TableCell align="center" width="10%">
                   ผู้ให้ชำระเงิน
                 </TableCell>
               </TableRow>
@@ -123,11 +123,11 @@ function Bills() {
             <TableBody>
               {bills.map((item: BillsInterface) => (
                 <TableRow key={item.ID}>
-                  <TableCell align="center">{item.ID}</TableCell>
                   <TableCell align="center">{item.Prescription.PrescriptionNo}</TableCell>
-                  <TableCell align="center">{item.Prescription.MedicineDisbursement.MedicineStorage.Sell}</TableCell>
-                  <TableCell align="center">{item.Prescription.Amount}</TableCell>
-                  <TableCell align="center">{item.Total}</TableCell>
+                  <TableCell align="center">{item.Prescription.MedicineDisbursement.MedicineStorage.Name}</TableCell>
+                  <TableCell align="center">{item.Prescription.MedicineDisbursement.MedicineStorage.Sell + " บาท"}</TableCell>
+                  <TableCell align="center">{item.Prescription.Amount + " จำนวน"}</TableCell>
+                  <TableCell align="center">{item.Total+".0 " + " บาท"}</TableCell>
                   <TableCell align="center">{item.Payer}</TableCell>
                   <TableCell align="center">{item.Paymentmethod.ConditionsOfPayments}</TableCell>
                   <TableCell align="center">{format((new Date(item.BillTime)), 'dd MMMM yyyy hh:mm a')}</TableCell>
@@ -138,7 +138,6 @@ function Bills() {
             </TableBody>
           </Table>
         </TableContainer>
-
       </Container>
     </div>
   );
