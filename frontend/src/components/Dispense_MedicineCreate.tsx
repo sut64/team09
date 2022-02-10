@@ -212,6 +212,18 @@ function Dispense_MedicineCreate() {
               บันทึกการจ่ายยา
             </Typography>
           </Box>
+
+          <Box>
+            <Button
+              component={RouterLink}
+              to="/dispense_medicines"
+              variant="contained"
+              color="primary"
+            >
+              {/* style={{ backgroundColor: '#FAFAD2', fontSize: 'verdana', color: '#FFA07A' }}> */}
+              ประวัติการจ่ายยา
+            </Button>
+          </Box>
         </Box>
         <Divider />
         <Grid container spacing={3} className={classes.root}>
@@ -381,7 +393,7 @@ function Dispense_MedicineCreate() {
           <Grid item xs={12}>
             <Button
               component={RouterLink}
-              to="/dispense_medicines"
+              to="/"
               variant="contained"
             >
               กลับ
