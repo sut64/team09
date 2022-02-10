@@ -52,7 +52,9 @@ import Bills from "./components/Bills";
 import Dispense_MedicineCreate from "./components/Dispense_MedicineCreate";
 import Dispense_Medicines from "./components/Dispense_Medicines";
 
-
+import { AuthoritiesInterface } from "./models/IAuthority";
+import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
+import LoginTwoToneIcon from '@mui/icons-material/LoginTwoTone';
 
 const drawerWidth = 240;
 
@@ -132,6 +134,7 @@ export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [token, setToken] = React.useState<String>("");
+  const [authorities, setAuthority] = React.useState<AuthoritiesInterface>();
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -140,19 +143,40 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  //Get Data
+  const apiUrl = "http://localhost:8080";
+  const requestOptions = {
+    method: "GET",
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}`, "Content-Type": "application/json" },
+  };
+  const getAuthority = async () => {
+   let uid = localStorage.getItem("uid");
+   fetch(`${apiUrl}/authority/${uid}`, requestOptions)
+     .then((response) => response.json())
+     .then((res) => {
+       console.log("authority",res.data);
+       if (res.data) {
+         setAuthority(res.data);
+       } else {
+         console.log("else");
+       }
+     });
+ };
+
   const menu = [
     { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
     { name: "การสั่งยา", icon: <ShoppingBasketIcon />, path: "/prescription" },
     { name: "บันทึกข้อมูลฉลากยา", icon: <LabelIcon />, path: "/medicineLabels" },
     { name: "เบิกยา", icon: <AssignmentIndIcon />, path: "/disbursementCreate" },
     { name: "ใบรับยา", icon: <WarehouseIcon />, path: "/listreceived" },
-    { name: "ใบชำระเงินค่ายา", icon: <AddAlertTwoToneIcon />, path: "/bills" },
+    { name: "ใบชำระเงินค่ายา", icon: <AddAlertTwoToneIcon />, path: "/bill/create" },
     { name: "การจ่ายยา", icon: <AirportShuttleIcon />, path: "/dispense_medicines" },
   
   ];
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    getAuthority();
     if (token) {
       setToken(token);
     }
@@ -194,8 +218,14 @@ export default function MiniDrawer() {
                 <Typography variant="h6" className={classes.title}>
                   ระบบห้องยา
                 </Typography>
+
+                <Button color="inherit" style={{ backgroundColor: '#DAF1FE', fontSize: 'verdana', color: '#7EA6BF' }}>
+                  <AccountCircleTwoToneIcon/> 
+                  {authorities?.FirstName + " " +authorities?.LastName}
+                </Button>
+
                 <Button color="inherit" onClick={signout}>
-                  ออกจากระบบ
+                  ออกจากระบบ <LoginTwoToneIcon/>
                 </Button>
               </Toolbar>
             </AppBar>
