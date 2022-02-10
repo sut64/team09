@@ -22,9 +22,8 @@ type MedicineLabel struct {
 	EffectID *uint
 	Effect   Effect `gorm:"references:id" valid:"-"`
 
-	AuthoritiesID      *uint
-	Authorities        Authorities        `gorm:"references:id" valid:"-"`
-	Dispense_Medicines []DispenseMedicine `gorm:"foreignKey:MedicineLabelID"`
+	AuthoritiesID *uint
+	Authorities   Authorities `gorm:"references:id" valid:"-"`
 }
 
 type Suggestion struct {
