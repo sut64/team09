@@ -56,7 +56,7 @@ func TestInstructionNotBlank(t *testing.T) {
 	g.Expect(err.Error()).To(Equal("Instruction cannot be blank"))
 }
 
-// ตรวจสอบค่าว่างของชื่อแล้วต้องเจอ Error
+// ตรวจสอบค่าว่างของชื่อแล้วต้องเจอ Error ...
 func TestPropertyNotBlank(t *testing.T) {
 	g := NewGomegaWithT(t)
 
