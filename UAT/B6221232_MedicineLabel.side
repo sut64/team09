@@ -1,0 +1,1251 @@
+{
+  "id": "e1375136-f44b-45e5-a6e8-e4c112fe9355",
+  "version": "2.0",
+  "name": "medicineLabel",
+  "url": "http://localhost:3000/",
+  "tests": [{
+    "id": "040921b0-c7d8-47d6-9364-38ae2e5d2b10",
+    "name": "B6221232 - ตรวจสอบ instruction เป็นช่องว่าง",
+    "commands": [{
+      "id": "890bd7e9-ec70-4dd5-958d-3ff8b73ec360",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7b958706-408f-401a-9fcd-102242b5d60c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "824x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "90746c96-c8f4-4a8c-856c-5a82f058ac9a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-12:nth-child(3) path",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(3) path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2b45450-458f-4bce-85af-9b63aab16602",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างข้อมูล')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5bfe89a1-471b-45e3-b2d5-ace8a17a50b6",
+      "comment": "",
+      "command": "click",
+      "target": "name=MedicineDisbursementID",
+      "targets": [
+        ["name=MedicineDisbursementID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='MedicineDisbursementID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "728824cc-3ca1-427f-ac50-b3e849025c38",
+      "comment": "",
+      "command": "select",
+      "target": "name=MedicineDisbursementID",
+      "targets": [],
+      "value": "label=ASPIRIN"
+    }, {
+      "id": "28a24f94-1e27-4141-9733-79fe1d8ee8a7",
+      "comment": "",
+      "command": "click",
+      "target": "id=Property",
+      "targets": [
+        ["id=Property", "id"],
+        ["css=#Property", "css:finder"],
+        ["xpath=//input[@id='Property']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b35df20-dd1c-4d64-a79f-ebe4ef534ed6",
+      "comment": "",
+      "command": "type",
+      "target": "id=Property",
+      "targets": [
+        ["id=Property", "id"],
+        ["css=#Property", "css:finder"],
+        ["xpath=//input[@id='Property']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ลดไข้"
+    }, {
+      "id": "c0db69a5-6f86-48f4-9f46-065e0b5a4098",
+      "comment": "",
+      "command": "click",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "985ebb39-0572-4a3f-acfd-ee29b5d5708e",
+      "comment": "",
+      "command": "type",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "175974e7-381a-4208-b57d-e1e67250dfbc",
+      "comment": "",
+      "command": "click",
+      "target": "name=SuggestionID",
+      "targets": [
+        ["name=SuggestionID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='SuggestionID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c568f160-7b53-4c72-ad12-02f57163e97f",
+      "comment": "",
+      "command": "select",
+      "target": "name=SuggestionID",
+      "targets": [],
+      "value": "label=ใช้ยาจนหมด"
+    }, {
+      "id": "b5759a72-cdd0-4d8f-b94a-bdcc4a75fd8a",
+      "comment": "",
+      "command": "click",
+      "target": "name=EffectID",
+      "targets": [
+        ["name=EffectID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='EffectID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[6]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0dbc2019-f380-4044-9b5d-364644672443",
+      "comment": "",
+      "command": "select",
+      "target": "name=EffectID",
+      "targets": [],
+      "value": "label=ทานแล้วอาจทำให้ง่วงซึม"
+    }, {
+      "id": "7c19622e-2831-4198-82c1-c20d7ebf3cf9",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af85e6e7-5df4-45f8-8f18-d14619bb13ac",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "df48c1a7-1af5-49ae-809d-83ff8fbb8db0",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da27a9fa-9581-437c-8255-215dc8f9fbc0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cd53a9c7-7534-466a-b60a-f528aa26fade",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ :Instruction cannot be blank"
+    }]
+  }, {
+    "id": "24bf46d4-7b6b-4694-a046-6c2579e986be",
+    "name": "ฺB6221232 - บันทึกข้อมูล medicineLabel สำเร็จ",
+    "commands": [{
+      "id": "22686df6-7228-43e8-8a3d-5c42c02b3c95",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a47436bb-c4d9-47e1-8b10-8ca73a34fe5c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "824x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "11da2c56-0fa1-40af-ac49-85a71bf31f46",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-12:nth-child(3) path",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(3) path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "a368255f-fb25-48f6-b333-aade16fec50f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างข้อมูล')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff5044a8-d567-41c8-82c5-ad7c435bf19e",
+      "comment": "",
+      "command": "click",
+      "target": "name=MedicineDisbursementID",
+      "targets": [
+        ["name=MedicineDisbursementID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='MedicineDisbursementID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "564c5bb1-b851-4ab5-a6c0-0df815295321",
+      "comment": "",
+      "command": "select",
+      "target": "name=MedicineDisbursementID",
+      "targets": [],
+      "value": "label=ASPIRIN"
+    }, {
+      "id": "3793de61-5e81-4bf9-938b-b789e57cd018",
+      "comment": "",
+      "command": "click",
+      "target": "id=Property",
+      "targets": [
+        ["id=Property", "id"],
+        ["css=#Property", "css:finder"],
+        ["xpath=//input[@id='Property']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9f97d60-5323-4820-843b-b22a33d03519",
+      "comment": "",
+      "command": "type",
+      "target": "id=Property",
+      "targets": [
+        ["id=Property", "id"],
+        ["css=#Property", "css:finder"],
+        ["xpath=//input[@id='Property']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ลดไข้"
+    }, {
+      "id": "360c8808-e5ac-4a9c-925f-79be3ee60020",
+      "comment": "",
+      "command": "click",
+      "target": "id=Instruction",
+      "targets": [
+        ["id=Instruction", "id"],
+        ["css=#Instruction", "css:finder"],
+        ["xpath=//input[@id='Instruction']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1c5679e-34d0-4f5c-ba82-0ad1ebc94e73",
+      "comment": "",
+      "command": "type",
+      "target": "id=Instruction",
+      "targets": [
+        ["id=Instruction", "id"],
+        ["css=#Instruction", "css:finder"],
+        ["xpath=//input[@id='Instruction']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "หลังอาหาร เช้า-เย็น"
+    }, {
+      "id": "54dd18b3-f8fa-49c4-bed3-b79ecf4ec724",
+      "comment": "",
+      "command": "click",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "267fe4ce-160d-45fc-afc2-74a61abe2923",
+      "comment": "",
+      "command": "type",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "1c5212fd-c1e1-462c-b8b8-5afd75b88c24",
+      "comment": "",
+      "command": "click",
+      "target": "name=SuggestionID",
+      "targets": [
+        ["name=SuggestionID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='SuggestionID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1515a67-43da-493c-aac0-db34f069203d",
+      "comment": "",
+      "command": "select",
+      "target": "name=SuggestionID",
+      "targets": [],
+      "value": "label=ใช้ยาจนหมด"
+    }, {
+      "id": "46697fe8-a426-4053-b430-c3769a916c81",
+      "comment": "",
+      "command": "click",
+      "target": "name=EffectID",
+      "targets": [
+        ["name=EffectID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='EffectID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[6]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "33e6e8e0-2d7c-4ef2-aeee-3f82295cf9cb",
+      "comment": "",
+      "command": "select",
+      "target": "name=EffectID",
+      "targets": [],
+      "value": "label=ทานแล้วอาจทำให้ง่วงซึม"
+    }, {
+      "id": "17fd3795-f2d8-4ced-95f6-5faaa60a9df3",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1ccf1e2-0660-431e-8f7d-d83845cfba79",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "09fef2da-4042-43d8-8c83-96c9b7684a41",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "436d8376-8986-4255-ac8c-64995d12b533",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลสำเร็จ"
+    }]
+  }, {
+    "id": "2d67fef4-b500-473d-b74d-741bca2a0d4a",
+    "name": "ฺB6221232 - ตรวจสอบ Property เป็นช่องว่าง",
+    "commands": [{
+      "id": "309b7f59-0cf7-41bc-907e-35d0c96fae2e",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cfdcd359-7bfc-416f-8026-8fd1a3a6d08a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "824x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6111c68c-c2d8-4977-bc0f-3f598a00477e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-12:nth-child(3) path",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(3) path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "bcfc49f9-6129-4ec2-8c72-c77d41b842fc",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.makeStyles-a-12:nth-child(3) > .MuiButtonBase-root",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(3) > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/ul/a[3]/div", "xpath:idRelative"],
+        ["xpath=//a[3]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "18d3d995-03ab-4639-bdd1-0932d48549cd",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.makeStyles-a-12:nth-child(3) > .MuiButtonBase-root",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(3) > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/ul/a[3]/div", "xpath:idRelative"],
+        ["xpath=//a[3]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7a6b8ab-84b2-468b-975f-803554bbd548",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างข้อมูล')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e4171266-276a-4697-a268-84fe2a03dfe0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างข้อมูล')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "df136f21-39f5-43e1-b5ca-7c13ac4b7795",
+      "comment": "",
+      "command": "click",
+      "target": "name=MedicineDisbursementID",
+      "targets": [
+        ["name=MedicineDisbursementID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='MedicineDisbursementID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a2e67ccc-1532-45b1-9c39-4f38a8377ba2",
+      "comment": "",
+      "command": "select",
+      "target": "name=MedicineDisbursementID",
+      "targets": [],
+      "value": "label=GEMFIBROZIL"
+    }, {
+      "id": "778ea67c-11b3-417a-93fe-283a77240c21",
+      "comment": "",
+      "command": "click",
+      "target": "id=Instruction",
+      "targets": [
+        ["id=Instruction", "id"],
+        ["css=#Instruction", "css:finder"],
+        ["xpath=//input[@id='Instruction']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60c04551-041d-4787-8453-3228b3d3243a",
+      "comment": "",
+      "command": "type",
+      "target": "id=Instruction",
+      "targets": [
+        ["id=Instruction", "id"],
+        ["css=#Instruction", "css:finder"],
+        ["xpath=//input[@id='Instruction']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "ทานหลังอาหาร เช้า-เย็น"
+    }, {
+      "id": "924b7d74-9813-4ec5-b089-ef5887d920bc",
+      "comment": "",
+      "command": "click",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a8ba74d6-60ee-45cf-a3bb-c7fd0233a7d1",
+      "comment": "",
+      "command": "type",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "95539f53-276e-4a2b-9415-42e695f4be29",
+      "comment": "",
+      "command": "click",
+      "target": "name=SuggestionID",
+      "targets": [
+        ["name=SuggestionID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='SuggestionID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "efc20637-ad53-4ecd-a1c7-d9fe556394dc",
+      "comment": "",
+      "command": "select",
+      "target": "name=SuggestionID",
+      "targets": [],
+      "value": "label=ใช้ยาจนหมด"
+    }, {
+      "id": "62344904-4a49-4a6a-a18a-d8ad857ca0d5",
+      "comment": "",
+      "command": "click",
+      "target": "name=EffectID",
+      "targets": [
+        ["name=EffectID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='EffectID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[6]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae1dfaf8-b82f-4403-bcf9-575620da112d",
+      "comment": "",
+      "command": "select",
+      "target": "name=EffectID",
+      "targets": [],
+      "value": "label=ทานแล้วอาจทำให้ง่วงซึม"
+    }, {
+      "id": "573c2da6-88d1-461a-a2db-4c7918b0ee2e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7b837219-3981-4037-97f6-8e33dee240b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "182f6243-43ff-4b11-9406-ca717df2b74f",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ :Property cannot be blank"
+    }]
+  }, {
+    "id": "4d340c14-9f74-42e5-b0cc-834ed722e008",
+    "name": "ฺB6221232 - ตรวจสอบ Consupmtion ไม่เป้นค่าบวก",
+    "commands": [{
+      "id": "8255fdd8-5b49-4c1c-bfeb-a37f31f98a50",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c5639f47-3b15-4ff1-ad0f-25c41b55f814",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "824x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3b166582-bf26-44dc-8726-00f40b1f5cdc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-12:nth-child(3) path",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(3) path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e927d96-2c7d-44c5-9913-a5b436aad8ae",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างข้อมูล')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3be55d4c-43f1-44c3-ac69-7d238e5d1889",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างข้อมูล')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "40e9f4aa-4215-4eca-bb5e-39cd1b067b94",
+      "comment": "",
+      "command": "click",
+      "target": "name=MedicineDisbursementID",
+      "targets": [
+        ["name=MedicineDisbursementID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='MedicineDisbursementID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a7814e6-91ff-4574-9dc7-0734042219ef",
+      "comment": "",
+      "command": "select",
+      "target": "name=MedicineDisbursementID",
+      "targets": [],
+      "value": "label=ASPIRIN"
+    }, {
+      "id": "a50515c3-6ed3-4953-9233-2cb4e1bfb57b",
+      "comment": "",
+      "command": "click",
+      "target": "id=Property",
+      "targets": [
+        ["id=Property", "id"],
+        ["css=#Property", "css:finder"],
+        ["xpath=//input[@id='Property']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "acf40bfa-63ad-4b23-9b85-7fa316869af0",
+      "comment": "",
+      "command": "type",
+      "target": "id=Property",
+      "targets": [
+        ["id=Property", "id"],
+        ["css=#Property", "css:finder"],
+        ["xpath=//input[@id='Property']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ลดไข้"
+    }, {
+      "id": "07a2e087-2a46-449b-98ce-56d2d11b5e83",
+      "comment": "",
+      "command": "click",
+      "target": "id=Instruction",
+      "targets": [
+        ["id=Instruction", "id"],
+        ["css=#Instruction", "css:finder"],
+        ["xpath=//input[@id='Instruction']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "14235aea-ef18-4649-bf75-5a3cc6f4eb8b",
+      "comment": "",
+      "command": "type",
+      "target": "id=Instruction",
+      "targets": [
+        ["id=Instruction", "id"],
+        ["css=#Instruction", "css:finder"],
+        ["xpath=//input[@id='Instruction']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "ทานหลังอาหาร เช้า-เย็น"
+    }, {
+      "id": "47f9ffa1-d51c-4212-857e-2cf2e84c8d08",
+      "comment": "",
+      "command": "click",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dff9d706-1bbe-4ebd-bcf2-fbae0dc6911e",
+      "comment": "",
+      "command": "type",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "1941680b-66af-49d2-9e32-cc82fad2541f",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_DOWN}"
+    }, {
+      "id": "ca6c3cd7-adb4-477e-aa2b-28d715554805",
+      "comment": "",
+      "command": "type",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "e8c6769a-36a8-4af0-848e-08531fbdfc80",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_DOWN}"
+    }, {
+      "id": "b3e63d0e-ac6f-440b-9b97-4fa4e6b48fe3",
+      "comment": "",
+      "command": "type",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "-1"
+    }, {
+      "id": "ccc6593f-5d95-4f06-b371-8b7f13d02009",
+      "comment": "",
+      "command": "click",
+      "target": "name=SuggestionID",
+      "targets": [
+        ["name=SuggestionID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='SuggestionID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "249955cb-07fc-4253-b20e-c72f8c5a77df",
+      "comment": "",
+      "command": "select",
+      "target": "name=SuggestionID",
+      "targets": [],
+      "value": "label=ใช้ยาจนหมด"
+    }, {
+      "id": "5fc38bf0-6ba1-4006-adce-70175b3562a2",
+      "comment": "",
+      "command": "click",
+      "target": "name=EffectID",
+      "targets": [
+        ["name=EffectID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='EffectID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[6]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b014101a-621b-4929-8202-c36e0b9bb51b",
+      "comment": "",
+      "command": "select",
+      "target": "name=EffectID",
+      "targets": [],
+      "value": "label=ทานแล้วอาจทำให้ง่วงซึม"
+    }, {
+      "id": "10acf616-1892-4e6a-b119-dbf3ed14c06f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc1d81d4-d260-4879-855b-3c8fc60df518",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d23dc644-f8d0-4b59-950f-667300b70400",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ :Consumption must be Positive"
+    }]
+  }, {
+    "id": "3033a93c-7681-4655-a702-5d3381358f6e",
+    "name": "B6221232 - ตรวจสอบ Date เป็นอดีต",
+    "commands": [{
+      "id": "2fd10a16-3c56-4305-aa0e-72f5d43e8652",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f74edc76-62a5-4d7c-9600-10325a6dc6d7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "824x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8c733aac-d9e1-4dca-8714-0f032347714e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.makeStyles-a-12:nth-child(3) path",
+      "targets": [
+        ["css=.makeStyles-a-12:nth-child(3) path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d185748-3a60-46f2-925a-354b091d6d03",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างข้อมูล')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "07cb7b69-4d21-44d1-9a6f-b39ae867c3e7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-contained > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'สร้างข้อมูล')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bd0ddea8-e55d-4604-8f0b-5e276dc39f03",
+      "comment": "",
+      "command": "click",
+      "target": "name=MedicineDisbursementID",
+      "targets": [
+        ["name=MedicineDisbursementID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='MedicineDisbursementID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6be1aff-8d77-479d-b0b5-7c5aa5877adf",
+      "comment": "",
+      "command": "select",
+      "target": "name=MedicineDisbursementID",
+      "targets": [],
+      "value": "label=ASPIRIN"
+    }, {
+      "id": "e0028eca-7594-4b48-85ac-efd1a0fc24eb",
+      "comment": "",
+      "command": "click",
+      "target": "id=Property",
+      "targets": [
+        ["id=Property", "id"],
+        ["css=#Property", "css:finder"],
+        ["xpath=//input[@id='Property']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5b98e73-7fb5-4d3f-9871-be0d2fc5d497",
+      "comment": "",
+      "command": "type",
+      "target": "id=Property",
+      "targets": [
+        ["id=Property", "id"],
+        ["css=#Property", "css:finder"],
+        ["xpath=//input[@id='Property']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ลดไข้"
+    }, {
+      "id": "e5720d7b-47fc-4a16-947d-44e1eab02aa3",
+      "comment": "",
+      "command": "click",
+      "target": "id=Instruction",
+      "targets": [
+        ["id=Instruction", "id"],
+        ["css=#Instruction", "css:finder"],
+        ["xpath=//input[@id='Instruction']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "afd941cb-c09f-410d-adba-d7d28c715b0f",
+      "comment": "",
+      "command": "type",
+      "target": "id=Instruction",
+      "targets": [
+        ["id=Instruction", "id"],
+        ["css=#Instruction", "css:finder"],
+        ["xpath=//input[@id='Instruction']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "ทานหลังอาหาร เช้า-เย็น"
+    }, {
+      "id": "6c2a0ab2-5660-480d-9997-d0c5a5fa9895",
+      "comment": "",
+      "command": "click",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "62b4fb1e-de1b-420d-aaf7-b11536ecb3bc",
+      "comment": "",
+      "command": "type",
+      "target": "id=Consumption",
+      "targets": [
+        ["id=Consumption", "id"],
+        ["css=#Consumption", "css:finder"],
+        ["xpath=//input[@id='Consumption']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[4]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "faeee2c4-9297-4002-9e69-9e0ffa510410",
+      "comment": "",
+      "command": "click",
+      "target": "name=SuggestionID",
+      "targets": [
+        ["name=SuggestionID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='SuggestionID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[5]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d18c30b9-d9ae-440c-bf75-7588bc78110e",
+      "comment": "",
+      "command": "select",
+      "target": "name=SuggestionID",
+      "targets": [],
+      "value": "label=ใช้ยาจนหมด"
+    }, {
+      "id": "6816df77-7e79-4eef-bd4e-8d52389848e7",
+      "comment": "",
+      "command": "click",
+      "target": "name=EffectID",
+      "targets": [
+        ["name=EffectID", "name"],
+        ["css=.Mui-focused > .MuiSelect-root", "css:finder"],
+        ["xpath=//select[@name='EffectID']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[6]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2bda4e93-1a92-408c-85f1-216aa07395b9",
+      "comment": "",
+      "command": "select",
+      "target": "name=EffectID",
+      "targets": [],
+      "value": "label=ทานแล้วอาจทำให้ง่วงซึม"
+    }, {
+      "id": "8333933b-3b11-46b3-8080-f22d66b25b0b",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiInputAdornment-root .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiInputAdornment-root .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4eebe7f-c170-472f-b27c-7de0a4cf1a9c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiInputAdornment-root .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiInputAdornment-root .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4909a33-483a-4997-b22d-70aa1045b544",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiInputAdornment-root .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiInputAdornment-root .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "68cc6f11-8dcf-49dd-951d-7eb9e67bfee2",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiPickersCalendar-week:nth-child(2) > div:nth-child(5) .MuiTypography-root",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(2) > div:nth-child(5) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[2]/div[5]/button/span/p", "xpath:position"],
+        ["xpath=//p[contains(.,'10')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cd3716e1-994c-4a90-89f5-724e97a3b7dd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiPickersCalendar-week:nth-child(2) > div:nth-child(5) .MuiTypography-root",
+      "targets": [
+        ["css=.MuiPickersCalendar-week:nth-child(2) > div:nth-child(5) .MuiTypography-root", "css:finder"],
+        ["xpath=//div[2]/div[5]/button/span/p", "xpath:position"],
+        ["xpath=//p[contains(.,'10')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b727be2e-edc0-4e9b-a577-92cae3f4284a",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a11c56d4-1708-4d62-ace8-f2f86b4bd28b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[3]/div/div[2]/button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fcef7c0d-1489-41b4-879e-a9c703e9d728",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff621805-91e7-4871-b972-509f3f495c7b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0ca6ea1-74b2-45d1-a164-9ba73d5be322",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-containedPrimary > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButton-containedPrimary > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec8c54d0-94c2-424a-9788-b57ca8e41bce",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAlert-root",
+      "targets": [
+        ["css=.MuiAlert-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6da131a6-21c6-465b-b368-862eb92e6b3b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.MuiAlert-message",
+      "targets": [
+        ["css=.MuiAlert-message", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": "บันทึกข้อมูลไม่สำเร็จ :Date not be past"
+    }]
+  }],
+  "suites": [{
+    "id": "09ef2d3a-5af8-4223-8c65-8f0a796631b7",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["040921b0-c7d8-47d6-9364-38ae2e5d2b10"]
+  }],
+  "urls": ["http://localhost:3000/medicineLabels", "http://localhost:3000/"],
+  "plugins": []
+}
