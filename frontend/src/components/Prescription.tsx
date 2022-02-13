@@ -94,7 +94,7 @@ function Medicine() {
 
 
   const getMedicineDisbursements = async () => {
-    fetch(`${apiUrl}/disbursements`, requestOptions)
+    fetch(`${apiUrl}/listMedicine`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
