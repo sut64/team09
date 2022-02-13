@@ -76,6 +76,17 @@ func GetMedicine_disbursement(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": med})
 }
 
+// GET /listMedicine
+func GetListMedicine(c *gin.Context) {
+	var meds []entity.MedicineDisbursement
+	if err := entity.DB().Preload("Authorities").Preload("MedicineRoom").Preload("MedicineStorage").Preload("MedicineStorage.MedicineType").Raw("SELECT * FROM medicine_disbursements GROUP BY medicine_storage_id").Find(&meds).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": meds})
+}
+
 // GET /Medicine_disbursement
 func ListMedicine_disbursement(c *gin.Context) {
 	var meds []entity.MedicineDisbursement
