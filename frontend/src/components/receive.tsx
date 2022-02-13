@@ -70,7 +70,7 @@ function Users() {
              color="primary"
              gutterBottom
            >
-             Users
+             คลังยา
            </Typography>
          </Box>
          <Box>
