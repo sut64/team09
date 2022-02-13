@@ -85,6 +85,7 @@ func main() {
 			protected.POST("/disbursements", controller.CreateMedicine_disbursement)
 			protected.PATCH("/disbursements", controller.UpdateMedicine_disbursement)
 			protected.DELETE("/disbursements/:id", controller.DeleteMedicine_disbursement)
+			protected.GET("/listMedicine", controller.GetListMedicine)
 
 			//Packing
 			protected.GET("/packings", controller.ListPacking)
