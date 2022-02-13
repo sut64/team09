@@ -82,10 +82,11 @@ func main() {
 			// MedicineDisbursement Routes
 			protected.GET("/disbursements", controller.ListMedicine_disbursement)
 			protected.GET("/disbursement/:id", controller.GetMedicine_disbursement)
+			protected.GET("/listMedicine", controller.GetListMedicine)
 			protected.POST("/disbursements", controller.CreateMedicine_disbursement)
 			protected.PATCH("/disbursements", controller.UpdateMedicine_disbursement)
 			protected.DELETE("/disbursements/:id", controller.DeleteMedicine_disbursement)
-
+			
 			//Packing
 			protected.GET("/packings", controller.ListPacking)
 			protected.GET("/packing/:id", controller.GetPacking)
