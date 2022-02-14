@@ -25,7 +25,7 @@ func CreatePaymentStatus(c *gin.Context) {
 func GetPaymentStatus(c *gin.Context) {
 	var paymentStatus entity.PaymentStatus
 	id := c.Param("id")
-	if err := entity.DB().Raw("SELECT * FROM payment_statuses WHERE id = ?", id).Scan(&paymentStatus).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM payment_statuses WHERE status = ?", id).Scan(&paymentStatus).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
