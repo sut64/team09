@@ -43,6 +43,7 @@ func main() {
 			protected.POST("/Prescriptions", controller.CreatePrescription)
 			protected.PATCH("/Prescriptions", controller.UpdatePrescription)
 			protected.DELETE("/Prescriptions/:id", controller.DeletePrescription)
+			protected.GET("/PrescriptionSearch/:id", controller.GetPrescriptionSearch)
 
 			// Suggestion Routes
 			protected.GET("/suggestions", controller.ListSuggestion)
@@ -86,6 +87,8 @@ func main() {
 			protected.PATCH("/disbursements", controller.UpdateMedicine_disbursement)
 			protected.DELETE("/disbursements/:id", controller.DeleteMedicine_disbursement)
 			protected.GET("/listMedicine", controller.GetListMedicine)
+			protected.GET("/medicines/:id", controller.GetMedicineFromMedicineRoom)
+
 
 			//Packing
 			protected.GET("/packings", controller.ListPacking)
