@@ -14,10 +14,10 @@ func TestPrescriptionPass(t *testing.T) {
 
 	// ข้อมูลถูกต้องหมดทุก field
 	prescription := Prescription{
-		PatientName: "Chayodom Heha",
+		PatientName:    "Chayodom Heha",
 		PrescriptionNo: 100001,
-		Amount: 10,
-		RecordingTime: time.Now(),
+		Amount:         10,
+		RecordingTime:  time.Now(),
 	}
 	// ตรวจสอบด้วย govalidator
 	ok, err := govalidator.ValidateStruct(prescription)
@@ -33,10 +33,10 @@ func TestPatientNameNotBlank(t *testing.T) {
 	g := NewGomegaWithT(t)
 
 	prescription := Prescription{
-		PatientName: "",
+		PatientName:    "",
 		PrescriptionNo: 100001,
-		Amount: 10,
-		RecordingTime: time.Now(),
+		Amount:         10,
+		RecordingTime:  time.Now(),
 	}
 
 	// ตรวจสอบด้วย govalidator
@@ -55,35 +55,44 @@ func TestPatientNameNotBlank(t *testing.T) {
 func TestPrescriptionNOMustBeInTheRange(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	prescription := Prescription{
-		PatientName: "Chayodom Heha",
-		PrescriptionNo: 1000011, // ผิด ต้องเป็นเลข 6 ตัว
-		Amount: 10,
-		RecordingTime: time.Now(),
+	fixtures := []uint{
+		10000000, // ต้องเป็นเลข 6 ตัว
+		1000011,  // ต้องเป็นเลข 6 ตัว
+		10000,    // ต้องเป็นเลข 6 ตัว
+		1000,     // ต้องเป็นเลข 6 ตัว
 	}
 
-	// ตรวจสอบด้วย govalidator
-	ok, err := govalidator.ValidateStruct(prescription)
+	for _, fixture := range fixtures {
+		prescription := Prescription{
+			PatientName:    "Chayodom Heha",
+			PrescriptionNo: fixture, // ผิด
+			Amount:         10,
+			RecordingTime:  time.Now(),
+		}
 
-	// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
-	g.Expect(ok).ToNot(BeTrue())
+		// ตรวจสอบด้วย govalidator
+		ok, err := govalidator.ValidateStruct(prescription)
 
-	// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
-	g.Expect(err).ToNot(BeNil())
+		// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
+		g.Expect(ok).ToNot(BeTrue())
 
-	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("PrescriptionNo must be 6 digits"))
+		// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
+		g.Expect(err).ToNot(BeNil())
+
+		// err.Error ต้องมี error message แสดงออกมา
+		g.Expect(err.Error()).To(Equal("PrescriptionNo must be 6 digits"))
+	}
 }
 
 func TestRecordingTimeNotBePast(t *testing.T) {
 	g := NewGomegaWithT(t)
 
 	prescription := Prescription{
-		PatientName: "Chayodom Heha",
+		PatientName:    "Chayodom Heha",
 		PrescriptionNo: 100001,
-		Amount: 10,
-		RecordingTime: time.Now().Add(time.Minute * -10), // อดีตผิด วันที่เวลาต้องไม่เป็นอดีต
-		
+		Amount:         10,
+		RecordingTime:  time.Now().Add(time.Minute * -10), // อดีตผิด วันที่เวลาต้องไม่เป็นอดีต
+
 	}
 
 	// ตรวจสอบด้วย govalidator
@@ -97,4 +106,27 @@ func TestRecordingTimeNotBePast(t *testing.T) {
 
 	// err.Error ต้องมี error message แสดงออกมา
 	g.Expect(err.Error()).To(Equal("RecordingTime not be past"))
+}
+
+func TestAmountMustBePositiveNumber(t *testing.T) {
+	g := NewGomegaWithT(t)
+
+	prescription := Prescription{
+		PatientName:    "Chayodom Heha",
+		PrescriptionNo: 100001,
+		Amount:         0, // ผิด จำนวนยาต้องเป็นจำนวนบวก
+		RecordingTime:  time.Now(),
+	}
+
+	// ตรวจสอบด้วย govalidator
+	ok, err := govalidator.ValidateStruct(prescription)
+
+	// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
+	g.Expect(ok).ToNot(BeTrue())
+
+	// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
+	g.Expect(err).ToNot(BeNil())
+
+	// err.Error ต้องมี error message แสดงออกมา
+	g.Expect(err.Error()).To(Equal("Amount Must Be Positive Number"))
 }
