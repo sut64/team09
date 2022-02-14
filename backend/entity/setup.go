@@ -121,7 +121,7 @@ func SetupDatabase() {
 	}
 	db.Model(&MedicineType{}).Create(&Medicinetype2)
 	Medicinetype3 := MedicineType{
-		Name: "INJ",
+		Name: "SYRUP",
 	}
 	db.Model(&MedicineType{}).Create(&Medicinetype3)
 
@@ -141,6 +141,38 @@ func SetupDatabase() {
 		MedicineType: Medicinetype1,
 	}
 	db.Model(&MedicineStorage{}).Create(&Medicinestorage2)
+
+	Medicinestorage3 := MedicineStorage{
+		Name:         "ATENOLOL",
+		Count:        800,
+		Sell:         680,
+		MedicineType: Medicinetype2,
+	}
+	db.Model(&MedicineStorage{}).Create(&Medicinestorage3)
+
+	Medicinestorage4 := MedicineStorage{
+		Name:         "ENALAPRIL",
+		Count:        600,
+		Sell:         520,
+		MedicineType: Medicinetype2,
+	}
+	db.Model(&MedicineStorage{}).Create(&Medicinestorage4)
+
+	Medicinestorage5 := MedicineStorage{
+		Name:         "LACTULOSE",
+		Count:        1000,
+		Sell:         1080,
+		MedicineType: Medicinetype3,
+	}
+	db.Model(&MedicineStorage{}).Create(&Medicinestorage5)
+
+	Medicinestorage6 := MedicineStorage{
+		Name:         "NIFEDIPINE",
+		Count:        300,
+		Sell:         180,
+		MedicineType: Medicinetype2,
+	}
+	db.Model(&MedicineStorage{}).Create(&Medicinestorage6)
 
 	//Medicineroom data
 	Medicineroom1 := MedicineRoom{
