@@ -64,6 +64,12 @@ func CreateBill(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"data": bi})
 
+	if tx := entity.DB().Model(&prescriptions).Where(bills.PrescriptionID).Update("payment_status_id", 2); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "payment status not found"})
+		return
+	}
+
+
 }
 
 // GET /bill/:id
