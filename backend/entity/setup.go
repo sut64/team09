@@ -201,9 +201,6 @@ func SetupDatabase() {
 	}
 	db.Model(&DispenseStatus{}).Create(&dispense_status02)
 
-	var medicineroom MedicineRoom
-	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "ห้องยาผู้ป่วยใน(IPD)").Scan(&medicineroom)
-
 	var medicine MedicineStorage
 	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "ASPIRIN").Scan(&medicine)
 
@@ -216,7 +213,7 @@ func SetupDatabase() {
 		AmountMedicine:  50,
 		Authorities:     chanon,
 		MedicineStorage: medicine,
-		MedicineRoom:    medicineroom,
+		MedicineRoom:    Medicineroom1,
 	}
 	db.Model(&MedicineDisbursement{}).Create(&disbursement1)
 
@@ -225,10 +222,30 @@ func SetupDatabase() {
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  50,
 		Authorities:     chanon,
-		MedicineStorage: medicine1,
-		MedicineRoom:    medicineroom,
+		MedicineStorage: medicine,
+		MedicineRoom:    Medicineroom2,
 	}
 	db.Model(&MedicineDisbursement{}).Create(&disbursement2)
+
+	disbursement3 := MedicineDisbursement{
+		DisbursementID:  "1002",
+		DisbursementDAY: time.Now(),
+		AmountMedicine:  100,
+		Authorities:     chanon,
+		MedicineStorage: medicine1,
+		MedicineRoom:    Medicineroom2,
+	}
+	db.Model(&MedicineDisbursement{}).Create(&disbursement3)
+
+	disbursement4 := MedicineDisbursement{
+		DisbursementID:  "1003",
+		DisbursementDAY: time.Now(),
+		AmountMedicine:  300,
+		Authorities:     chanon,
+		MedicineStorage: medicine1,
+		MedicineRoom:    Medicineroom2,
+	}
+	db.Model(&MedicineDisbursement{}).Create(&disbursement4)
 
 	var disbursement MedicineDisbursement
 	db.Raw("SELECT * FROM medicine_disbursements WHERE id = 1").Scan(&disbursement)
@@ -239,6 +256,7 @@ func SetupDatabase() {
 		MedicineDisbursement: disbursement,
 		Authorities:          chanon,
 		Amount:               4,
+		PaymentStatus:        status1,
 		RecordingTime:        time.Now(),
 	}
 	db.Model(&Prescription{}).Create(&Prescription01)
