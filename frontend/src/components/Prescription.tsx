@@ -8,6 +8,7 @@ import { AuthoritiesInterface } from "../models/IAuthority";
 import { PrescriptionInterface } from "../models/IPrescription";
 import { PaymentStatusInterface } from "../models/IPaymentStatus";
 import { Medicine_disbursementInterface } from "../models/IMedicine_disbursement";
+import { MedicineRoomInterface } from "../models/IMedicineRoom";
 
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -40,6 +41,8 @@ function Medicine() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [medicineDisbursements, setMedicineDisbursements] = useState<Medicine_disbursementInterface[]>([]);
   const [medicineDisbursement, setMedicineDisbursement] = useState<Partial<Medicine_disbursementInterface>>({});
+  const [medicineRooms, setMedicineRooms] = useState<MedicineRoomInterface[]>([]);
+  const [medicineRoom, setMedicineRoom] = useState<Partial<MedicineRoomInterface>>({});
   const [paymentStatuses, setPaymentStatuses] = useState<PaymentStatusInterface>();
   const [paymentStatus, setPaymentStatus] = useState<Partial<PaymentStatusInterface>>({});
   const [authorities, setAuthorities] = useState<AuthoritiesInterface>();
@@ -48,8 +51,6 @@ function Medicine() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-
 
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: any }>
@@ -61,8 +62,26 @@ function Medicine() {
     });
   };
 
+  const handleRoomChange = (
+    event: React.ChangeEvent<{name?: string; value: unknown}>
+  ) => {
+    getMedicines(Number(event.target.value));
+    
+  };
+
+  const getMedicines = async (id: number) => {
+    fetch(`${apiUrl}/medicines/${id}`, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if(res.data){
+          setMedicineDisbursements(res.data);
+        } else {
+          console.log("else");
+        }
+      });
+  };
+
   const handleDateChange = (date: Date | null) => {
-    // console.log(date);
     setSelectedDate(date);
   };
 
@@ -91,15 +110,12 @@ function Medicine() {
     setError(false);
   };
 
-
-
-  const getMedicineDisbursements = async () => {
-    fetch(`${apiUrl}/listMedicine`, requestOptions)
+  const getMedicineRooms = async () => {
+    fetch(`${apiUrl}/medicineRooms`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
-          setMedicineDisbursements(res.data);
-          // console.log(res.data);
+          setMedicineRooms(res.data);
         } else {
           console.log("else");
         }
@@ -107,13 +123,12 @@ function Medicine() {
   };
 
   const getPaymentStatuses = async () => {
-    fetch(`${apiUrl}/paymentStatus/1`, requestOptions)
+    fetch(`${apiUrl}/paymentStatus/Not Paid`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         prescription.PaymentStatusID = res.data.ID;
         if (res.data) {
           setPaymentStatuses(res.data);
-          // console.log(res.data);
         } else {
           console.log("else");
         }
@@ -128,7 +143,6 @@ function Medicine() {
         prescription.AuthorityID = res.data.ID;
         if (res.data) {
           setAuthorities(res.data);
-          // console.log(res.data);
         } else {
           console.log("else");
         }
@@ -137,8 +151,8 @@ function Medicine() {
 
   useEffect(() => {
     getAuthority();
-    getMedicineDisbursements();
     getPaymentStatuses();
+    getMedicineRooms();
     // setInterval(() => {
     //   const date = new Date();
     //   setSelectedDate(date);
@@ -177,7 +191,7 @@ function Medicine() {
         if (res.data) {
           setSuccess(true);
           setErrorMessage("");
-          window.location.href = "/prescription";
+          // window.location.href = "/prescription";
         } else {
           setError(true);
           setErrorMessage(res.error);
@@ -222,7 +236,30 @@ function Medicine() {
         </Box>
         <Divider />
         <Grid container spacing={3} className={classes.root}>
-          <Grid item xs={8}>
+        <Grid item xs={4}>
+            <FormControl fullWidth variant="outlined">
+              <p>ห้องยา</p>
+              <Select
+                native
+                value={medicineRoom.ID}
+                onChange={handleRoomChange}
+                inputProps={{
+                  name: "ID",
+                }}
+              >
+                <option aria-label="None" value="">
+                  กรุณาเลือกห้องยา
+                </option>
+                {medicineRooms.map((item: MedicineRoomInterface) => (
+                  <option value={item.ID} key={item.ID}>
+                    {item.Name}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={4}>
             <FormControl fullWidth variant="outlined">
               <p>ชื่อยา</p>
               <Select

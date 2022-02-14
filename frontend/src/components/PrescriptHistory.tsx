@@ -13,9 +13,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
+import SearchIcon from '@mui/icons-material/Search';
 
 import moment from 'moment';
 import { PrescriptionInterface } from "../models/IPrescription";
+import { InputAdornment, TextField } from "@material-ui/core";
+
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,6 +33,34 @@ function Prescriptions() {
   const classes = useStyles();
   const [prescriptions, setPrescriptions] = React.useState<PrescriptionInterface[]>([]);
 
+  const handleChange = (
+    event: React.ChangeEvent<{ name?: string; value: unknown }>
+  ) => {
+    getSearchMedicines(Number(event.target.value));
+
+  };
+
+  const getSearchMedicines = async (id: number) => {
+    const apiUrl = "http://localhost:8080";
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    fetch(`${apiUrl}/PrescriptionSearch/${id}`, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+          setPrescriptions(res.data);
+        } else {
+          console.log("else");
+        }
+      });
+  };
+
   const getPrescriptions = async () => {
     const apiUrl = "http://localhost:8080/Prescriptions";
     const requestOptions = {
@@ -43,7 +74,6 @@ function Prescriptions() {
     fetch(apiUrl, requestOptions)
       .then((response) => response.json())
       .then((res) => {
-        console.log(res.data);
         if (res.data) {
           setPrescriptions(res.data);
         } else {
@@ -58,7 +88,7 @@ function Prescriptions() {
 
   return (
     <div>
-      <Container className={classes.container} maxWidth="md">
+      <Container className={classes.container} maxWidth="xl">
         <Box display="flex">
           <Box flexGrow={1}>
             <Typography
@@ -81,6 +111,24 @@ function Prescriptions() {
             </Button>
           </Box>
         </Box>
+
+        <TextField
+          id="outlined-search"
+          label="ค้นหาใบสั่งยา"
+          variant="outlined"
+          type="search"
+          size="small"
+          margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon color="action"/>
+              </InputAdornment>
+            ),
+          }}
+          onChange={handleChange}
+        />
+
         <TableContainer component={Paper} className={classes.tableSpace}>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
@@ -88,19 +136,25 @@ function Prescriptions() {
                 <TableCell align="center" width="10%">
                   เลขที่ใบสั่งยา
                 </TableCell>
-                <TableCell align="center" width="20%">
+                <TableCell align="center" width="15%">
                   ผู้ป่วย
                 </TableCell>
-                <TableCell align="center" width="20%">
+                <TableCell align="center" width="15%">
                   ชื่อยา
                 </TableCell>
-                <TableCell align="center" width="8%">
-                  จำนวนยา
+                <TableCell align="center" width="5%">
+                  จำนวน
                 </TableCell>
-                <TableCell align="center" width="20%">
+                <TableCell align="center" width="15%">
+                  ห้องยา
+                </TableCell>
+                <TableCell align="center" width="15%">
                   ผู้สั่งยา
                 </TableCell>
-                <TableCell align="center" width="22%">
+                <TableCell align="center" width="10%">
+                  สถานะ
+                </TableCell>
+                <TableCell align="center" width="15%">
                   วันเวลาทำรายการ
                 </TableCell>
               </TableRow>
@@ -108,13 +162,13 @@ function Prescriptions() {
             <TableBody>
               {prescriptions.map((prescript: PrescriptionInterface) => (
                 <TableRow key={prescript.ID}>
-                  <TableCell align="right">{prescript.PrescriptionNo}</TableCell>
-                  <TableCell align="left" size="medium">
-                    {prescript.PatientName}
-                  </TableCell>
-                  <TableCell align="left">{prescript.MedicineDisbursement.MedicineStorage.Name}</TableCell>
-                  <TableCell align="left">{prescript.Amount}</TableCell>
-                  <TableCell align="left">{prescript.Authorities.FirstName} {prescript.Authorities.LastName}</TableCell>
+                  <TableCell align="center">{prescript.PrescriptionNo}</TableCell>
+                  <TableCell align="center">{prescript.PatientName}</TableCell>
+                  <TableCell align="center">{prescript.MedicineDisbursement.MedicineStorage.Name}</TableCell>
+                  <TableCell align="center">{prescript.Amount}</TableCell>
+                  <TableCell align="center">{prescript.MedicineDisbursement.MedicineRoom.Name}</TableCell>
+                  <TableCell align="center">{prescript.Authorities.FirstName} {prescript.Authorities.LastName}</TableCell>
+                  <TableCell align="center">{prescript.PaymentStatus.Status}</TableCell>
                   <TableCell align="center">{moment(prescript.RecordingTime).format("DD/MM/YYYY hh:mm:ss a")}</TableCell>
                 </TableRow>
               ))}
