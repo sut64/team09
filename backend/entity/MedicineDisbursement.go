@@ -16,7 +16,7 @@ type MedicineDisbursement struct {
 	gorm.Model
 	DisbursementID    string `gorm:"uniqueIndex" valid:"matches(^[D]\\d{4}$)"`	
 	DisbursementDAY   time.Time	`valid:"Notpast~DisbursementDAY must be in the past"`
-	AmountMedicine    uint	`valid:"required~AmountMedicine must to be greater 0"`
+	AmountMedicine    uint	`valid:"required~AmountMedicine must to be greater 0,Positivenumber~AmountMedicine must to be greater 0"`
 	AuthoritiesID     *uint
 	Authorities       Authorities `gorm:"references:id" valid:"-"`
 	MedicineStorageID *uint
@@ -34,8 +34,8 @@ func init(){
 	})
 
 	govalidator.CustomTypeTagMap.Set("Positivenumber", func(i interface{}, context interface{}) bool {
-		t := i.(int)
-		if t <= 1 {
+		t := i.(uint)
+		if t <= 0 {
 			return false
 		} else {
 			return true
