@@ -2,7 +2,7 @@ package controller
 
 import (
 	"net/http"
-
+	"strconv"
 	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/tzcap/prescription/entity"
@@ -16,9 +16,21 @@ func CreatePrescription(c *gin.Context) {
 	var disbursement entity.MedicineDisbursement
 	var paymentStatus entity.PaymentStatus
 
-	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 9 จะถูก bind เข้าตัวแปร prescription
+	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 7 จะถูก bind เข้าตัวแปร prescription
 	if err := c.ShouldBindJSON(&prescription); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// 8: ค้นหา authority ด้วย id
+	if tx := entity.DB().Where("id = ?", prescription.AuthoritiesID).First(&authority); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "authority not found"})
+		return
+	}
+	
+	// 9: ค้นหา payment status ด้วย id
+	if tx := entity.DB().Where("id = ?", prescription.PaymentStatusID).First(&paymentStatus); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "payment status not found"})
 		return
 	}
 
@@ -28,19 +40,7 @@ func CreatePrescription(c *gin.Context) {
 		return
 	}
 
-	// 11: ค้นหา authority ด้วย id
-	if tx := entity.DB().Where("id = ?", prescription.AuthoritiesID).First(&authority); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "authority not found"})
-		return
-	}
-
-	// 12: ค้นหา payment status ด้วย id
-	if tx := entity.DB().Where("id = ?", prescription.PaymentStatusID).First(&paymentStatus); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "payment status not found"})
-		return
-	}
-
-	// 13: สร้าง Prescription
+	// 11: สร้าง Prescription
 	prescript := entity.Prescription{
 		PatientName:          prescription.PatientName,    // ตั้งค่าฟิลด์ PatientName
 		PrescriptionNo:       prescription.PrescriptionNo, // ตั้งค่าฟิลด์ PrescriptionNo
@@ -57,7 +57,7 @@ func CreatePrescription(c *gin.Context) {
 		return
 	}
 
-	// 14: บันทึก
+	// 12: บันทึก
 	if err := entity.DB().Create(&prescript).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -76,10 +76,28 @@ func GetPrescription(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": prescription})
 }
 
+// GET /PrescriptionSearch/:id
+func GetPrescriptionSearch(c *gin.Context) {
+	var prescription []entity.Prescription
+	id := c.Param("id")
+	var query string
+	number, _ := strconv.ParseInt(id, 0, 32)
+	if number > 0 {
+		query = "SELECT * FROM prescriptions WHERE prescription_no LIKE '" + id + "%'"
+	} else {
+		query = "SELECT * FROM prescriptions"
+	}
+	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").Preload("MedicineDisbursement.MedicineStorage").Preload("MedicineDisbursement.MedicineRoom").Preload("PaymentStatus").Raw(query).Find(&prescription).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": prescription})
+}
+
 // GET /Prescriptions
 func ListPrescriptions(c *gin.Context) {
 	var prescriptions []entity.Prescription
-	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").Preload("MedicineDisbursement.MedicineStorage").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions").Find(&prescriptions).Error; err != nil {
+	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").Preload("MedicineDisbursement.MedicineStorage").Preload("MedicineDisbursement.MedicineRoom").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions").Find(&prescriptions).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
