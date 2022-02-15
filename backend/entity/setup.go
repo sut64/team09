@@ -282,8 +282,32 @@ func SetupDatabase() {
 	var disbursement MedicineDisbursement
 	db.Raw("SELECT * FROM medicine_disbursements WHERE id = 1").Scan(&disbursement)
 
-	Prescription01 := Prescription{
+	// ใบสั่งยาที่ชำระเงินค่ายาแล้ว
+	Prescription101010 := Prescription{
+		PrescriptionNo:       101010,
+		PatientName:          "Hunki",
+		MedicineDisbursement: disbursement3,
+		Authorities:          chanon,
+		Amount:               6,
+		PaymentStatus:        status2,
+		RecordingTime:        time.Date(2022, 2, 15, 1, 30, 0, 0, time.UTC),
+	}
+	db.Model(&Prescription{}).Create(&Prescription101010)
+
+	// ใบสั่งยาที่จำนวนยาเป็น 0 ใบชำระเงินค่ายาเกิด error Total เมื่อบันทึก
+	Prescription00 := Prescription{
 		PrescriptionNo:       100000,
+		PatientName:          "Sometimes",
+		MedicineDisbursement: disbursement4,
+		Authorities:          chanon,
+		Amount:               0,
+		PaymentStatus:        status1,
+		RecordingTime:        time.Now(),
+	}
+	db.Model(&Prescription{}).Create(&Prescription00)
+
+	Prescription01 := Prescription{
+		PrescriptionNo:       100001,
 		PatientName:          "nakhon",
 		MedicineDisbursement: disbursement,
 		Authorities:          chanon,
@@ -302,18 +326,15 @@ func SetupDatabase() {
 	}
 	db.Model(&MedicineLabel{}).Create(&medicinelabel01)
 
-	var s MedicineStorage
-	db.Raw("SELECT * FROM medicine_storages WHERE id = 1").Scan(&s)
-
 	// Bill ใบชำระเงินค่ายา
 	bill1 := Bill{
 		BillNo:   1000,
-		BillTime: time.Now(),
+		BillTime: time.Date(2022, 2, 15, 2, 0, 0, 0, time.UTC),
 		Payer:    "AWESOME08",
-		Total:    Prescription01.Amount * uint(s.Sell),
+		Total:    6 * 980,
 
 		Authorities:   bee,
-		Prescription:  Prescription01,
+		Prescription:  Prescription101010,
 		Paymentmethod: cash,
 	}
 	db.Model(&Bill{}).Create(&bill1)
