@@ -69,7 +69,6 @@ func CreateBill(c *gin.Context) {
 		return
 	}
 
-
 }
 
 // GET /bill/:id
@@ -90,12 +89,25 @@ func ListBill(c *gin.Context) {
 	var bills []entity.Bill
 	if err := entity.DB().Preload("Prescription").Preload("Prescription.MedicineDisbursement").
 		Preload("Prescription.MedicineDisbursement.MedicineStorage").Preload("Paymentmethod").
-		Preload("Authorities").Raw("SELECT * FROM bills").Find(&bills).Error; err != nil {
+		Preload("Authorities").Raw("SELECT * FROM bills ORDER BY bill_no").Find(&bills).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": bills})
+}
+
+// GET /PrescriptionPaymentStatus
+func ListPrescriptionPaymentStatus(c *gin.Context) {
+	var prescriptions []entity.Prescription
+	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").
+		Preload("MedicineDisbursement.MedicineStorage").Preload("MedicineDisbursement.MedicineRoom").
+		Preload("PaymentStatus").Raw("SELECT * FROM prescriptions WHERE payment_status_id = 1 ORDER BY prescription_no").Find(&prescriptions).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": prescriptions})
 }
 
 // DELETE /bills/:id
