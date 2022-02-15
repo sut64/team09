@@ -89,7 +89,6 @@ func main() {
 			protected.GET("/listMedicine", controller.GetListMedicine)
 			protected.GET("/medicines/:id", controller.GetMedicineFromMedicineRoom)
 
-
 			//Packing
 			protected.GET("/packings", controller.ListPacking)
 			protected.GET("/packing/:id", controller.GetPacking)
@@ -122,6 +121,7 @@ func main() {
 			protected.POST("/bills", controller.CreateBill)
 			protected.PATCH("/bills", controller.UpdateBill)
 			protected.DELETE("/bills/:id", controller.DeleteBill)
+			protected.GET("/PrescriptionPaymentStatus", controller.ListPrescriptionPaymentStatus)
 
 			// Dispense_status Routes
 			protected.GET("/dispense_statuses", controller.ListDispense_status)
