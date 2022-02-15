@@ -29,29 +29,41 @@ func TestBillPass(t *testing.T) {
 	g.Expect(err).To(BeNil())
 }
 
-// ตรวจสอบค่า BillNoไม่ต้องตามที่กำหนดแล้วต้องเจอ Error
+// ตรวจสอบค่า BillNoไม่ต้องเป็นเลขจำนวน 4 หลักแล้วต้องเจอ Error
 
-func TestBillNoMustBeInValidPattern(t *testing.T) {
+func TestBillNoMustBeInValidRange(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	bill := Bill{
-		BillNo:   10001, //ผิด
-		BillTime: time.Now().Add(24 * time.Hour),
-		Payer:    "abcde",
-		Total:    100,
+	nums := []uint{
+		1,        //1 หลัก error
+		10,       //2 หลัก error
+		101,      //3 หลัก error
+		10011,    //5 หลัก error
+		100110,   //6 หลัก error
+		1001109,  //7 หลัก error
+		10011099, //8 หลัก error
 	}
+	for _, num := range nums {
 
-	// ตรวจสอบด้วย govalidator
-	ok, err := govalidator.ValidateStruct(bill)
+		bill := Bill{
+			BillNo:   num, //ผิด
+			BillTime: time.Now().Add(24 * time.Hour),
+			Payer:    "abcde",
+			Total:    100,
+		}
 
-	// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
-	g.Expect(ok).ToNot(BeTrue())
+		// ตรวจสอบด้วย govalidator
+		ok, err := govalidator.ValidateStruct(bill)
 
-	// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
-	g.Expect(err).ToNot(BeNil())
+		// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
+		g.Expect(ok).ToNot(BeTrue())
 
-	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("BillNo must be 4 digits"))
+		// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
+		g.Expect(err).ToNot(BeNil())
+
+		// err.Error ต้องมี error message แสดงออกมา
+		g.Expect(err.Error()).To(Equal("BillNo must be 4 digits"))
+	}
 
 }
 
@@ -76,7 +88,7 @@ func TestBillTimeMustBeFuture(t *testing.T) {
 	g.Expect(err).ToNot(BeNil())
 
 	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("BillTime must be in the not past"))
+	g.Expect(err.Error()).To(Equal("BillTime must be in the Notpast"))
 }
 
 // ตรวจสอบค่าว่างของผู้ชำระเงินแล้วต้องเจอ Error
