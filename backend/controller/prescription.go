@@ -16,31 +16,31 @@ func CreatePrescription(c *gin.Context) {
 	var disbursement entity.MedicineDisbursement
 	var paymentStatus entity.PaymentStatus
 
-	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 7 จะถูก bind เข้าตัวแปร prescription
+	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 8 จะถูก bind เข้าตัวแปร prescription
 	if err := c.ShouldBindJSON(&prescription); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	// 8: ค้นหา authority ด้วย id
+	// 9: ค้นหา authority ด้วย id
 	if tx := entity.DB().Where("id = ?", prescription.AuthoritiesID).First(&authority); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "authority not found"})
 		return
 	}
 	
-	// 9: ค้นหา payment status ด้วย id
+	// 10: ค้นหา payment status ด้วย id
 	if tx := entity.DB().Where("id = ?", prescription.PaymentStatusID).First(&paymentStatus); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "payment status not found"})
 		return
 	}
 
-	// 10: ค้นหา medicine disbursement ด้วย id ใบเบิกยา
+	// 11: ค้นหา medicine disbursement ด้วย id ใบเบิกยา
 	if tx := entity.DB().Where("id = ?", prescription.MedicineDisbursementID).First(&disbursement); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "medicine not found"})
 		return
 	}
 
-	// 11: สร้าง Prescription
+	// 12: สร้าง Prescription
 	prescript := entity.Prescription{
 		PatientName:          prescription.PatientName,    // ตั้งค่าฟิลด์ PatientName
 		PrescriptionNo:       prescription.PrescriptionNo, // ตั้งค่าฟิลด์ PrescriptionNo
@@ -57,7 +57,7 @@ func CreatePrescription(c *gin.Context) {
 		return
 	}
 
-	// 12: บันทึก
+	// 13: บันทึก
 	if err := entity.DB().Create(&prescript).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -76,6 +76,7 @@ func GetPrescription(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": prescription})
 }
 
+// ใช้สำหรับการค้นหาเลขใบสั่งยาย้อนหลังโดยการพิมพ์เลขใบสั่งยาที่ search field
 // GET /PrescriptionSearch/:id
 func GetPrescriptionSearch(c *gin.Context) {
 	var prescription []entity.Prescription
