@@ -88,9 +88,9 @@ function Bills() {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center" width="2%">
-                รหัสใบสั่งยา
-                </TableCell>
+              <TableCell align="center" width="7%">
+                  รหัสใบชำระเงิน
+              </TableCell>
                 <TableCell align="center" width="2%">
                   ชื่อยา
                 </TableCell>
@@ -103,17 +103,20 @@ function Bills() {
                 <TableCell align="center" width="7%">
                   ราคารวม
                 </TableCell>
+                <TableCell align="center" width="2%">
+                รหัสใบสั่งยา
+                </TableCell>
                 <TableCell align="center" width="5%">
                   ชื่อผู้ชำระเงิน
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="8%">
                     รูปแบบการชำระเงิน
                 </TableCell>
-                <TableCell align="center" width="10%">
-                  วันที่และเวลา
+                <TableCell align="center" width="8%">
+                  วันที่และเวลาสั่งยา
                 </TableCell>
-                <TableCell align="center" width="9%">
-                  รหัสใบชำระเงิน
+                <TableCell align="center" width="8%">
+                  วันที่และเวลาชำระเงิน
                 </TableCell>
                 <TableCell align="center" width="10%">
                   ผู้ให้ชำระเงิน
@@ -123,15 +126,16 @@ function Bills() {
             <TableBody>
               {bills.map((item: BillsInterface) => (
                 <TableRow key={item.ID}>
-                  <TableCell align="center">{item.Prescription.PrescriptionNo}</TableCell>
+                  <TableCell align="center">{item.BillNo}</TableCell>
                   <TableCell align="center">{item.Prescription.MedicineDisbursement.MedicineStorage.Name}</TableCell>
                   <TableCell align="center">{item.Prescription.MedicineDisbursement.MedicineStorage.Sell + " บาท"}</TableCell>
                   <TableCell align="center">{item.Prescription.Amount + " จำนวน"}</TableCell>
-                  <TableCell align="center">{item.Total+".0 " + " บาท"}</TableCell>
+                  <TableCell align="center">{item.Total + " บาท"}</TableCell>
+                  <TableCell align="center">{item.Prescription.PrescriptionNo}</TableCell>
                   <TableCell align="center">{item.Payer}</TableCell>
                   <TableCell align="center">{item.Paymentmethod.ConditionsOfPayments}</TableCell>
+                  <TableCell align="center">{format((new Date(item.Prescription.RecordingTime)), 'dd MMMM yyyy hh:mm a')}</TableCell>
                   <TableCell align="center">{format((new Date(item.BillTime)), 'dd MMMM yyyy hh:mm a')}</TableCell>
-                  <TableCell align="center">{item.BillNo}</TableCell>
                   <TableCell align="center">{item.Authorities.FirstName}</TableCell>
                 </TableRow>
               ))}
