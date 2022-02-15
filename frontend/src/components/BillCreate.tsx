@@ -215,7 +215,7 @@ function BillCreate() {
   };
 
   const getPrescriptions = async () => {
-    fetch(`${apiUrl}/Prescriptions`, requestOptions)
+    fetch(`${apiUrl}/PrescriptionPaymentStatus`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
@@ -318,7 +318,7 @@ function BillCreate() {
         <Grid container spacing={3} className={classes.root}>
 
         <Grid item xs={3}>
-            <p>ใบชำระเงิน</p>
+            <p>รหัสชำระเงิน</p>
             <FormControl fullWidth variant="outlined">
               <TextField
                 id="BillNo"
@@ -326,6 +326,10 @@ function BillCreate() {
                 type="number"
                 size="medium"
                 placeholder="เลขใบชำระเงิน"
+                InputProps={{
+                  inputProps: { min: 1000,
+                                max: 9999 }
+                }}
                 value={bills.BillNo || ""}
                 onChange={handleInputChange}
               />
@@ -408,21 +412,6 @@ function BillCreate() {
             </FormControl>
           </Grid>
 
-          <Grid item xs={2}>
-            <p>จำนวนยา</p>
-            <FormControl fullWidth variant="outlined">
-              <TextField
-                disabled
-                variant="outlined"
-                type="number"
-                size="medium"
-                placeholder="จำนวนยา"
-                value={prescriptionAmount?.Amount} 
-                onChange={handleInputChange}
-              />
-            </FormControl>
-          </Grid>
-
           <Grid item xs={3}>
             <p>ราคายาต่อหน่วย</p>
             <FormControl fullWidth variant="outlined">
@@ -436,7 +425,21 @@ function BillCreate() {
                 //value={medicinestorageSell?.Sell}
                 onChange={handleInputChange}
               />
-              
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={2}>
+            <p>จำนวนยา</p>
+            <FormControl fullWidth variant="outlined">
+              <TextField
+                disabled
+                variant="outlined"
+                type="number"
+                size="medium"
+                placeholder="จำนวนยา"
+                value={prescriptionAmount?.Amount} 
+                onChange={handleInputChange}
+              />
             </FormControl>
           </Grid>
 
