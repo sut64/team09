@@ -54,23 +54,36 @@ func TestReceiveNameNotBlank(t *testing.T) {
 func TestDispensemedicineNoMustBeInTheRange(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	dispensemedicine := DispenseMedicine{
-		DispensemedicineNo: 1000001, // ผิด ต้องเป็นเลข 6 หลัก
-		ReceiveName:        "Somsri",
-		DispenseTime:       time.Now(),
+	fixtures := []uint{
+		1,         // ผิด 1 หลัก ต้องเป็นเลข 6 ตัว
+		12,        // ผิด 2 หลัก ต้องเป็นเลข 6 ตัว
+		103,       // ผิด 3 หลัก ต้องเป็นเลข 6 ตัว
+		1004,      // ผิด 4 หลัก ต้องเป็นเลข 6 ตัว
+		10005,     // ผิด 5 หลัก ต้องเป็นเลข 6 ตัว
+		1000007,   // ผิด 7 หลัก ต้องเป็นเลข 6 ตัว
+		10000008,  // ผิด 8 หลัก ต้องเป็นเลข 6 ตัว
+		100000009, // ผิด 9 หลัก ต้องเป็นเลข 6 ตัว
 	}
 
-	// ตรวจสอบด้วย govalidator
-	ok, err := govalidator.ValidateStruct(dispensemedicine)
+	for _, fixture := range fixtures {
+		dispensemedicine := DispenseMedicine{
+			DispensemedicineNo: fixture, // ผิด ต้องเป็นเลข 6 หลัก
+			ReceiveName:        "Somsri",
+			DispenseTime:       time.Now(),
+		}
 
-	// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
-	g.Expect(ok).ToNot(BeTrue())
+		// ตรวจสอบด้วย govalidator
+		ok, err := govalidator.ValidateStruct(dispensemedicine)
 
-	// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
-	g.Expect(err).ToNot(BeNil())
+		// ok ต้องไม่เป็นค่า true แปลว่าต้องจับ error ได้
+		g.Expect(ok).ToNot(BeTrue())
 
-	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("DispensemedicineNo must be 6 digits"))
+		// err ต้องไม่เป็นค่า nil แปลว่าต้องจับ error ได้
+		g.Expect(err).ToNot(BeNil())
+
+		// err.Error ต้องมี error message แสดงออกมา
+		g.Expect(err.Error()).To(Equal("DispensemedicineNo must be 6 digits"))
+	}
 }
 
 func TestDispenseTimeNotBePast(t *testing.T) {
