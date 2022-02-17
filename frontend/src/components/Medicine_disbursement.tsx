@@ -86,10 +86,10 @@ function Medicine_disbursement() {
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" width="10%">
-                    ID
+                  <TableCell align="center" width="13%">
+                    เลขใบเบิกยา
                   </TableCell>
-                  <TableCell align="center" width="20%">
+                  <TableCell align="center" width="17%">
                     ชื่อผู้เบิก
                   </TableCell>
                   <TableCell align="center" width="15%">
