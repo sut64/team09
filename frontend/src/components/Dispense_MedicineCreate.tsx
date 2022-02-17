@@ -54,7 +54,7 @@ function Dispense_MedicineCreate() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [authorities, setAuthorities] = useState<AuthoritiesInterface>();
   const [bills, setBills] = useState<BillsInterface[]>([]);
-  const [dispense_statuses, setDispense_Statuses] = useState<Dispense_statusInterface[]>([]);
+  const [dispenseStatuses, setDispense_Statuses] = useState<Dispense_statusInterface>();
   const [dispense_medicines, setDispense_Medicines] = useState<Partial<Dispense_MedicineInterface>>({});
   
 
@@ -129,9 +129,10 @@ function Dispense_MedicineCreate() {
   };
 
   const getDispense_Statuses = async () => {
-    fetch(`${apiUrl}/dispense_statuses`, requestOptions)
+    fetch(`${apiUrl}/dispenseStatus/จ่ายแล้ว`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
+        dispense_medicines.DispenseStatusID = res.data.ID;
         if (res.data) {
           setDispense_Statuses(res.data);
         } else {
@@ -154,7 +155,7 @@ function Dispense_MedicineCreate() {
   function submit() {
     let data = {
       BillID: convertType(dispense_medicines.BillID),
-      DispenseStatusID: convertType(dispense_medicines.DispenseStatusID),
+      DispenseStatusID: dispense_medicines.DispenseStatusID,
       AuthoritiesID: convertType(authorities?.ID),
 
       DispenseTime: selectedDate,
@@ -237,6 +238,10 @@ function Dispense_MedicineCreate() {
                 type="number"
                 size="medium"
                 placeholder="เลขใบจ่ายยา"
+                InputProps={{
+                  inputProps: { min: 100000,
+                                max: 999999 }
+                }}
                 value={dispense_medicines.DispensemedicineNo || ""}
                 onChange={handleInputChange}
               />
@@ -316,6 +321,23 @@ function Dispense_MedicineCreate() {
               <p>สถานะจ่ายยา</p>
               <Select
                 native
+                disabled
+                value={dispense_medicines.DispenseStatusID}
+                onChange={handleChange}
+                inputProps={{
+                  name: "DispenseStatusID",
+                }}
+              >
+                <option aria-label="None" value="">
+                สถานะจ่ายยา
+                </option>
+                <option value={dispenseStatuses?.ID} key={dispenseStatuses?.ID}>
+                  {dispenseStatuses?.Status}
+                </option>
+
+              </Select>
+              {/* <Select
+                native
                 value={dispense_medicines.DispenseStatusID}
                 onChange={handleChange}
                 inputProps={{
@@ -330,7 +352,7 @@ function Dispense_MedicineCreate() {
                     {item.Status}
                   </option>
                 ))}
-              </Select>
+              </Select> */}
             </FormControl>
           </Grid>
           
