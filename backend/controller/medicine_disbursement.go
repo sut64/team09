@@ -51,6 +51,7 @@ func CreateMedicine_disbursement(c *gin.Context) {
 		
 	}
 
+	//Validate
 	if _,err := govalidator.ValidateStruct(MD); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -62,6 +63,12 @@ func CreateMedicine_disbursement(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"data": MD})
+
+	//update count
+	if tx := entity.DB().Model(&medicinestorage).Where("id = ?", med.MedicineStorageID).Update("count",(uint(medicinestorage.Count)-med.AmountMedicine)); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "medicinestorage not found"})
+		return
+	}
 
 }
 
