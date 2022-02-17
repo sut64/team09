@@ -35,6 +35,7 @@ func TestBillNoMustBeInValidRange(t *testing.T) {
 	g := NewGomegaWithT(t)
 
 	nums := []uint{
+		0,        // 0 error
 		1,        //1 หลัก error
 		10,       //2 หลัก error
 		101,      //3 หลัก error
@@ -88,7 +89,7 @@ func TestBillTimeMustBeFuture(t *testing.T) {
 	g.Expect(err).ToNot(BeNil())
 
 	// err.Error ต้องมี error message แสดงออกมา
-	g.Expect(err.Error()).To(Equal("BillTime must be in the Notpast"))
+	g.Expect(err.Error()).To(Equal("BillTime must be in the not past"))
 }
 
 // ตรวจสอบค่าว่างของผู้ชำระเงินแล้วต้องเจอ Error
