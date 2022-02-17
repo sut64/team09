@@ -106,10 +106,19 @@ func SetupDatabase() {
 	}
 	db.Model(&Effect{}).Create(&effect1)
 
+	effect3 := Effect{
+		EffectName: "ทานแล้วอาจทำให้อาเจียน",
+	}
+	db.Model(&Effect{}).Create(&effect3)
+
 	effect2 := Effect{
 		EffectName: "ทำให้รู้สึกขมคอ",
 	}
 	db.Model(&Effect{}).Create(&effect2)
+	effect4 := Effect{
+		EffectName: "ทานแล้วอาจทำให้คลื่นไส้",
+	}
+	db.Model(&Effect{}).Create(&effect4)
 
 	//Medicinetype data
 	Medicinetype1 := MedicineType{
@@ -121,7 +130,7 @@ func SetupDatabase() {
 	}
 	db.Model(&MedicineType{}).Create(&Medicinetype2)
 	Medicinetype3 := MedicineType{
-		Name: "INJ",
+		Name: "SYRUP",
 	}
 	db.Model(&MedicineType{}).Create(&Medicinetype3)
 
@@ -141,6 +150,38 @@ func SetupDatabase() {
 		MedicineType: Medicinetype1,
 	}
 	db.Model(&MedicineStorage{}).Create(&Medicinestorage2)
+
+	Medicinestorage3 := MedicineStorage{
+		Name:         "ATENOLOL",
+		Count:        800,
+		Sell:         680,
+		MedicineType: Medicinetype2,
+	}
+	db.Model(&MedicineStorage{}).Create(&Medicinestorage3)
+
+	Medicinestorage4 := MedicineStorage{
+		Name:         "ENALAPRIL",
+		Count:        600,
+		Sell:         520,
+		MedicineType: Medicinetype2,
+	}
+	db.Model(&MedicineStorage{}).Create(&Medicinestorage4)
+
+	Medicinestorage5 := MedicineStorage{
+		Name:         "LACTULOSE",
+		Count:        1000,
+		Sell:         1080,
+		MedicineType: Medicinetype3,
+	}
+	db.Model(&MedicineStorage{}).Create(&Medicinestorage5)
+
+	Medicinestorage6 := MedicineStorage{
+		Name:         "NIFEDIPINE",
+		Count:        300,
+		Sell:         180,
+		MedicineType: Medicinetype2,
+	}
+	db.Model(&MedicineStorage{}).Create(&Medicinestorage6)
 
 	//Medicineroom data
 	Medicineroom1 := MedicineRoom{
@@ -201,9 +242,6 @@ func SetupDatabase() {
 	}
 	db.Model(&DispenseStatus{}).Create(&dispense_status02)
 
-	var medicineroom MedicineRoom
-	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "ห้องยาผู้ป่วยใน(IPD)").Scan(&medicineroom)
-
 	var medicine MedicineStorage
 	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "ASPIRIN").Scan(&medicine)
 
@@ -211,59 +249,105 @@ func SetupDatabase() {
 	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "GEMFIBROZIL").Scan(&medicine1)
 
 	disbursement1 := MedicineDisbursement{
-		DisbursementID:  "1000",
+		DisbursementID:  "D1000",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  50,
 		Authorities:     chanon,
 		MedicineStorage: medicine,
-		MedicineRoom:    medicineroom,
+		MedicineRoom:    Medicineroom1,
 	}
 	db.Model(&MedicineDisbursement{}).Create(&disbursement1)
 
 	disbursement2 := MedicineDisbursement{
-		DisbursementID:  "1001",
+		DisbursementID:  "D1001",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  50,
 		Authorities:     chanon,
-		MedicineStorage: medicine1,
-		MedicineRoom:    medicineroom,
+		MedicineStorage: medicine,
+		MedicineRoom:    Medicineroom2,
 	}
 	db.Model(&MedicineDisbursement{}).Create(&disbursement2)
+
+	disbursement3 := MedicineDisbursement{
+		DisbursementID:  "D1002",
+		DisbursementDAY: time.Now(),
+		AmountMedicine:  100,
+		Authorities:     chanon,
+		MedicineStorage: medicine1,
+		MedicineRoom:    Medicineroom2,
+	}
+	db.Model(&MedicineDisbursement{}).Create(&disbursement3)
+
+	disbursement4 := MedicineDisbursement{
+		DisbursementID:  "D1003",
+		DisbursementDAY: time.Now(),
+		AmountMedicine:  300,
+		Authorities:     chanon,
+		MedicineStorage: medicine1,
+		MedicineRoom:    Medicineroom2,
+	}
+	db.Model(&MedicineDisbursement{}).Create(&disbursement4)
 
 	var disbursement MedicineDisbursement
 	db.Raw("SELECT * FROM medicine_disbursements WHERE id = 1").Scan(&disbursement)
 
-	Prescription01 := Prescription{
+	// ใบสั่งยาที่ชำระเงินค่ายาแล้ว
+	Prescription101010 := Prescription{
+		PrescriptionNo:       101010,
+		PatientName:          "Hunki",
+		MedicineDisbursement: disbursement3,
+		Authorities:          chanon,
+		Amount:               6,
+		PaymentStatus:        status2,
+		RecordingTime:        time.Date(2022, 2, 15, 1, 30, 0, 0, time.UTC),
+	}
+	db.Model(&Prescription{}).Create(&Prescription101010)
+
+	// ใบสั่งยาที่จำนวนยาเป็น 0 ใบชำระเงินค่ายาเกิด error Total เมื่อบันทึก
+	Prescription00 := Prescription{
 		PrescriptionNo:       100000,
+		PatientName:          "Sometimes",
+		MedicineDisbursement: disbursement4,
+		Authorities:          chanon,
+		Amount:               0,
+		PaymentStatus:        status1,
+		RecordingTime:        time.Now(),
+	}
+	db.Model(&Prescription{}).Create(&Prescription00)
+
+	Prescription01 := Prescription{
+		PrescriptionNo:       100001,
 		PatientName:          "nakhon",
 		MedicineDisbursement: disbursement,
 		Authorities:          chanon,
 		Amount:               4,
+		PaymentStatus:        status1,
 		RecordingTime:        time.Now(),
 	}
 	db.Model(&Prescription{}).Create(&Prescription01)
 
 	// --- MedicineLabel Data
 	medicinelabel01 := MedicineLabel{
-		Instruction: "ก่อนอาหาร",
-		Property:    "แก้ไอ",
-		Consumption: "1",
-		Date:        time.Now(),
+		MedicineDisbursement: disbursement1,
+		Suggestion:           sug1,
+		Effect:               effect1,
+		Instruction:          "ก่อนอาหาร",
+		Property:             "แก้ไอ",
+		Consumption:          "1",
+		Authorities:          chanon,
+		Date:                 time.Now(),
 	}
 	db.Model(&MedicineLabel{}).Create(&medicinelabel01)
-
-	var s MedicineStorage
-	db.Raw("SELECT * FROM medicine_storages WHERE id = 1").Scan(&s)
 
 	// Bill ใบชำระเงินค่ายา
 	bill1 := Bill{
 		BillNo:   1000,
-		BillTime: time.Now(),
+		BillTime: time.Date(2022, 2, 15, 2, 0, 0, 0, time.UTC),
 		Payer:    "AWESOME08",
-		Total:    Prescription01.Amount * uint(s.Sell),
+		Total:    6 * 980,
 
 		Authorities:   bee,
-		Prescription:  Prescription01,
+		Prescription:  Prescription101010,
 		Paymentmethod: cash,
 	}
 	db.Model(&Bill{}).Create(&bill1)
