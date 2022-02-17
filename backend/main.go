@@ -107,6 +107,7 @@ func main() {
 			protected.POST("/dispenseMedicines", controller.CreateDispense_Medicine)
 			protected.PATCH("/dispenseMedicines", controller.UpdateDispense_Medicine)
 			protected.DELETE("/dispenseMediciness/:id", controller.DeleteDispense_Medicine)
+			/* protected.GET("/BillPaymentStatus", controller.ListBillNotBlank) */
 
 			//Paymentmethod Routes
 			protected.GET("/paymentmethods", controller.ListPaymentmethod)
@@ -124,11 +125,11 @@ func main() {
 			protected.GET("/PrescriptionPaymentStatus", controller.ListPrescriptionPaymentStatus)
 
 			// Dispense_status Routes
-			protected.GET("/dispense_statuses", controller.ListDispense_status)
-			protected.GET("/dispense_status/:id", controller.GetDispense_status)
-			protected.POST("/dispense_statuses", controller.CreateDispense_status)
-			protected.PATCH("/dispense_statuses", controller.UpdateDispense_status)
-			protected.DELETE("/dispense_statuses/:id", controller.DeleteDispense_status)
+			protected.GET("/dispenseStatuses", controller.ListDispenseStatus)
+			protected.GET("/dispenseStatus/:id", controller.GetDispenseStatus)
+			protected.POST("/dispenseStatuses", controller.CreateDispenseStatus)
+			protected.PATCH("/dispenseStatuses", controller.UpdateDispenseStatus)
+			protected.DELETE("/dispenseStatuses/:id", controller.DeleteDispenseStatus)
 		}
 	}
 	// Run the server
