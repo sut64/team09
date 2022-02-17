@@ -111,6 +111,16 @@ func SetupDatabase() {
 	}
 	db.Model(&Effect{}).Create(&effect2)
 
+	effect3 := Effect{
+		EffectName: "ทานแล้วอาจทำให้อาเจียน",
+	}
+	db.Model(&Effect{}).Create(&effect3)
+
+	effect4 := Effect{
+		EffectName: "ทานแล้วอาจทำให้คลื่นไส้",
+	}
+	db.Model(&Effect{}).Create(&effect4)
+
 	//Medicinetype data
 	Medicinetype1 := MedicineType{
 		Name: "CAP",
@@ -240,7 +250,7 @@ func SetupDatabase() {
 	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "GEMFIBROZIL").Scan(&medicine1)
 
 	disbursement1 := MedicineDisbursement{
-		DisbursementID:  "1000",
+		DisbursementID:  "D1000",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  50,
 		Authorities:     chanon,
@@ -250,7 +260,7 @@ func SetupDatabase() {
 	db.Model(&MedicineDisbursement{}).Create(&disbursement1)
 
 	disbursement2 := MedicineDisbursement{
-		DisbursementID:  "1001",
+		DisbursementID:  "D1001",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  50,
 		Authorities:     chanon,
@@ -260,7 +270,7 @@ func SetupDatabase() {
 	db.Model(&MedicineDisbursement{}).Create(&disbursement2)
 
 	disbursement3 := MedicineDisbursement{
-		DisbursementID:  "1002",
+		DisbursementID:  "D1002",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  100,
 		Authorities:     chanon,
@@ -270,7 +280,7 @@ func SetupDatabase() {
 	db.Model(&MedicineDisbursement{}).Create(&disbursement3)
 
 	disbursement4 := MedicineDisbursement{
-		DisbursementID:  "1003",
+		DisbursementID:  "D1003",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  300,
 		Authorities:     chanon,
@@ -319,10 +329,14 @@ func SetupDatabase() {
 
 	// --- MedicineLabel Data
 	medicinelabel01 := MedicineLabel{
-		Instruction: "ก่อนอาหาร",
-		Property:    "แก้ไอ",
-		Consumption: "1",
-		Date:        time.Now(),
+		MedicineDisbursement: disbursement1,
+		Suggestion:           sug1,
+		Effect:               effect1,
+		Instruction:          "ก่อนอาหาร",
+		Property:             "แก้ไอ",
+		Consumption:          "1",
+		Authorities:          chanon,
+		Date:                 time.Now(),
 	}
 	db.Model(&MedicineLabel{}).Create(&medicinelabel01)
 
