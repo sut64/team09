@@ -64,6 +64,7 @@ func CreateBill(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"data": bi})
 
+	// บันทึกชำระเงินค่ายาเสร็จแล้ว เปลี่ยนสถานะ payment status เป็น Paid
 	if tx := entity.DB().Model(&prescriptions).Where(bills.PrescriptionID).Update("payment_status_id", 2); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "payment status not found"})
 		return
@@ -93,12 +94,11 @@ func ListBill(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
 	c.JSON(http.StatusOK, gin.H{"data": bills})
 }
 
-// GET /PrescriptionPaymentStatus
-func ListPrescriptionPaymentStatus(c *gin.Context) {
+// GET /PrescriptionPaymentStatusNotPaid
+func ListPrescriptionPaymentStatusNotPaid(c *gin.Context) {
 	var prescriptions []entity.Prescription
 	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").
 		Preload("MedicineDisbursement.MedicineStorage").Preload("MedicineDisbursement.MedicineRoom").
@@ -106,18 +106,41 @@ func ListPrescriptionPaymentStatus(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
 	c.JSON(http.StatusOK, gin.H{"data": prescriptions})
+}
+
+// GET /PrescriptionNo/:id
+func GetPrescriptionNo(c *gin.Context) {
+	var prescription entity.Prescription
+	id := c.Param("id")
+	if err := entity.DB().Preload("Authorities").Preload("MedicineDisbursement").Preload("MedicineDisbursement.MedicineStorage").Preload("PaymentStatus").Raw("SELECT * FROM prescriptions WHERE id = ?", id).Find(&prescription).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": prescription})
 }
 
 // DELETE /bills/:id
 func DeleteBill(c *gin.Context) {
+	var prescriptions entity.Prescription
+	//var bills entity.Bill
+
 	id := c.Param("id")
+
+	//เปลี่ยนสถานะ payment status เป็น Not Paid เมื่อทำการยกเลิกการชำระเงิน
+	if err := entity.DB().Raw("UPDATE prescriptions SET payment_status_id = 1 WHERE id = (SELECT bills.prescription_id FROM bills WHERE id = ?)", id).Find(&prescriptions).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	// ทำการลบข้อมูลในตาราง bills ที่ส่งค่ากลับมาด้วย id
 	if tx := entity.DB().Exec("DELETE FROM bills WHERE id = ?", id); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "bill not found"})
 		return
 	}
-
+	// if txs := entity.DB().Model(&prescriptions).Where(id, bills.PrescriptionID).Update("payment_status_id", 1); txs.RowsAffected == 0 {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "payment status not found"})
+	// 	return
+	// }
 	c.JSON(http.StatusOK, gin.H{"data": id})
 }
 
