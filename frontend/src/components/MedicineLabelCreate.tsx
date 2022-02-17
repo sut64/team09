@@ -55,7 +55,7 @@ function AmbulanceCreate() {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [users, setUsers] = useState<AuthoritiesInterface>();
-  const [medicine_disbursements, setMedicineRooms] = useState<Medicine_disbursementInterface[]>([]);
+  const [medicine_disbursements, setMedicineDisbursements] = useState<Medicine_disbursementInterface[]>([]);
   const [suggestions, setSuggestions] = useState<SuggestionsInterface[]>([]);
   const [effects, setEffects] = useState<EffectsInterface[]>([]);
   const [medicineLabel, setMedicineLabel] = useState<Partial<MedicineLabelsInterface>>(
@@ -119,12 +119,13 @@ function AmbulanceCreate() {
         }
       });
   };
-  const getMedicineDisbursements = async () => {
-    fetch(`${apiUrl}/disbursements`, requestOptions)
+  
+  const getMedicines = async () => {
+    fetch(`${apiUrl}/listMedicine`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
-        if (res.data) {
-          setMedicineRooms(res.data);
+        if(res.data){
+          setMedicineDisbursements(res.data);
         } else {
           console.log("else");
         }
@@ -154,7 +155,8 @@ function AmbulanceCreate() {
   };
   useEffect(() => { //สั่งให้ react ดึงข้อมูลจาก API ที่เราสร้างขึ้นมา
     getUsers();
-    getMedicineDisbursements();
+    getMedicines();
+    
     getSuggestion();
     getEffect();
   }, []);
