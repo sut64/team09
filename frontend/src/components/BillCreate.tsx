@@ -4,7 +4,6 @@ import {
   makeStyles,
   Theme,
   createStyles,
-  alpha,
 } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -23,16 +22,12 @@ import { AuthoritiesInterface } from "../models/IAuthority";
 import { PaymentmethodsInterface } from "../models/IPaymentmethod";
 import { PrescriptionInterface } from "../models/IPrescription";
 import { BillsInterface } from "../models/IBill";
-import { MedicinestorageInterface } from "../models/IMedicinestorage";
-import { Medicine_disbursementInterface } from "../models/IMedicine_disbursement";
 
 import {
   MuiPickersUtilsProvider,
   KeyboardDateTimePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import { checkServerIdentity } from "tls";
-//import Users from "./Informers";
 
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -143,7 +138,7 @@ function BillCreate() {
 
   const getPrescriptionAmount = async () => {
     let uid = localStorage.getItem("AmountID");
-    fetch(`${apiUrl}/Prescription/${uid}`, requestOptions)
+    fetch(`${apiUrl}/PrescriptionNo/${uid}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
         if (res.data) {
@@ -215,7 +210,7 @@ function BillCreate() {
   };
 
   const getPrescriptions = async () => {
-    fetch(`${apiUrl}/PrescriptionPaymentStatus`, requestOptions)
+    fetch(`${apiUrl}/PrescriptionPaymentStatusNotPaid`, requestOptions)
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
@@ -230,7 +225,6 @@ function BillCreate() {
     getAuthority();
     getPaymentmethods();
     getPrescriptions();
-    //getMedicinestorage();
   }, []);
 
   const convertType = (data: string | number | undefined) => {
@@ -423,7 +417,7 @@ function BillCreate() {
                 placeholder="ราคายาต่อหน่วย"
                 value={prescriptionAmount?.MedicineDisbursement?.MedicineStorage?.Sell}
                 //value={medicinestorageSell?.Sell}
-                onChange={handleInputChange}
+                //onChange={handleInputChange}
               />
             </FormControl>
           </Grid>
@@ -438,7 +432,7 @@ function BillCreate() {
                 size="medium"
                 placeholder="จำนวนยา"
                 value={prescriptionAmount?.Amount} 
-                onChange={handleInputChange}
+                //onChange={handleInputChange}
               />
             </FormControl>
           </Grid>
@@ -454,7 +448,7 @@ function BillCreate() {
                 size="medium"
                 placeholder="ราคารวม"
                 value={Number(prescriptionAmount?.MedicineDisbursement?.MedicineStorage?.Sell) * Number(prescriptionAmount?.Amount)}
-                onChange={handleInputChange}
+                //onChange={handleInputChange}
               />
             </FormControl>
           </Grid>
