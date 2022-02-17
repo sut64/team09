@@ -90,22 +90,22 @@ function MedicineLabels() {
                 <TableCell align="center" width="10%">
                   ชื่อยา
                 </TableCell>
-                <TableCell align="center" width="20%">
+                <TableCell align="center" width="14%">
                   สรรพคุณยา
                 </TableCell>
-                <TableCell align="center" width="20%">
+                <TableCell align="center" width="14%">
                   วิธีใช้ยา
                 </TableCell>
                 <TableCell align="center" width="10%">
-                  อัตราการบริโภค
+                  ทานครั้งละ
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="14%">
                   คำแนะนำ
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="13%">
                   ผลข้างเคียง
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="15%">
                   วันที่บันทึก
                 </TableCell>
                 <TableCell align="center" width="10%">
