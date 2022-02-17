@@ -106,19 +106,10 @@ func SetupDatabase() {
 	}
 	db.Model(&Effect{}).Create(&effect1)
 
-	effect3 := Effect{
-		EffectName: "ทานแล้วอาจทำให้อาเจียน",
-	}
-	db.Model(&Effect{}).Create(&effect3)
-
 	effect2 := Effect{
 		EffectName: "ทำให้รู้สึกขมคอ",
 	}
 	db.Model(&Effect{}).Create(&effect2)
-	effect4 := Effect{
-		EffectName: "ทานแล้วอาจทำให้คลื่นไส้",
-	}
-	db.Model(&Effect{}).Create(&effect4)
 
 	//Medicinetype data
 	Medicinetype1 := MedicineType{
@@ -249,7 +240,7 @@ func SetupDatabase() {
 	db.Raw("SELECT * FROM medicine_storages WHERE name = ?", "GEMFIBROZIL").Scan(&medicine1)
 
 	disbursement1 := MedicineDisbursement{
-		DisbursementID:  "D1000",
+		DisbursementID:  "1000",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  50,
 		Authorities:     chanon,
@@ -259,7 +250,7 @@ func SetupDatabase() {
 	db.Model(&MedicineDisbursement{}).Create(&disbursement1)
 
 	disbursement2 := MedicineDisbursement{
-		DisbursementID:  "D1001",
+		DisbursementID:  "1001",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  50,
 		Authorities:     chanon,
@@ -269,7 +260,7 @@ func SetupDatabase() {
 	db.Model(&MedicineDisbursement{}).Create(&disbursement2)
 
 	disbursement3 := MedicineDisbursement{
-		DisbursementID:  "D1002",
+		DisbursementID:  "1002",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  100,
 		Authorities:     chanon,
@@ -279,7 +270,7 @@ func SetupDatabase() {
 	db.Model(&MedicineDisbursement{}).Create(&disbursement3)
 
 	disbursement4 := MedicineDisbursement{
-		DisbursementID:  "D1003",
+		DisbursementID:  "1003",
 		DisbursementDAY: time.Now(),
 		AmountMedicine:  300,
 		Authorities:     chanon,
@@ -328,14 +319,10 @@ func SetupDatabase() {
 
 	// --- MedicineLabel Data
 	medicinelabel01 := MedicineLabel{
-		MedicineDisbursement: disbursement1,
-		Suggestion:           sug1,
-		Effect:               effect1,
-		Instruction:          "ก่อนอาหาร",
-		Property:             "แก้ไอ",
-		Consumption:          "1",
-		Authorities:          chanon,
-		Date:                 time.Now(),
+		Instruction: "ก่อนอาหาร",
+		Property:    "แก้ไอ",
+		Consumption: "1",
+		Date:        time.Now(),
 	}
 	db.Model(&MedicineLabel{}).Create(&medicinelabel01)
 
@@ -354,7 +341,7 @@ func SetupDatabase() {
 
 	dispense_medicine01 := DispenseMedicine{
 		Bill:               bill1,
-		DispensemedicineNo: 123456,
+		DispensemedicineNo: 100000,
 		ReceiveName:        "Somchai",
 		DispenseTime:       time.Now(),
 		DispenseStatus:     dispense_status01,
