@@ -112,7 +112,7 @@ function Medicine_disbursement() {
               <TableBody>
                 {disbursements.map((temp: Medicine_disbursementInterface) => (
                   <TableRow key={temp.ID}>
-                    <TableCell align="right">{temp.DisbursementID}</TableCell>
+                    <TableCell align="center">{temp.DisbursementID}</TableCell>
                     <TableCell align="center" size="medium">{temp.Authorities.FirstName}</TableCell>
                     <TableCell align="center">{temp.MedicineStorage.Name}</TableCell>
                     <TableCell align="center">{temp.AmountMedicine}</TableCell>
