@@ -6,73 +6,73 @@ import (
 	"net/http"
 )
 
-// POST /videos
-func CreateDispense_status(c *gin.Context) {
-	var dispense_statuses entity.DispenseStatus
-	if err := c.ShouldBindJSON(&dispense_statuses); err != nil {
+// POST /dispenseStatuses
+func CreateDispenseStatus(c *gin.Context) {
+	var dispenseStatus entity.DispenseStatus
+	if err := c.ShouldBindJSON(&dispenseStatus); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	if err := entity.DB().Create(&dispense_statuses).Error; err != nil {
+	if err := entity.DB().Create(&dispenseStatus).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": dispense_statuses})
+	c.JSON(http.StatusOK, gin.H{"data": dispenseStatus})
 }
 
-// GET /dispense_statuses/:id
-func GetDispense_status(c *gin.Context) {
-	var dispense_statuses entity.DispenseStatus
+// GET /dispenseStatus/:id
+func GetDispenseStatus(c *gin.Context) {
+	var dispenseStatus entity.DispenseStatus
 
 	id := c.Param("id")
-	if err := entity.DB().Raw("SELECT * FROM dispense_statuses WHERE id = ?", id).Find(&dispense_statuses).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM dispense_statuses WHERE status = ?", id).Find(&dispenseStatus).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": dispense_statuses})
+	c.JSON(http.StatusOK, gin.H{"data": dispenseStatus})
 }
 
-// GET /dispense_statuses
-func ListDispense_status(c *gin.Context) {
-	var dispense_statuses []entity.DispenseStatus
-	if err := entity.DB().Raw("SELECT * FROM dispense_statuses").Find(&dispense_statuses).Error; err != nil {
+// GET /dispenseStatuses
+func ListDispenseStatus(c *gin.Context) {
+	var dispenseStatus []entity.DispenseStatus
+	if err := entity.DB().Raw("SELECT * FROM dispense_statuses").Find(&dispenseStatus).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": dispense_statuses})
+	c.JSON(http.StatusOK, gin.H{"data": dispenseStatus})
 }
 
-// DELETE /dispense_statuses/:id
-func DeleteDispense_status(c *gin.Context) {
+// DELETE /dispenseStatuses/:id
+func DeleteDispenseStatus(c *gin.Context) {
 	id := c.Param("id")
 	if tx := entity.DB().Exec("DELETE FROM dispense_statuses WHERE id = ?", id); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "dispense_status not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "dispenseStatus not found"})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": id})
 }
 
-// PATCH /dispense_statuses
-func UpdateDispense_status(c *gin.Context) {
-	var dispense_statuses entity.DispenseStatus
-	if err := c.ShouldBindJSON(&dispense_statuses); err != nil {
+// PATCH /dispenseStatuses
+func UpdateDispenseStatus(c *gin.Context) {
+	var dispenseStatus entity.DispenseStatus
+	if err := c.ShouldBindJSON(&dispenseStatus); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	if tx := entity.DB().Where("id = ?", dispense_statuses.ID).First(&dispense_statuses); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "dispense_status not found"})
+	if tx := entity.DB().Where("id = ?", dispenseStatus.ID).First(&dispenseStatus); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "dispenseStatus not found"})
 		return
 	}
 
-	if err := entity.DB().Save(&dispense_statuses).Error; err != nil {
+	if err := entity.DB().Save(&dispenseStatus).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": dispense_statuses})
+	c.JSON(http.StatusOK, gin.H{"data": dispenseStatus})
 }

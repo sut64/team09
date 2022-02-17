@@ -74,7 +74,7 @@ func CreateDispense_Medicine(c *gin.Context) {
 func GetDispense_Medicine(c *gin.Context) {
 	var dispense_medicines entity.DispenseMedicine
 	id := c.Param("id")
-	if err := entity.DB().Preload("Authorities").Preload("DispenseStatus").Preload("Bill").Preload("Bill.Prescription.MedicineDisbursement.MedicineRoom").Raw("SELECT * FROM dispense_medicines WHERE id = ?", id).Find(&dispense_medicines).Error; err != nil {
+	if err := entity.DB().Preload("Authorities").Preload("DispenseStatus").Preload("Bill").Raw("SELECT * FROM dispense_medicines WHERE id = ?", id).Find(&dispense_medicines).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -84,13 +84,37 @@ func GetDispense_Medicine(c *gin.Context) {
 // GET /dispense_medicines
 func ListDispense_Medicine(c *gin.Context) {
 	var dispense_medicines []entity.DispenseMedicine
-	if err := entity.DB().Preload("Authorities").Preload("DispenseStatus").Preload("Bill").Preload("Bill.Prescription.MedicineDisbursement.MedicineRoom").Raw("SELECT * FROM dispense_medicines").Find(&dispense_medicines).Error; err != nil {
+	if err := entity.DB().Preload("Authorities").Preload("DispenseStatus").Preload("Bill").Raw("SELECT * FROM dispense_medicines ORDER BY dispensemedicine_no").Find(&dispense_medicines).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": dispense_medicines})
 }
+
+/* // GET /bills
+func ListBillNotBlank(c *gin.Context) {
+	var bills []entity.Bill
+	if err := entity.DB().Preload("Prescription").Preload("Prescription.MedicineDisbursement").
+		Preload("Prescription.MedicineDisbursement.MedicineStorage").Preload("Paymentmethod").
+		Preload("Authorities").Raw("SELECT * FROM dispense_medicines as d INNER JOIN bills as b ON b.id != d.bill_id AND d.dispense_status_id = 1").Find(&bills).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": bills})
+} */
+
+/* // GET /BillPaymentStatus
+func ListBillPaymentStatus(c *gin.Context) {
+	var bills []entity.Bill
+	if err := entity.DB().Preload("Authorities").Preload("DispenseStatus").Preload("Bill").Raw("SELECT * FROM bills,dispense_medicines WHERE dispense_medicines.bill_id != bills.id ORDER BY bill_no").Find(&bills).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": bills})
+} */
 
 // DELETE /dispense_medicines/:id
 func DeleteDispense_Medicine(c *gin.Context) {
