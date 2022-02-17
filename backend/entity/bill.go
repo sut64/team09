@@ -10,8 +10,8 @@ import (
 type Bill struct {
 	gorm.Model
 
-	BillNo   uint      `gorm:"uniqueIndex" valid:"range(1000|9999)~BillNo must be 4 digits"`
-	BillTime time.Time `valid:"NotPast~BillTime must be in the Notpast"`
+	BillNo   uint      `gorm:"uniqueIndex" valid:"range(1000|9999)~BillNo must be 4 digits, required~BillNo must be 4 digits"`
+	BillTime time.Time `valid:"NotPast~BillTime must be in the not past"`
 	Payer    string    `valid:"required~Payer cannot be blank"`
 	Total    uint      `valid:"required~Total must be Positive, positiveTotal~Total must be Positive"`
 
