@@ -7,66 +7,32 @@
     "id": "d095a0b6-0452-4dd2-a95c-00bea79d6534",
     "name": "B6218294 - ตรวจสอบ field billNo ต้องเป็นตัวเลข 4 หลัก",
     "commands": [{
-      "id": "6454dc9d-98d0-4575-8d13-fc3da28c9bc9",
+      "id": "43728207-70dd-46a8-8e8b-4876f0340199",
       "comment": "",
       "command": "open",
       "target": "http://localhost:3000/",
       "targets": [],
       "value": ""
     }, {
-      "id": "c1ae4c13-ff82-4c63-af10-b4fa178e5349",
+      "id": "c4d428cb-a891-4953-a101-3eb97a7f79b1",
       "comment": "",
       "command": "setWindowSize",
       "target": "1552x840",
       "targets": [],
       "value": ""
     }, {
-      "id": "788ac3eb-e64e-4a2b-8515-0d4d0eef0ae5",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.makeStyles-a-12:nth-child(6) path:nth-child(1)",
-      "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) path:nth-child(1)", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "c96f2867-ea42-4c33-8125-9ff9cab922d0",
+      "id": "3c4b5486-5012-44c4-a905-4fcafde4469d",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-12:nth-child(6) path:nth-child(1)",
+      "target": "css=.makeStyles-a-12:nth-child(6) > .MuiButtonBase-root",
       "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) path:nth-child(1)", "css:finder"]
+        ["css=.makeStyles-a-12:nth-child(6) > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/ul/a[6]/div", "xpath:idRelative"],
+        ["xpath=//a[6]/div", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "1a9f5e93-007e-433c-b80d-012b383f0137",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.makeStyles-a-12:nth-child(6) path:nth-child(1)",
-      "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) path:nth-child(1)", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "b9195c82-ed6d-4f31-91d0-ce0b18e6b3eb",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root",
-      "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "191dfa89-4a18-4688-b6ff-79cd91c5b9a2",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root",
-      "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "c2cdda37-3ccd-47e3-8c47-03fa2daf3270",
+      "id": "822a10f3-6d54-4b8d-b862-1b238b66da60",
       "comment": "",
       "command": "click",
       "target": "id=BillNo",
@@ -79,7 +45,7 @@
       ],
       "value": ""
     }, {
-      "id": "e7a2730a-3e0a-403a-85a0-68d6d189958d",
+      "id": "22be8795-4778-43a5-bf94-34964f575178",
       "comment": "",
       "command": "type",
       "target": "id=BillNo",
@@ -92,7 +58,7 @@
       ],
       "value": "11"
     }, {
-      "id": "3f1408bc-41b7-4006-a696-4c7f59b9cf23",
+      "id": "fa546e71-4679-402a-aeb0-a714290b70bd",
       "comment": "",
       "command": "click",
       "target": "name=PrescriptionID",
@@ -105,14 +71,14 @@
       ],
       "value": ""
     }, {
-      "id": "0f02db7f-5f83-4bf7-83d7-57e121893f9f",
+      "id": "8718c795-593b-45df-ad27-0e80652a0f22",
       "comment": "",
       "command": "select",
       "target": "name=PrescriptionID",
       "targets": [],
       "value": "label=100001"
     }, {
-      "id": "08704ed5-41f6-4cf1-a267-3b619eb987a5",
+      "id": "d81c74d9-7019-4c02-96b9-104675ccf3ed",
       "comment": "",
       "command": "click",
       "target": "name=PaymentmethodID",
@@ -125,14 +91,14 @@
       ],
       "value": ""
     }, {
-      "id": "6e3bdb91-1588-4a62-b4b8-977fcab9be68",
+      "id": "e322513a-74b8-42ff-9e30-3e253f02d09c",
       "comment": "",
       "command": "select",
       "target": "name=PaymentmethodID",
       "targets": [],
-      "value": "label=โอนพร้อมเพย์"
+      "value": "label=ชำระด้วยเงินสด"
     }, {
-      "id": "93df9eb4-c1f8-4651-bb9c-b5ff742825cf",
+      "id": "4bfd1290-efd5-4cc5-be37-9933ac15baa4",
       "comment": "",
       "command": "click",
       "target": "id=Payer",
@@ -145,7 +111,7 @@
       ],
       "value": ""
     }, {
-      "id": "82ae9e24-4adf-402f-98f6-27b2ba8252c3",
+      "id": "9e03e089-96ed-4711-af6d-eb5751b67035",
       "comment": "",
       "command": "type",
       "target": "id=Payer",
@@ -158,43 +124,18 @@
       ],
       "value": "ยศพล"
     }, {
-      "id": "6dd34486-e975-41e6-a8a3-cc16e9b0eb10",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
-      "targets": [
-        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "a682a3cd-50a4-4989-a3f7-fba1db9ac437",
+      "id": "961a601a-6474-481c-9635-1701b7867ce2",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "2763666e-7393-4a01-af29-0f02d747175a",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
-      "targets": [
-        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "46fa4193-3245-4f79-9c4b-fe320f9b24de",
+      "id": "1f3e5106-59d4-41bf-a6c5-62a7dcfae57f",
       "comment": "",
       "command": "click",
       "target": "css=.MuiAlert-root",
@@ -205,7 +146,7 @@
       ],
       "value": ""
     }, {
-      "id": "691fb0a5-426d-4f42-b7bc-fd186e8bcede",
+      "id": "47cecd81-701f-40db-9bb3-949ee6a86374",
       "comment": "",
       "command": "assertText",
       "target": "css=.MuiAlert-message",
@@ -214,36 +155,38 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
         ["xpath=//div/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลไม่สำเร็จ BillNo must be 4 digits"
+      "value": "บันทึกการชำระเงินไม่สำเร็จ : BillNo must be 4 digits"
     }]
   }, {
     "id": "d34c29a3-6a65-4a0f-93ef-3c423418a2c8",
     "name": "B6218294 - ตรวจสอบ field billTime ว่าวันไม่เป็นอดีต",
     "commands": [{
-      "id": "b5571d47-4229-4a6c-b989-1b82e12ed53d",
+      "id": "74df7361-0dd0-478f-86e0-23c815151c42",
       "comment": "",
       "command": "open",
       "target": "http://localhost:3000/",
       "targets": [],
       "value": ""
     }, {
-      "id": "57775429-1f23-433a-9fae-6b912b33094b",
+      "id": "4e378305-3f18-4d6c-90ed-2df2b59543c0",
       "comment": "",
       "command": "setWindowSize",
       "target": "1552x840",
       "targets": [],
       "value": ""
     }, {
-      "id": "a3c9120a-1060-4efa-8d89-6038ce9cc24d",
+      "id": "2c3593db-a86a-4546-b33c-a4cb5e539d0c",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root",
+      "target": "css=.makeStyles-a-12:nth-child(6) .MuiListItemIcon-root",
       "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root", "css:finder"]
+        ["css=.makeStyles-a-12:nth-child(6) .MuiListItemIcon-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/ul/a[6]/div/div", "xpath:idRelative"],
+        ["xpath=//a[6]/div/div", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "70e2831c-3d36-4f37-ba3c-29b1f6268cdb",
+      "id": "ebb218d6-723a-4e81-aeaa-5d60c84f7db9",
       "comment": "",
       "command": "click",
       "target": "id=BillNo",
@@ -256,7 +199,7 @@
       ],
       "value": ""
     }, {
-      "id": "e08d131b-56a2-401b-9710-3bd2adfdb76d",
+      "id": "dbf90a1f-8d99-4540-be70-37c75fc00be0",
       "comment": "",
       "command": "type",
       "target": "id=BillNo",
@@ -267,9 +210,9 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "1004"
+      "value": "1014"
     }, {
-      "id": "c10739da-f732-41b4-93b5-539966faf01f",
+      "id": "6e062311-93d5-48d2-9461-37d8c175cafb",
       "comment": "",
       "command": "click",
       "target": "name=PrescriptionID",
@@ -282,25 +225,14 @@
       ],
       "value": ""
     }, {
-      "id": "1478fb84-a8ba-4171-9c81-bec4169d1ffa",
+      "id": "82d01db9-3796-49e1-897b-6c51492ec403",
       "comment": "",
       "command": "select",
       "target": "name=PrescriptionID",
       "targets": [],
       "value": "label=100001"
     }, {
-      "id": "c19aa9fb-c8ac-4213-bee1-8849d10c5b94",
-      "comment": "",
-      "command": "click",
-      "target": "css=.MuiGrid-item:nth-child(3)",
-      "targets": [
-        ["css=.MuiGrid-item:nth-child(3)", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[3]", "xpath:idRelative"],
-        ["xpath=//div[3]", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "63e5b44f-ef43-441e-9dc8-06328e9e2d3f",
+      "id": "99b1fb23-5c2e-4c30-a9e7-689d1f49447a",
       "comment": "",
       "command": "click",
       "target": "name=PaymentmethodID",
@@ -313,14 +245,14 @@
       ],
       "value": ""
     }, {
-      "id": "5424ab2b-f7df-4f7a-a84a-f5e98548b9b7",
+      "id": "b45097ea-8d61-4638-a8f6-eb9dca1ee6b5",
       "comment": "",
       "command": "select",
       "target": "name=PaymentmethodID",
       "targets": [],
       "value": "label=ชำระด้วยเงินสด"
     }, {
-      "id": "3ca4ca07-7786-4290-94d4-f9cff8443a80",
+      "id": "25bb77fa-c1f3-41be-a2d2-9d9e20f41cad",
       "comment": "",
       "command": "click",
       "target": "id=Payer",
@@ -333,7 +265,7 @@
       ],
       "value": ""
     }, {
-      "id": "22592637-9aa2-4369-8d86-2d0ee484c30a",
+      "id": "9a741410-bd35-4132-9b50-2a25915ea28b",
       "comment": "",
       "command": "type",
       "target": "id=Payer",
@@ -346,34 +278,34 @@
       ],
       "value": "ยศพล"
     }, {
-      "id": "51749a25-a300-4531-bc51-0c39f6b99149",
+      "id": "f4425141-24a2-42ec-ba2e-a386a2bb3d36",
       "comment": "",
       "command": "mouseOver",
-      "target": "css=.MuiInputAdornment-root .MuiSvgIcon-root",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
       "targets": [
-        ["css=.MuiInputAdornment-root .MuiSvgIcon-root", "css:finder"]
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
       ],
       "value": ""
     }, {
-      "id": "34e19d4e-da0a-404c-b492-bf029a746505",
+      "id": "e453c4f9-b549-4dac-9a9f-2fcb83bee380",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiInputAdornment-root .MuiSvgIcon-root",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
       "targets": [
-        ["css=.MuiInputAdornment-root .MuiSvgIcon-root", "css:finder"]
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
       ],
       "value": ""
     }, {
-      "id": "f2c15592-efca-4d79-b588-c013573efb1b",
+      "id": "6a6eff24-50a7-4d64-8fb9-a5a62588415f",
       "comment": "",
       "command": "mouseOut",
-      "target": "css=.MuiInputAdornment-root .MuiSvgIcon-root",
+      "target": "css=.MuiInputAdornment-root path:nth-child(1)",
       "targets": [
-        ["css=.MuiInputAdornment-root .MuiSvgIcon-root", "css:finder"]
+        ["css=.MuiInputAdornment-root path:nth-child(1)", "css:finder"]
       ],
       "value": ""
     }, {
-      "id": "8d252293-7ae5-44e3-b2e0-fc4ed911dece",
+      "id": "5aa4f940-8188-4bbd-8c11-37e0f2fd7a36",
       "comment": "",
       "command": "click",
       "target": "css=.MuiPickersCalendar-week:nth-child(3) > div:nth-child(5) .MuiTypography-root",
@@ -384,17 +316,7 @@
       ],
       "value": ""
     }, {
-      "id": "2bbea8e3-154c-4415-9e94-e3a412595abb",
-      "comment": "",
-      "command": "click",
-      "target": "css=.MuiPickersClock-squareMask",
-      "targets": [
-        ["css=.MuiPickersClock-squareMask", "css:finder"],
-        ["xpath=//div/div/div[3]/div/div/div", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "347abaf2-e97c-45a5-81f8-e430cd44a474",
+      "id": "86d7972d-4d2f-42d3-b226-da49d8b467c8",
       "comment": "",
       "command": "mouseOver",
       "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
@@ -405,7 +327,7 @@
       ],
       "value": ""
     }, {
-      "id": "b1adf166-3e82-41f4-94c7-ff05912f6abb",
+      "id": "c7ae1b9c-ae24-4b0f-932b-512d25d03fc3",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButton-textPrimary:nth-child(2) > .MuiButton-label",
@@ -416,31 +338,62 @@
       ],
       "value": ""
     }, {
-      "id": "4fd9ce3f-eacf-4482-aa3f-116ac509dfa8",
+      "id": "bddb7bbb-248f-409b-a9ab-522f313bb1e1",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiGrid-root:nth-child(10)",
+      "target": "css=.MuiGrid-grid-xs-5",
       "targets": [
-        ["css=.MuiGrid-root:nth-child(10)", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[10]", "xpath:idRelative"],
-        ["xpath=//div[10]", "xpath:position"]
+        ["css=.MuiGrid-grid-xs-5", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]", "xpath:idRelative"],
+        ["xpath=//div[11]", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "0465f6e3-411b-42d6-928b-7ce1c2e544a2",
+      "id": "4c1b508a-71f4-4363-9afd-6dea3ae8e124",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButtonBase-root:nth-child(2)",
+      "target": "css=.MuiGrid-grid-xs-12",
       "targets": [
-        ["css=.MuiButtonBase-root:nth-child(2)", "css:finder"],
-        ["xpath=(//button[@type='button'])[6]", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button", "xpath:idRelative"],
-        ["xpath=//div[11]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
+        ["css=.MuiGrid-grid-xs-12", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[12]", "xpath:idRelative"],
+        ["xpath=//div[12]", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "01644f66-49ae-4c44-a0b1-f11a0f6dea3c",
+      "id": "c3bbc9c5-d952-443a-abfb-d36282a90828",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab2756a5-b64b-4e7c-bff9-02e6a8d1a75b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9d78b898-e317-4154-ba52-32a10ef49a1f",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e76735d-4e2a-4510-8f7c-486a43d1cd9e",
       "comment": "",
       "command": "click",
       "target": "css=.MuiAlert-root",
@@ -451,7 +404,7 @@
       ],
       "value": ""
     }, {
-      "id": "feef89e2-e05f-4b11-8c83-0cfa99f8a304",
+      "id": "a0aec45d-1b39-494c-8b3f-4cb0cae827bf",
       "comment": "",
       "command": "assertText",
       "target": "css=.MuiAlert-message",
@@ -460,36 +413,27 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
         ["xpath=//div/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลไม่สำเร็จ BillTime must be in the not past"
+      "value": "บันทึกการชำระเงินไม่สำเร็จ : BillTime must be in the not past"
     }]
   }, {
     "id": "61373f83-e3ce-41f6-9384-5641d0b2aa8e",
     "name": "B6218294 - ตรวจสอบ field payer ไม่เป็นค่าว่าง",
     "commands": [{
-      "id": "22eae24e-12ac-4722-8c90-786544a37f84",
+      "id": "7e75bf0f-e5c0-458f-bede-be6651964fad",
       "comment": "",
       "command": "open",
       "target": "http://localhost:3000/",
       "targets": [],
       "value": ""
     }, {
-      "id": "9183472e-d468-4597-a7ed-62dd6db7803a",
+      "id": "15e3138f-fe54-44f3-b103-c068df12d056",
       "comment": "",
       "command": "setWindowSize",
       "target": "1552x840",
       "targets": [],
       "value": ""
     }, {
-      "id": "5aa83d37-e204-49f5-b37a-a95fa0c049ee",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root",
-      "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "32533db9-130b-489d-b114-d38907ca0daf",
+      "id": "f943f1ab-728c-4385-84c8-256dead288b4",
       "comment": "",
       "command": "click",
       "target": "css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root",
@@ -498,38 +442,7 @@
       ],
       "value": ""
     }, {
-      "id": "db86df30-92ba-470b-b564-9bb21c449128",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root",
-      "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) .MuiSvgIcon-root", "css:finder"]
-      ],
-      "value": ""
-    }, {
-      "id": "b47ad639-e46d-44da-a4cf-91037cfb7c6a",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.makeStyles-a-12:nth-child(6) .MuiListItemIcon-root",
-      "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) .MuiListItemIcon-root", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div/ul/a[6]/div/div", "xpath:idRelative"],
-        ["xpath=//a[6]/div/div", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "5df3729e-c799-4e0a-97e9-237bdd02b2b6",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.makeStyles-a-12:nth-child(6) .MuiListItemIcon-root",
-      "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) .MuiListItemIcon-root", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div/ul/a[6]/div/div", "xpath:idRelative"],
-        ["xpath=//a[6]/div/div", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "206c28f1-310d-4c17-8c71-fa7f577f2c23",
+      "id": "0804d551-04cd-4656-afc3-5b6c090017cc",
       "comment": "",
       "command": "click",
       "target": "id=BillNo",
@@ -542,7 +455,7 @@
       ],
       "value": ""
     }, {
-      "id": "17b53896-2dbd-4738-a325-55e349fab7fb",
+      "id": "3a7dc305-0e53-48eb-9366-f5b2f763874c",
       "comment": "",
       "command": "type",
       "target": "id=BillNo",
@@ -553,9 +466,9 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "1005"
+      "value": "1012"
     }, {
-      "id": "a6479a70-fdf3-4ba3-b819-31bdf60fc650",
+      "id": "3eb6ae36-4191-473d-9634-df8fb1308fbf",
       "comment": "",
       "command": "click",
       "target": "name=PrescriptionID",
@@ -568,14 +481,14 @@
       ],
       "value": ""
     }, {
-      "id": "947ee9c4-5f15-4187-8a34-9a4abd200c59",
+      "id": "efddc9c0-61b4-409e-a8ff-c5b27ee4859c",
       "comment": "",
       "command": "select",
       "target": "name=PrescriptionID",
       "targets": [],
       "value": "label=100001"
     }, {
-      "id": "96f095c1-199d-4fb2-9ce1-c6c8de524e58",
+      "id": "18208b8d-ad81-4067-86e3-9176c18dfd6f",
       "comment": "",
       "command": "click",
       "target": "name=PaymentmethodID",
@@ -588,50 +501,47 @@
       ],
       "value": ""
     }, {
-      "id": "09296ca7-edf9-4c29-be69-acfe67a644bb",
+      "id": "ad7c1f15-a9de-45a6-8621-8e6a7e6e3973",
       "comment": "",
       "command": "select",
       "target": "name=PaymentmethodID",
       "targets": [],
       "value": "label=ชำระด้วยเงินสด"
     }, {
-      "id": "8108040c-e7fd-44cf-bbd5-008d77e3548b",
+      "id": "52bcf388-dc74-42ad-aa50-d8140b08f782",
       "comment": "",
       "command": "mouseOver",
       "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "318a52a5-bf95-474b-ad65-09406d178183",
+      "id": "f2f31054-356a-4126-b7c7-efa5fffae0e6",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "1acde31b-8195-4034-b16e-d3cecf625cf1",
+      "id": "8de6f720-2f36-4454-9130-d14003747d03",
       "comment": "",
       "command": "mouseOut",
       "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "4910e640-5059-4ba7-b472-135a3d39da60",
+      "id": "6e8a85e0-03ab-4573-a9f7-34aa648d0b1a",
       "comment": "",
       "command": "click",
       "target": "css=.MuiAlert-root",
@@ -642,7 +552,7 @@
       ],
       "value": ""
     }, {
-      "id": "b57b3f23-1e86-4b16-808a-9fa9c6639047",
+      "id": "3f1e908a-1cb3-403d-82dd-0ea218589493",
       "comment": "",
       "command": "assertText",
       "target": "css=.MuiAlert-message",
@@ -651,36 +561,38 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
         ["xpath=//div/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลไม่สำเร็จ Payer cannot be blank"
+      "value": "บันทึกการชำระเงินไม่สำเร็จ : Payer cannot be blank"
     }]
   }, {
     "id": "1846d201-cf22-45fa-b878-d1e018acbc6c",
     "name": "B6218294 - ตรวจสอบ field total ว่าเป็นเลขจำนวนเต็มบวก",
     "commands": [{
-      "id": "be42cc6f-a978-4106-92a4-00937059f3d3",
+      "id": "8bb7692c-0c96-4b99-98a5-5e4a2838cb96",
       "comment": "",
       "command": "open",
       "target": "http://localhost:3000/",
       "targets": [],
       "value": ""
     }, {
-      "id": "e46c09cc-c982-4ed0-be03-8e683b2b5e9e",
+      "id": "c57439c4-7a8c-432c-9f23-ba1bc80ec6b3",
       "comment": "",
       "command": "setWindowSize",
       "target": "1552x840",
       "targets": [],
       "value": ""
     }, {
-      "id": "90ffe73b-5398-4aba-a0bf-a6af2e6ab0bc",
+      "id": "e3afefb6-f7fa-4859-83f8-655c89eb4f31",
       "comment": "",
       "command": "click",
-      "target": "css=.makeStyles-a-12:nth-child(6) path:nth-child(1)",
+      "target": "css=.makeStyles-a-12:nth-child(6) .MuiListItemIcon-root",
       "targets": [
-        ["css=.makeStyles-a-12:nth-child(6) path:nth-child(1)", "css:finder"]
+        ["css=.makeStyles-a-12:nth-child(6) .MuiListItemIcon-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/ul/a[6]/div/div", "xpath:idRelative"],
+        ["xpath=//a[6]/div/div", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "56662ac6-a7a8-41df-aa33-897d88e5cebd",
+      "id": "8965896d-69c9-4b24-84d6-7f881eedd6c6",
       "comment": "",
       "command": "click",
       "target": "id=BillNo",
@@ -693,7 +605,7 @@
       ],
       "value": ""
     }, {
-      "id": "72c5b3e8-c0c2-4469-8ffa-ebd75fcec867",
+      "id": "571323a8-86b2-4bc7-8c65-b93c4b6ddc39",
       "comment": "",
       "command": "type",
       "target": "id=BillNo",
@@ -704,9 +616,9 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "1005"
+      "value": "1245"
     }, {
-      "id": "7797e3e3-9b85-409a-8d65-058fb740f3db",
+      "id": "0f9f0ff6-0ad8-4b58-bf43-b9353e0fe9c7",
       "comment": "",
       "command": "click",
       "target": "name=PrescriptionID",
@@ -719,14 +631,14 @@
       ],
       "value": ""
     }, {
-      "id": "6ad61062-70d6-4ec5-865c-5763457ea839",
+      "id": "8c97980a-dd27-4120-adc3-62709ca0b3bd",
       "comment": "",
       "command": "select",
       "target": "name=PrescriptionID",
       "targets": [],
       "value": "label=100000"
     }, {
-      "id": "fcce9c3d-e796-47b1-9ac0-bf110089404f",
+      "id": "bea95d5c-852d-4567-84e1-af278b0ed6a8",
       "comment": "",
       "command": "click",
       "target": "name=PaymentmethodID",
@@ -739,14 +651,14 @@
       ],
       "value": ""
     }, {
-      "id": "b0552ed8-8c3d-4b10-bb4b-4250801dd1c0",
+      "id": "5f83ba0c-3c3a-4a1a-be5d-850738dce384",
       "comment": "",
       "command": "select",
       "target": "name=PaymentmethodID",
       "targets": [],
       "value": "label=ชำระด้วยเงินสด"
     }, {
-      "id": "78ad8787-2704-47b9-8876-38a53ab6df43",
+      "id": "02a0b591-8588-4d2a-90b9-404f9ba3fa2b",
       "comment": "",
       "command": "click",
       "target": "id=Payer",
@@ -759,7 +671,7 @@
       ],
       "value": ""
     }, {
-      "id": "18f2a358-74da-4f62-9691-0655d71f7922",
+      "id": "82382ee2-cfd1-4414-97c1-18f49df9fc56",
       "comment": "",
       "command": "type",
       "target": "id=Payer",
@@ -772,43 +684,18 @@
       ],
       "value": "ยศพล"
     }, {
-      "id": "5c72ba51-cef3-4faa-abf6-73a96fa925a4",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
-      "targets": [
-        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "e8c3b5ea-3f2d-4f76-ba0a-8c7f2ea96948",
+      "id": "71383a67-85de-46b8-a2e4-ebe29af6d8c1",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "0bb72a62-b404-41a3-85b8-b6917072711c",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
-      "targets": [
-        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "307ae69b-7b4f-4177-979a-690493814ec6",
+      "id": "099e338f-f402-4f32-a6ba-f686033e1abe",
       "comment": "",
       "command": "click",
       "target": "css=.MuiAlert-root",
@@ -819,7 +706,7 @@
       ],
       "value": ""
     }, {
-      "id": "be65bf19-98b3-445e-82d3-ec52f0082ea7",
+      "id": "d6358976-1f54-4db3-8694-9eb6fb7d2490",
       "comment": "",
       "command": "assertText",
       "target": "css=.MuiAlert-message",
@@ -828,36 +715,38 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
         ["xpath=//div/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลไม่สำเร็จ Total must be Positive"
+      "value": "บันทึกการชำระเงินไม่สำเร็จ : Total must be Positive"
     }]
   }, {
     "id": "29260f7a-2967-4694-9748-5331b38c5e8d",
     "name": "B6218294 - บันทึกข้อมูล Bill สำเร็จ",
     "commands": [{
-      "id": "52295a28-d269-4b31-b587-79d7dc2b4835",
+      "id": "e8d4da4c-b108-43c0-88ff-da6cedcb5109",
       "comment": "",
       "command": "open",
       "target": "http://localhost:3000/",
       "targets": [],
       "value": ""
     }, {
-      "id": "4a0d0002-8695-43fc-897b-723c0ba853df",
+      "id": "bff8383e-0e6e-42b3-94e2-3c3184f76101",
       "comment": "",
       "command": "setWindowSize",
       "target": "1552x840",
       "targets": [],
       "value": ""
     }, {
-      "id": "eb69338a-98d2-4619-b6dd-c7260518df6a",
+      "id": "b94f85b4-ed7f-45be-a4e8-3043d6cd5cfc",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiListItemIcon-root path:nth-child(2)",
+      "target": "css=.makeStyles-a-12:nth-child(6) > .MuiButtonBase-root",
       "targets": [
-        ["css=.MuiListItemIcon-root path:nth-child(2)", "css:finder"]
+        ["css=.makeStyles-a-12:nth-child(6) > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/div/ul/a[6]/div", "xpath:idRelative"],
+        ["xpath=//a[6]/div", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "635583dd-71a7-44d0-8dff-108b936a0fbe",
+      "id": "cbc2ac77-ccbe-460d-9c4d-505d9c8b74dc",
       "comment": "",
       "command": "click",
       "target": "id=BillNo",
@@ -870,7 +759,7 @@
       ],
       "value": ""
     }, {
-      "id": "bf690d73-d5fb-4fd5-a09f-0c10da089975",
+      "id": "5c16034e-1bfd-4b49-a484-d943675a07c1",
       "comment": "",
       "command": "type",
       "target": "id=BillNo",
@@ -881,9 +770,9 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "1007"
+      "value": "1478"
     }, {
-      "id": "c5655c38-f49f-4022-ba12-24041ac585a9",
+      "id": "ed144cbf-ccd6-4451-8017-33580adc1705",
       "comment": "",
       "command": "click",
       "target": "name=PrescriptionID",
@@ -896,14 +785,14 @@
       ],
       "value": ""
     }, {
-      "id": "0c8abb22-eddb-403f-a85f-5f729e4528d1",
+      "id": "15d8b643-ba7f-4e50-8132-bb3de6296191",
       "comment": "",
       "command": "select",
       "target": "name=PrescriptionID",
       "targets": [],
       "value": "label=100001"
     }, {
-      "id": "4996c482-ee7b-4082-98ac-613ffa229e60",
+      "id": "31261719-f947-4388-a924-4a14471a4a1e",
       "comment": "",
       "command": "click",
       "target": "name=PaymentmethodID",
@@ -916,14 +805,14 @@
       ],
       "value": ""
     }, {
-      "id": "af24dd4d-66bd-4679-93fd-2c75eb93460f",
+      "id": "22289a96-1e5b-438b-806d-b28bfac35eaa",
       "comment": "",
       "command": "select",
       "target": "name=PaymentmethodID",
       "targets": [],
-      "value": "label=โอนพร้อมเพย์"
+      "value": "label=ชำระด้วยเงินสด"
     }, {
-      "id": "18d87d1d-a6e6-4cde-914e-2f7732093897",
+      "id": "604d8974-aee0-4ec7-b378-59e1b0f4040e",
       "comment": "",
       "command": "click",
       "target": "id=Payer",
@@ -936,7 +825,7 @@
       ],
       "value": ""
     }, {
-      "id": "49e303dd-012e-4209-8047-00eec0319cdb",
+      "id": "644b007d-e44a-44a2-b515-388678b1626e",
       "comment": "",
       "command": "type",
       "target": "id=Payer",
@@ -949,70 +838,40 @@
       ],
       "value": "ยศพล"
     }, {
-      "id": "ca0a15da-a63d-47e9-a6c2-ee82c5db0b23",
+      "id": "2e1cc8bc-1b76-4290-a37e-11b20fe61b3f",
       "comment": "",
       "command": "mouseOver",
-      "target": "css=.MuiButtonBase-root:nth-child(2)",
+      "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
       "targets": [
-        ["css=.MuiButtonBase-root:nth-child(2)", "css:finder"],
-        ["xpath=(//button[@type='button'])[6]", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button", "xpath:idRelative"],
-        ["xpath=//div[11]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
+        ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "ba600a3b-3afc-4791-a58a-81731f1d3c57",
+      "id": "22c18bd5-225c-45f0-a7ea-5997aac0c8c1",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButtonBase-root:nth-child(2)",
-      "targets": [
-        ["css=.MuiButtonBase-root:nth-child(2)", "css:finder"],
-        ["xpath=(//button[@type='button'])[6]", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button", "xpath:idRelative"],
-        ["xpath=//div[11]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "30630832-3f63-4ba4-b25c-2b97f17d37f1",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.MuiButtonBase-root:nth-child(2)",
-      "targets": [
-        ["css=.MuiButtonBase-root:nth-child(2)", "css:finder"],
-        ["xpath=(//button[@type='button'])[6]", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button", "xpath:idRelative"],
-        ["xpath=//div[11]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "61a1b68a-88fe-4346-a820-2d339f19b0b1",
-      "comment": "",
-      "command": "mouseOver",
       "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "a5d44efa-a6eb-4599-b358-87c5c344bdb6",
+      "id": "9f9ef1ec-8ec4-420b-b35e-2a9de9e07488",
       "comment": "",
       "command": "mouseOut",
       "target": "css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(2) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[11]/button/span", "xpath:idRelative"],
-        ["xpath=//div[11]/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'บันทึกใบชำระเงินค่ายา')]", "xpath:innerText"]
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div[2]/div[12]/button/span", "xpath:idRelative"],
+        ["xpath=//div[12]/button/span", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "1d2be611-fd2f-45cb-9bcb-ed039664cf68",
+      "id": "f263d1b5-fb40-4ca1-aba8-e8c316bc30fb",
       "comment": "",
       "command": "click",
       "target": "css=.MuiAlert-root",
@@ -1023,7 +882,7 @@
       ],
       "value": ""
     }, {
-      "id": "e27b908c-5453-482f-bbe6-32e213178e47",
+      "id": "9803572d-1d9e-4617-898b-060a46a70c7e",
       "comment": "",
       "command": "assertText",
       "target": "css=.MuiAlert-message",
@@ -1032,47 +891,35 @@
         ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]", "xpath:idRelative"],
         ["xpath=//div/div/div[2]", "xpath:position"]
       ],
-      "value": "บันทึกข้อมูลสำเร็จ"
+      "value": "บันทึกการชำระเงินสำเร็จ"
     }, {
-      "id": "ae57746c-576c-433c-ba0d-b404ace8ff10",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.MuiButton-containedPrimary:nth-child(1) > .MuiButton-label",
-      "targets": [
-        ["css=.MuiButton-containedPrimary:nth-child(1) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div/div[2]/a/span", "xpath:idRelative"],
-        ["xpath=//a/span", "xpath:position"],
-        ["xpath=//span[contains(.,'ประวัติชำระเงินค่ายา')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "a23dc3d7-06a7-4bcb-aed0-e6693220546b",
+      "id": "edaae31d-175e-4950-bd38-dac67d516e4d",
       "comment": "",
       "command": "click",
       "target": "css=.MuiButton-containedPrimary:nth-child(1) > .MuiButton-label",
       "targets": [
         ["css=.MuiButton-containedPrimary:nth-child(1) > .MuiButton-label", "css:finder"],
-        ["xpath=//div[@id='root']/div/main/div[2]/div/div[2]/div/div[2]/a/span", "xpath:idRelative"],
+        ["xpath=//div[@id='root']/div/main/div[2]/div/div/div/div[2]/a/span", "xpath:idRelative"],
         ["xpath=//a/span", "xpath:position"],
         ["xpath=//span[contains(.,'ประวัติชำระเงินค่ายา')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "6602d58e-4183-4b48-8520-0190165f5c6c",
+      "id": "683f95d8-4e3a-4cd9-8e6d-f2487a23e92a",
       "comment": "",
       "command": "mouseOver",
-      "target": "css=.MuiTableRow-root:nth-child(2) path:nth-child(1)",
+      "target": "css=.MuiIconButton-label > .MuiSvgIcon-fontSizeMedium",
       "targets": [
-        ["css=.MuiTableRow-root:nth-child(2) path:nth-child(1)", "css:finder"]
+        ["css=.MuiIconButton-label > .MuiSvgIcon-fontSizeMedium", "css:finder"]
       ],
       "value": ""
     }, {
-      "id": "3a76c011-8bcb-4637-b04a-88c6db2ee1ca",
+      "id": "b0d71b73-2759-44f5-8d61-70214a67c935",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiTableRow-root:nth-child(2) path:nth-child(1)",
+      "target": "css=.MuiIconButton-label > .MuiSvgIcon-fontSizeMedium",
       "targets": [
-        ["css=.MuiTableRow-root:nth-child(2) path:nth-child(1)", "css:finder"]
+        ["css=.MuiIconButton-label > .MuiSvgIcon-fontSizeMedium", "css:finder"]
       ],
       "value": ""
     }]
