@@ -90,7 +90,7 @@ func ListBill(c *gin.Context) {
 	var bills []entity.Bill
 	if err := entity.DB().Preload("Prescription").Preload("Prescription.MedicineDisbursement").
 		Preload("Prescription.MedicineDisbursement.MedicineStorage").Preload("Paymentmethod").
-		Preload("Authorities").Raw("SELECT * FROM bills ORDER BY bill_no").Find(&bills).Error; err != nil {
+		Preload("Authorities").Raw("SELECT * FROM bills ORDER BY bills.id DESC").Find(&bills).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
