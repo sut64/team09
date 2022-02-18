@@ -17,6 +17,7 @@ import Divider from "@material-ui/core/Divider";
 import Snackbar from "@material-ui/core/Snackbar";
 import Select from "@material-ui/core/Select";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import ArrowBackTwoToneIcon from '@mui/icons-material/ArrowBackTwoTone';
 
 import { AuthoritiesInterface } from "../models/IAuthority";
 import { PaymentmethodsInterface } from "../models/IPaymentmethod";
@@ -28,6 +29,8 @@ import {
   KeyboardDateTimePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import { IconButton } from "@material-ui/core";
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -54,14 +57,14 @@ function BillCreate() {
   const [authoritys, setAuthority] = useState<AuthoritiesInterface>();
   const [paymentmethods, setPaymentmethods] = useState<PaymentmethodsInterface[]>([]);
   const [prescriptions, setPrescriptions] = useState<PrescriptionInterface[]>([]);
-
-
   const [bills, setBills] = useState<Partial<BillsInterface>>(
     {}
   );
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errmessage, SetErrMessage] = useState("");
+  const [successTime, setSuccessTime] = useState(false);
+  const [MessageTime, setMessageTime] = useState("");
 
   const apiUrl = "http://localhost:8080";
   const requestOptions = {
@@ -160,10 +163,21 @@ function BillCreate() {
     });
   };
 
+  function PresentlyTime() {
+    let date = new Date();
+    let timer = date.toLocaleTimeString(); //เเสดงเวลา 
+    let day = date.toLocaleDateString(); //เเสดงวันที่
+    console.log(date);
+    setSelectedDate(date);
+    setSuccessTime(true);
+    setMessageTime("รีเซ็ตเวลาปัจจุบันสำเร็จ : วันที่ " + day + " เวลา " + timer);
+  };
+
   const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
       return;
     }
+    setSuccessTime(false);
     setSuccess(false);
     setError(false);
   };
@@ -237,16 +251,12 @@ function BillCreate() {
         AuthoritiesID: convertType(authoritys?.ID),
         PaymentmethodID: convertType(bills.PaymentmethodID),
         PrescriptionID: convertType(bills.PrescriptionID),
-
-
-
         BillTime: selectedDate,
         BillNo: convertType(bills.BillNo ?? ""),
         Payer: bills.Payer ?? "",
         Total: convertType(Number(prescriptionAmount?.MedicineDisbursement?.MedicineStorage?.Sell) * Number(prescriptionAmount?.Amount)),
         //Total: convertType(bills.Total ?? ""),
     };
-
     console.log(data)
 
     const requestOptionsPost = {
@@ -262,11 +272,11 @@ function BillCreate() {
       .then((response) => response.json())
       .then((res) => {
         if (res.data) {
-          console.log("บันทึกได้")
+          console.log("บันทึกการชำระเงินได้")
           setSuccess(true);
           SetErrMessage("")
         } else {
-          console.log("บันทึกไม่ได้")
+          console.log("บันทึกการชำระเงินไม่ได้")
           setError(true);
           SetErrMessage(res.error);
         }
@@ -275,16 +285,26 @@ function BillCreate() {
 
   return (
     <Container className={classes.container} maxWidth="md">
-      <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
+
+      <Snackbar open={success} autoHideDuration={5000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
-          บันทึกข้อมูลสำเร็จ
+          บันทึกการชำระเงินสำเร็จ
         </Alert>
       </Snackbar>
-      <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+
+      <Snackbar open={error} autoHideDuration={5000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          บันทึกข้อมูลไม่สำเร็จ {errmessage}
+          บันทึกการชำระเงินไม่สำเร็จ : {errmessage}
         </Alert>
       </Snackbar>
+
+      <Snackbar open={successTime} autoHideDuration={5000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          {MessageTime}
+        </Alert>
+
+      </Snackbar>
+
       <Paper className={classes.paper}>
         <Box display="flex">
           <Box flexGrow={1}>
@@ -294,7 +314,7 @@ function BillCreate() {
               color="primary"
               gutterBottom
             >
-              บันทึกการชำระเงินค่ายา
+              การชำระเงินค่ายา
             </Typography>
           </Box>
           <Box>
@@ -303,7 +323,7 @@ function BillCreate() {
               to="/bills"
               variant="contained"
               color="primary"
-              style={{ backgroundColor: '#FAFAD2', fontSize: 'verdana', color: '#FFA07A' }}>
+              style={{ backgroundColor: '#AED6F1', fontSize: 'verdana', color: '#4682B4' }}>
               ประวัติชำระเงินค่ายา
             </Button>
           </Box>
@@ -319,7 +339,7 @@ function BillCreate() {
                 variant="outlined"
                 type="number"
                 size="medium"
-                placeholder="เลขใบชำระเงิน"
+                placeholder="รหัสชำระเงิน"
                 InputProps={{
                   inputProps: { min: 1000,
                                 max: 9999 }
@@ -332,7 +352,7 @@ function BillCreate() {
 
           <Grid item xs={3}>
             <FormControl fullWidth variant="outlined">
-              <p>รหัสใบสั่งยา</p>
+              <p>รหัสการสั่งยา</p>
               <Select
                 native
                 value={bills.PrescriptionID}
@@ -455,10 +475,9 @@ function BillCreate() {
 
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
-              <p>วันที่และเวลา</p>
+              <p>วันที่และเวลาชำระเงิน</p>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDateTimePicker
-                  
                   name="BillTime"
                   value={selectedDate}
                   onChange={handleDateChange}
@@ -469,14 +488,27 @@ function BillCreate() {
               </MuiPickersUtilsProvider>
             </FormControl>
           </Grid>
+          
+          <Grid item xs={1}>
+            <FormControl fullWidth variant="outlined">
+              <p>
+                <br></br>
+              </p>
+            </FormControl>
+            <IconButton onClick={PresentlyTime}>
+                  <Typography variant="caption">
+                  <RestartAltIcon/>reset
+                  </Typography>
+                </IconButton>
+          </Grid>
 
-
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             <FormControl fullWidth variant="outlined">
               <p>ผู้ให้ชำระเงิน</p>
             <Select
                 native
                 disabled
+                style={{ float: "right"}}
                 value = {bills.AuthoritiesID}
                 onChange={handleChange}
                 inputProps={{
@@ -484,7 +516,7 @@ function BillCreate() {
                 }}
             >
               <option value={authoritys?.ID} key={authoritys?.ID}>
-                  {authoritys?.FirstName}
+                  {authoritys?.FirstName} {authoritys?.LastName}
                 </option>  
               </Select>
             </FormControl>
@@ -495,16 +527,17 @@ function BillCreate() {
               component={RouterLink}
               to="/"
               variant="contained"
+              style={{ backgroundColor: '#4682B4', fontSize: 'verdana', color: '#ffffff' }}
             >
-              กลับ
+              <ArrowBackTwoToneIcon/>
             </Button>
             <Button
-              style={{ float: "right" }}
+              style={{ float: "right", backgroundColor: '#AED6F1', fontSize: 'verdana', color: '#4682B4' }}
               variant="contained"
               onClick={submit}
               color="primary"
             >
-              บันทึกใบชำระเงินค่ายา
+              ชำระเงินค่ายา
             </Button>
           </Grid>
         </Grid>

@@ -15,7 +15,10 @@ import TableRow from "@material-ui/core/TableRow";
 import { BillsInterface } from "../models/IBill";
 import { format } from 'date-fns'
 import { IconButton, Snackbar } from "@material-ui/core";
+
 import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
+import ArrowBackTwoToneIcon from '@mui/icons-material/ArrowBackTwoTone';
+
 import React from "react";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 
@@ -139,8 +142,8 @@ function Bills() {
               to="/bill/create"
               variant="contained"
               color="primary"
-              style={{ backgroundColor: '#FAFAD2', fontSize: 'verdana', color: '#FFA07A' }}>
-              กลับ
+              style={{ backgroundColor: '#4682B4', fontSize: 'verdana', color: '#ffffff' }}>
+              <ArrowBackTwoToneIcon/>
             </Button>
           </Box>
         </Box>
