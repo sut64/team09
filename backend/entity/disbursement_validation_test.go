@@ -36,7 +36,7 @@ func TestDisbursementIDMustBeInValidPattern(t *testing.T) {
 		"x0000",
 		"Dx000",  // D ตามด้วย X และ \d 3 ตัว
 		"D000",   // D ตามด้วย \d 3 ตัว
-		"D00000", // D ตามด้วย \d 4 ตัว
+		"D00000", // D ตามด้วย \d 5 ตัว
 	}
 
 	for _, fixture := range fixtures {
