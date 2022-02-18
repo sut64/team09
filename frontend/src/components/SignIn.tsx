@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import { SigninInterface } from "../models/ISignin";
+import logo from '../image/logo.jpg';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -92,13 +93,13 @@ function SignIn() {
         </Alert>
       </Snackbar>
       <CssBaseline />
+      
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+          <Typography component="h1" variant="h5">
+            <img style={{width:"200px"}} className="img" src={logo}/>
+          </Typography>
         <Typography component="h1" variant="h5">
-          Sign in
-
+          เข้าสู่ระบบ
         </Typography>
         
         <form className={classes.form} noValidate>
