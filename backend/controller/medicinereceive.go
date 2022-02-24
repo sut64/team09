@@ -32,7 +32,7 @@ func ListMedicinereceive(c *gin.Context) {
 }
 
 func CreateMedicinereceive(c *gin.Context) {
-
+	//ประกาศตัวแปร
 	var medicinereceive entity.Medicinereceive
 	var packing entity.Packing
 	var receive entity.ReceiveType
