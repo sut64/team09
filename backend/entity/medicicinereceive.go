@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
+//updater
 type MedicineStorage struct {
 	gorm.Model
 	Name                  string
